@@ -1,0 +1,1212 @@
+name=index.html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capital & Code | Недвижимость Португалии & Умная Автоматизация</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0B0F19 0%, #090D16 100%);
+            color: #9CA3AF;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Glass Morphism Effect */
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #10B981 0%, #06B6D4 50%, #8B5CF6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glow Effect */
+        .glow-border {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .glow-border:hover {
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.3), 0 0 60px rgba(139, 92, 246, 0.1);
+        }
+        
+        /* Smooth Card Hover */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+        }
+        
+        /* Loading Animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .animate-spin-slow {
+            animation: spin 2s linear infinite;
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
+            color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);
+            animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s forwards;
+            z-index: 9999;
+            max-width: 90%;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+        
+        /* Burger Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+        
+        .burger-menu span {
+            width: 25px;
+            height: 2px;
+            background: white;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+        
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(9, 13, 22, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            flex-direction: column;
+            gap: 1rem;
+            padding: 2rem 1rem;
+            text-align: center;
+            z-index: 1000;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        /* Video Card Overlay */
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .video-card:hover .video-overlay {
+            opacity: 1;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9998;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #1a2332 0%, #0f1620 100%);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 1rem;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .burger-menu {
+                display: flex;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- STICKY NAVBAR -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 glass-effect z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="text-2xl font-bold gradient-text">Capital & Code</div>
+                
+                <!-- Desktop Navigation -->
+                <div class="nav-links hidden md:flex gap-8 items-center">
+                    <a href="#about" class="text-gray-400 hover:text-white transition">О компании</a>
+                    <a href="#realestate" class="text-gray-400 hover:text-white transition">Недвижимость</a>
+                    <a href="#automation" class="text-gray-400 hover:text-white transition">Автоматизация</a>
+                    <a href="#media" class="text-gray-400 hover:text-white transition">Медиа</a>
+                    <a href="#news" class="text-gray-400 hover:text-white transition">Новости</a>
+                    <a href="#contact" class="bg-gradient-to-r from-emerald-500 to-purple-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition">Связаться</a>
+                </div>
+                
+                <!-- Burger Menu (Mobile) -->
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#about" class="text-gray-300 hover:text-white transition">О компании</a>
+            <a href="#realestate" class="text-gray-300 hover:text-white transition">Недвижимость</a>
+            <a href="#automation" class="text-gray-300 hover:text-white transition">Автоматизация</a>
+            <a href="#media" class="text-gray-300 hover:text-white transition">Медиа</a>
+            <a href="#news" class="text-gray-300 hover:text-white transition">Новости</a>
+            <a href="#contact" class="bg-gradient-to-r from-emerald-500 to-purple-600 text-white px-6 py-2 rounded-lg">Связаться</a>
+        </div>
+    </nav>
+    
+    <!-- HERO SECTION -->
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
+        <div class="absolute top-20 left-10 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight">
+                <span class="gradient-text">Синхронизируем реальный капитал</span> и 
+                <span class="gradient-text">цифровые технологии</span>
+            </h1>
+            
+            <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+                Премиальная недвижимость в Португалии с доходностью до 12%, интегрированная с умной автоматизацией бизнеса через AI и Make.com
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <a href="#realestate" class="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg font-semibold hover:shadow-xl transition transform hover:scale-105">
+                    Каталог объектов
+                </a>
+                <a href="#automation" class="px-8 py-4 border border-purple-500/50 text-purple-400 rounded-lg font-semibold hover:bg-purple-500/10 transition">
+                    Автоматизировать бизнес
+                </a>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="flex justify-center gap-6">
+                <a href="https://t.me/capitalandcode" target="_blank" class="text-gray-400 hover:text-emerald-400 transition text-2xl">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://youtube.com" target="_blank" class="text-gray-400 hover:text-red-500 transition text-2xl">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-blue-500 transition text-2xl">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="text-gray-400 hover:text-pink-500 transition text-2xl">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 px-4 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Left: Text -->
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white">Два мира, одна цель</h2>
+                    <div class="space-y-6">
+                        <p class="text-gray-400 text-lg leading-relaxed">
+                            <strong class="text-emerald-400">Real Estate:</strong> Лицензированное агентство с глубоким пониманием португальского рынка. Мы знаем каждый закон (PIP, ARU, налоговые преимущества), каждый квартал Лиссабона, и каждую возможность для инвестора.
+                        </p>
+                        <p class="text-gray-400 text-lg leading-relaxed">
+                            <strong class="text-purple-400">IT & Automation:</strong> Мастера в автоматизации бизнес-процессов. Интеграции через Make.com, AI-ассистенты, телеграм-боты, CRM-системы — всё, чтобы ваш бизнес работал 24/7 без вашего участия.
+                        </p>
+                        <p class="text-gray-400 text-lg leading-relaxed">
+                            Когда эти две области встречаются, рождается магия: инвесторы находят идеальные объекты через AI-анализ рынка, а управление портфолем полностью автоматизировано.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Right: Metrics -->
+                <div class="glass-effect rounded-2xl p-12">
+                    <div class="space-y-8">
+                        <div class="border-l-2 border-emerald-500 pl-4">
+                            <div class="text-4xl font-bold gradient-text">150+</div>
+                            <p class="text-gray-400">Объектов в портфеле</p>
+                        </div>
+                        <div class="border-l-2 border-purple-500 pl-4">
+                            <div class="text-4xl font-bold text-purple-400">12%</div>
+                            <p class="text-gray-400">Средняя годовая доходность</p>
+                        </div>
+                        <div class="border-l-2 border-cyan-500 pl-4">
+                            <div class="text-4xl font-bold text-cyan-400">500+</div>
+                            <p class="text-gray-400">Автоматизированных процессов</p>
+                        </div>
+                        <div class="border-l-2 border-pink-500 pl-4">
+                            <div class="text-4xl font-bold text-pink-400">10 лет</div>
+                            <p class="text-gray-400">Опыта на рынке</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- REAL ESTATE CATALOG -->
+    <section id="realestate" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white text-center">Каталог объектов</h2>
+            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+                Лучшие инвестиционные объекты Португалии, отобранные вручную нашей командой экспертов
+            </p>
+            
+            <!-- Filters/Tabs -->
+            <div class="flex gap-4 justify-center mb-12 flex-wrap">
+                <button class="filter-btn active px-6 py-2 rounded-lg border border-emerald-500/50 text-emerald-400 font-semibold transition" data-filter="all">
+                    Все объекты
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-lg border border-gray-600 text-gray-400 font-semibold hover:border-emerald-500/50 transition" data-filter="investment">
+                    Инвестиции
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-lg border border-gray-600 text-gray-400 font-semibold hover:border-emerald-500/50 transition" data-filter="residential">
+                    Жилая недвижимость
+                </button>
+            </div>
+            
+            <!-- Properties Grid -->
+            <div id="propertiesGrid" class="grid grid-2 gap-8 mb-8">
+                <!-- Populated by JavaScript -->
+            </div>
+            
+            <!-- Load More -->
+            <div class="text-center">
+                <button id="loadMoreBtn" class="px-8 py-3 border border-emerald-500/50 text-emerald-400 rounded-lg font-semibold hover:bg-emerald-500/10 transition">
+                    Загрузить ещё
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- AUTOMATION & IT SECTION -->
+    <section id="automation" class="py-20 px-4 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white text-center">IT & Умная Автоматизация</h2>
+            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+                Ваш бизнес работает 24/7 без вашего участия. Интеграции, ботов, аналитика и AI — всё под одной крышей
+            </p>
+            
+            <div class="grid grid-3 gap-8">
+                <div class="glass-effect rounded-2xl p-8 card-hover glow-border">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-link text-purple-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Make.com Интеграции</h3>
+                    <p class="text-gray-400 mb-4">
+                        Связываем ваши системы: CRM, email, платежи, склады. Один клик — и процессы текут сами.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li>✓ CRM ↔ Telegram</li>
+                        <li>✓ Lead Scoring AI</li>
+                        <li>✓ Автоматические отчёты</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-effect rounded-2xl p-8 card-hover glow-border">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-robot text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">AI-Ассистенты</h3>
+                    <p class="text-gray-400 mb-4">
+                        ChatGPT, Claude, специализированные модели — ваш персональный сотрудник, который не устает.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li>✓ Чатбот на сайт</li>
+                        <li>✓ Email-советник</li>
+                        <li>✓ Анализ документов</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-effect rounded-2xl p-8 card-hover glow-border">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-chart-line text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Аналитика & Reporting</h3>
+                    <p class="text-gray-400 mb-4">
+                        Real-time дашборды, прогнозы трендов, предупреждения об аномалиях. Все метрики в одном месте.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li>✓ Google Sheets/Airtable</li>
+                        <li>✓ Tableau интеграция</li>
+                        <li>✓ Предиктивная аналитика</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- MEDIA HUB (Reels/Shorts/Stories) -->
+    <section id="media" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white text-center">В тренде</h2>
+            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+                Свежие видео о нишах Real Estate и Автоматизации. Обучение, инсайты, кейсы
+            </p>
+            
+            <div id="videoGrid" class="video-grid grid gap-6">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- NEWS SECTION -->
+    <section id="news" class="py-20 px-4 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white text-center">Новости & Аналитика</h2>
+            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+                Следите за трендами португальского рынка, законодательством и инновациями в IT
+            </p>
+            
+            <div id="newsList" class="space-y-6">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- CHANNELS & RESOURCES -->
+    <section id="channels" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-white text-center">Наша Экосистема</h2>
+            
+            <div class="grid grid-2 gap-8">
+                <div class="glass-effect rounded-2xl p-10 card-hover glow-border">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="text-4xl text-cyan-400">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Telegram-канал</h3>
+                            <p class="text-gray-400">@capitalandcode_pt</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Ежедневные инсайты о португальском рынке недвижимости, новые объекты, советы по инвестициям и секреты автоматизации.
+                    </p>
+                    <a href="https://t.me/capitalandcode_pt" target="_blank" class="inline-block px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-semibold hover:shadow-lg transition">
+                        Подписаться
+                    </a>
+                </div>
+                
+                <div class="glass-effect rounded-2xl p-10 card-hover glow-border">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="text-4xl text-red-500">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">YouTube-канал</h3>
+                            <p class="text-gray-400">Capital & Code TV</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Полные туры по объектам, вебинары о законодательстве, обучающие видео по Make.com и AI. Еженедельно!
+                    </p>
+                    <a href="https://youtube.com" target="_blank" class="inline-block px-6 py-2 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-lg font-semibold hover:shadow-lg transition">
+                        Посмотреть канал
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CONTACT FORM -->
+    <section id="contact" class="py-20 px-4 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white text-center">Начнём сотрудничество</h2>
+            <p class="text-gray-400 text-center mb-12">
+                Оставьте заявку, и мы свяжемся с вами в Telegram с персональным предложением
+            </p>
+            
+            <div class="glass-effect rounded-2xl p-8">
+                <form id="contactForm" class="space-y-6">
+                    <div>
+                        <label class="block text-white font-semibold mb-2">Ваше имя</label>
+                        <input 
+                            type="text" 
+                            id="formName" 
+                            placeholder="Иван Петров" 
+                            class="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none transition"
+                            required
+                        >
+                    </div>
+                    
+                    <div>
+                        <label class="block text-white font-semibold mb-2">Telegram / Телефон</label>
+                        <input 
+                            type="text" 
+                            id="formContact" 
+                            placeholder="@yourhandle или +351 9XXXXXXXX" 
+                            class="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none transition"
+                            required
+                        >
+                    </div>
+                    
+                    <div>
+                        <label class="block text-white font-semibold mb-2">Что вас интересует?</label>
+                        <select 
+                            id="formTopic" 
+                            class="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-700 text-white focus:border-emerald-500 focus:outline-none transition"
+                            required
+                        >
+                            <option value="" disabled selected>Выберите направление...</option>
+                            <option value="realestate">Недвижимость в Португалии</option>
+                            <option value="automation">Автоматизация бизнеса</option>
+                            <option value="both">Оба направления</option>
+                            <option value="other">Другой вопрос</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-white font-semibold mb-2">Сообщение (опционально)</label>
+                        <textarea 
+                            id="formMessage" 
+                            placeholder="Расскажите немного о себе и ваших целях..." 
+                            rows="4"
+                            class="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none transition resize-none"
+                        ></textarea>
+                    </div>
+                    
+                    <button 
+                        type="submit" 
+                        id="submitBtn"
+                        class="w-full py-3 bg-gradient-to-r from-emerald-500 to-purple-600 text-white font-bold rounded-lg hover:shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2"
+                    >
+                        <span>Отправить заявку</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer class="py-12 px-4 border-t border-gray-800/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-1 md:grid-3 gap-8 mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold gradient-text mb-4">Capital & Code</h3>
+                    <p class="text-gray-400">Синергия недвижимости и технологий</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Быстрые ссылки</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">О компании</a></li>
+                        <li><a href="#realestate" class="text-gray-400 hover:text-white transition">Недвижимость</a></li>
+                        <li><a href="#automation" class="text-gray-400 hover:text-white transition">Автоматизация</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Контакты</h4>
+                    <p class="text-gray-400">Email: hello@capitalandcode.pt</p>
+                    <p class="text-gray-400">Telegram: @capitalandcode</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800/50 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 Capital & Code. Все права защищены. | Сайт создан с помощью GitHub Pages</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- VIDEO MODAL -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content max-w-2xl w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-700">
+                <h3 id="modalVideoTitle" class="text-2xl font-bold text-white"></h3>
+                <button id="closeModal" class="text-gray-400 hover:text-white text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <div id="videoContainer" style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                    <!-- YouTube iframe will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PROPERTY MODAL -->
+    <div id="propertyModal" class="modal">
+        <div class="modal-content max-w-2xl w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-700">
+                <h3 id="modalPropertyTitle" class="text-2xl font-bold text-white"></h3>
+                <button id="closePropertyModal" class="text-gray-400 hover:text-white text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="propertyDetails" class="p-6">
+                <!-- Property details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN SCRIPT -->
+    <script>
+        // ==========================================
+        // DATA STORE - Ready for Make.com integration
+        // ==========================================
+        // 💡 TIP: Когда будете интегрировать Make.com:
+        //    Замените этот объект на fetch() к вашему API:
+        //    fetch('https://your-api.com/content.json').then(r => r.json()).then(data => renderContent(data))
+        
+        const DATA_STORE = {
+            properties: [
+                {
+                    id: 1,
+                    title: "Люксовая квартира в центре Лиссабона",
+                    category: "residential",
+                    price: "€950,000",
+                    yield: "6.5%",
+                    rooms: 3,
+                    area: "180 м²",
+                    location: "Лиссабон, Baixa Pombalina",
+                    tags: ["Люкс", "Центр", "Ремонт"],
+                    image: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    description: "Окончательно отремонтированная квартира с видом на Тежу, современный интерьер, система умного дома."
+                },
+                {
+                    id: 2,
+                    title: "Инвестиционный объект с программой PIP",
+                    category: "investment",
+                    price: "€450,000",
+                    yield: "9.2%",
+                    rooms: 2,
+                    area: "120 м²",
+                    location: "Порто, Ribeira",
+                    tags: ["PIP", "Инвестиция", "Рост"],
+                    image: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                    description: "Стартап виза, программа нерезидента. Гарантированная доходность через платформу."
+                },
+                {
+                    id: 3,
+                    title: "Апартаменты в туристической зоне Алгарве",
+                    category: "investment",
+                    price: "€320,000",
+                    yield: "11.8%",
+                    rooms: 2,
+                    area: "95 м²",
+                    location: "Алгарве, Vilamoura",
+                    tags: ["Туризм", "Высокий yield", "Сезонный"],
+                    image: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+                    description: "Short-term rental, среднегодовая доходность 11.8%, управление через платформу."
+                },
+                {
+                    id: 4,
+                    title: "Вилла с земельным участком в Синтре",
+                    category: "residential",
+                    price: "€1,200,000",
+                    yield: "5.5%",
+                    rooms: 5,
+                    area: "320 м²",
+                    location: "Синтра, природный парк",
+                    tags: ["Вилла", "Земля", "Престиж"],
+                    image: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+                    description: "Историческая вилла на 2 га земли, парк, бассейн, близко к Лиссабону."
+                },
+                {
+                    id: 5,
+                    title: "Коммерческое помещение в деловом квартале",
+                    category: "investment",
+                    price: "€680,000",
+                    yield: "7.9%",
+                    rooms: 0,
+                    area: "250 м²",
+                    location: "Лиссабон, Parque das Nações",
+                    tags: ["Коммерция", "Льготы", "Стабиль"],
+                    image: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+                    description: "Сдано якорному тенанту, долгосрочный контракт, стабильный доход."
+                },
+                {
+                    id: 6,
+                    title: "Апартамент со студией в центре Эвора",
+                    category: "residential",
+                    price: "€185,000",
+                    yield: "8.1%",
+                    rooms: 2,
+                    area: "85 м²",
+                    location: "Эвора, UNESCO World Heritage",
+                    tags: ["Бюджет", "Туризм", "История"],
+                    image: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+                    description: "Доступный вариант в городе ЮНЕСКО, идеален для краткосрочной аренды туристам."
+                }
+            ],
+            
+            videos: [
+                {
+                    id: 1,
+                    title: "Как купить квартиру в Лиссабоне с программой NHR",
+                    youtubeId: "dQw4w9WgXcQ",
+                    views: "12.5K",
+                    category: "realestate",
+                    thumbnail: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                },
+                {
+                    id: 2,
+                    title: "Автоматизация CRM через Make.com: реальный кейс",
+                    youtubeId: "dQw4w9WgXcQ",
+                    views: "8.3K",
+                    category: "automation",
+                    thumbnail: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+                },
+                {
+                    id: 3,
+                    title: "Top 5 районов Порто для инвестиций в 2024",
+                    youtubeId: "dQw4w9WgXcQ",
+                    views: "15.2K",
+                    category: "realestate",
+                    thumbnail: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+                },
+                {
+                    id: 4,
+                    title: "ChatGPT + Make.com = бизнес-боты на стероидах",
+                    youtubeId: "dQw4w9WgXcQ",
+                    views: "9.8K",
+                    category: "automation",
+                    thumbnail: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
+                },
+                {
+                    id: 5,
+                    title: "PIP программа 2024: полный разбор изменений",
+                    youtubeId: "dQw4w9WgXcQ",
+                    views: "10.5K",
+                    category: "realestate",
+                    thumbnail: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
+                },
+                {
+                    id: 6,
+                    title: "Telegram боты для генерации лидов: Live Coding",
+                    youtubeId: "dQw4w9WgXcQ",
+                    views: "7.2K",
+                    category: "automation",
+                    thumbnail: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)"
+                }
+            ],
+            
+            news: [
+                {
+                    id: 1,
+                    title: "Португалия ввела новые налоговые льготы для инвесторов в недвижимость",
+                    source: "Аналитика рынка",
+                    date: "2 июня 2024",
+                    excerpt: "Начиная с июля, резиденты получат скидку на налог на имущество. Это может увеличить рентабельность инвестиций на 2-3%.",
+                    badge: "Законодательство"
+                },
+                {
+                    id: 2,
+                    title: "AI-революция в автоматизации: новые возможности Make.com",
+                    source: "Тренды ИТ",
+                    date: "1 июня 2024",
+                    excerpt: "Make.com интегрировал GPT-4 для智能 маршрутизации данных. Это позволяет создавать совсем автоматизацию без кода.",
+                    badge: "Технология"
+                },
+                {
+                    id: 3,
+                    title: "Цены на недвижимость в Лиссабоне выросли на 7% за полгода",
+                    source: "Наше",
+                    date: "28 мая 2024",
+                    excerpt: "Рынок остается горячим. Район Низа и Камполиде показывают наибольший рост.",
+                    badge: "Рынок"
+                },
+                {
+                    id: 4,
+                    title: "Как автоматизация сокращает затраты на продажи на 60%",
+                    source: "Наше",
+                    date: "25 мая 2024",
+                    excerpt: "Кейс-стади: реальный бизнес, реальные цифры. Плюс инструменты, которые мы используем.",
+                    badge: "Кейс"
+                }
+            ]
+        };
+        
+        // ==========================================
+        // MAKE.COM WEBHOOK CONFIGURATION
+        // ==========================================
+        // 🔴 ВАЖНО: Замените на вашу реальную ссылку из Make.com
+        // Как получить ссылку:
+        // 1. Создайте сценарий в Make.com с триггером "Webhook"
+        // 2. Скопируйте URL вебхука
+        // 3. Вставьте сюда
+        // Пример: const MAKE_WEBHOOK_URL = "https://hook.make.com/....";
+        
+        const MAKE_WEBHOOK_URL = "https://hook.make.com/YOUR_WEBHOOK_ID_HERE";
+        
+        // ==========================================
+        // UTILITY FUNCTIONS
+        // ==========================================
+        
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+        
+        // Collect system metadata for analytics
+        function collectMetadata() {
+            return {
+                source_url: window.location.href,
+                timestamp: new Date().toISOString(),
+                user_agent: navigator.userAgent,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                language: navigator.language
+            };
+        }
+        
+        // ==========================================
+        // NAVBAR & MOBILE MENU
+        // ==========================================
+        
+        const burgerMenu = document.getElementById('burgerMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerMenu.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Close mobile menu on scroll
+        window.addEventListener('scroll', () => {
+            if (mobileMenu.classList.contains('active')) {
+                burgerMenu.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+        
+        // ==========================================
+        // RENDER PROPERTIES
+        // ==========================================
+        
+        let displayedProperties = 3;
+        
+        function renderProperties(filter = 'all') {
+            const grid = document.getElementById('propertiesGrid');
+            grid.innerHTML = '';
+            
+            const filtered = filter === 'all' 
+                ? DATA_STORE.properties 
+                : DATA_STORE.properties.filter(p => p.category === filter);
+            
+            filtered.slice(0, displayedProperties).forEach(property => {
+                const card = document.createElement('div');
+                card.className = 'glass-effect rounded-2xl overflow-hidden card-hover glow-border cursor-pointer';
+                card.innerHTML = `
+                    <div class="relative h-48 overflow-hidden" style="background: ${property.image};">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            ${property.tags.map(tag => `<span class="px-3 py-1 bg-black/60 rounded-full text-sm text-emerald-400">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">${property.title}</h3>
+                        <p class="text-gray-400 text-sm mb-4">${property.location}</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <div class="text-2xl font-bold gradient-text">${property.price}</div>
+                                <div class="text-sm text-emerald-400">Доход: ${property.yield}</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-400">${property.rooms} комн.</div>
+                                <div class="text-sm text-gray-400">${property.area}</div>
+                            </div>
+                        </div>
+                        <button class="w-full py-2 border border-emerald-500/50 text-emerald-400 rounded-lg hover:bg-emerald-500/10 transition font-semibold property-details-btn">
+                            Узнать подробнее
+                        </button>
+                    </div>
+                `;
+                
+                card.querySelector('.property-details-btn').addEventListener('click', () => {
+                    showPropertyModal(property);
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        function showPropertyModal(property) {
+            const modal = document.getElementById('propertyModal');
+            document.getElementById('modalPropertyTitle').textContent = property.title;
+            document.getElementById('propertyDetails').innerHTML = `
+                <div class="space-y-4">
+                    <div style="height: 300px; background: ${property.image}; border-radius: 0.5rem; background-size: cover;"></div>
+                    <p class="text-gray-300">${property.description}</p>
+                    <div class="grid grid-2 gap-4">
+                        <div class="glass-effect p-4 rounded-lg">
+                            <div class="text-sm text-gray-400">Цена</div>
+                            <div class="text-2xl font-bold gradient-text">${property.price}</div>
+                        </div>
+                        <div class="glass-effect p-4 rounded-lg">
+                            <div class="text-sm text-gray-400">Доходность</div>
+                            <div class="text-2xl font-bold text-emerald-400">${property.yield}</div>
+                        </div>
+                        <div class="glass-effect p-4 rounded-lg">
+                            <div class="text-sm text-gray-400">Площадь</div>
+                            <div class="text-2xl font-bold text-purple-400">${property.area}</div>
+                        </div>
+                        <div class="glass-effect p-4 rounded-lg">
+                            <div class="text-sm text-gray-400">Комнаты</div>
+                            <div class="text-2xl font-bold text-cyan-400">${property.rooms}</div>
+                        </div>
+                    </div>
+                    <button onclick="document.getElementById('formTopic').value = 'realestate'; document.getElementById('contact').scrollIntoView({behavior: 'smooth'}); document.getElementById('propertyModal').classList.remove('active');" class="w-full py-3 bg-gradient-to-r from-emerald-500 to-purple-600 text-white rounded-lg font-bold hover:shadow-lg transition">
+                        Интересует этот объект
+                    </button>
+                </div>
+            `;
+            modal.classList.add('active');
+        }
+        
+        document.getElementById('closePropertyModal').addEventListener('click', () => {
+            document.getElementById('propertyModal').classList.remove('active');
+        });
+        
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active', 'border-emerald-500/50', 'text-emerald-400');
+                    b.classList.add('border-gray-600', 'text-gray-400');
+                });
+                this.classList.add('active', 'border-emerald-500/50', 'text-emerald-400');
+                this.classList.remove('border-gray-600', 'text-gray-400');
+                
+                displayedProperties = 3;
+                renderProperties(this.getAttribute('data-filter'));
+            });
+        });
+        
+        document.getElementById('loadMoreBtn').addEventListener('click', () => {
+            displayedProperties += 3;
+            const activeFilter = document.querySelector('.filter-btn.active');
+            renderProperties(activeFilter.getAttribute('data-filter'));
+        });
+        
+        // ==========================================
+        // RENDER VIDEOS
+        // ==========================================
+        
+        function renderVideos() {
+            const grid = document.getElementById('videoGrid');
+            grid.innerHTML = '';
+            
+            DATA_STORE.videos.forEach(video => {
+                const card = document.createElement('div');
+                card.className = 'video-card relative rounded-xl overflow-hidden cursor-pointer card-hover group';
+                card.style.background = video.thumbnail;
+                card.style.paddingBottom = '177.78%';
+                card.style.position = 'relative';
+                
+                card.innerHTML = `
+                    <div class="absolute inset-0" style="background: ${video.thumbnail};"></div>
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition"></div>
+                    <div class="absolute inset-0 flex flex-col justify-between p-4">
+                        <div class="text-right">
+                            <div class="text-xs bg-black/60 inline-block px-2 py-1 rounded">
+                                <i class="fas fa-eye"></i> ${video.views}
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-white line-clamp-2">${video.title}</h3>
+                        </div>
+                    </div>
+                    <div class="video-overlay">
+                        <div class="text-4xl text-white">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => {
+                    showVideoModal(video);
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        function showVideoModal(video) {
+            const modal = document.getElementById('videoModal');
+            document.getElementById('modalVideoTitle').textContent = video.title;
+            
+            const container = document.getElementById('videoContainer');
+            container.innerHTML = '';
+            
+            const iframe = document.createElement('iframe');
+            iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%;';
+            iframe.src = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`;
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            
+            container.appendChild(iframe);
+            modal.classList.add('active');
+        }
+        
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('videoModal').classList.remove('active');
+            document.getElementById('videoContainer').innerHTML = '';
+        });
+        
+        // ==========================================
+        // RENDER NEWS
+        // ==========================================
+        
+        function renderNews() {
+            const newsList = document.getElementById('newsList');
+            newsList.innerHTML = '';
+            
+            DATA_STORE.news.forEach(newsItem => {
+                const newsCard = document.createElement('div');
+                newsCard.className = 'glass-effect rounded-xl p-6 card-hover glow-border border-l-4 border-emerald-500';
+                newsCard.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-white flex-1">${newsItem.title}</h3>
+                        <span class="text-xs px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full whitespace-nowrap ml-4">${newsItem.badge}</span>
+                    </div>
+                    <div class="flex gap-4 text-sm text-gray-400 mb-3">
+                        <span><i class="fas fa-calendar"></i> ${newsItem.date}</span>
+                        <span><i class="fas fa-newspaper"></i> ${newsItem.source}</span>
+                    </div>
+                    <p class="text-gray-300">${newsItem.excerpt}</p>
+                `;
+                newsList.appendChild(newsCard);
+            });
+        }
+        
+        // ==========================================
+        // CONTACT FORM & MAKE.COM INTEGRATION
+        // ==========================================
+        
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Validation
+            const name = document.getElementById('formName').value.trim();
+            const contact = document.getElementById('formContact').value.trim();
+            const topic = document.getElementById('formTopic').value;
+            const message = document.getElementById('formMessage').value.trim();
+            
+            if (!name || !contact || !topic) {
+                showToast('Пожалуйста, заполните все обязательные поля', 'error');
+                return;
+            }
+            
+            // Disable button & show loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner animate-spin-slow"></i> Отправка...';
+            
+            try {
+                // Prepare payload with metadata
+                const payload = {
+                    name,
+                    contact,
+                    topic,
+                    message,
+                    ...collectMetadata()
+                };
+                
+                // Send to Make.com webhook
+                const response = await fetch(MAKE_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (response.ok) {
+                    // Success
+                    showToast('✓ Заявка успешно отправлена! Скоро свяжемся с вами в Telegram', 'success');
+                    contactForm.reset();
+                } else {
+                    // Make.com returned error
+                    showToast('Ошибка при отправке. Попробуйте позже', 'error');
+                }
+            } catch (error) {
+                // Network error or CORS issue
+                console.error('Form submission error:', error);
+                
+                // Fallback: If webhook URL not configured
+                if (MAKE_WEBHOOK_URL.includes('YOUR_WEBHOOK_ID_HERE')) {
+                    showToast('⚠️ Вебхук не настроен. Замените MAKE_WEBHOOK_URL на вашу ссылку из Make.com', 'error');
+                } else {
+                    showToast('Ошибка подключения. Проверьте консоль', 'error');
+                }
+                console.log('Form data that would be sent:', {
+                    name: document.getElementById('formName').value,
+                    contact: document.getElementById('formContact').value,
+                    topic: document.getElementById('formTopic').value,
+                    message: document.getElementById('formMessage').value,
+                    ...collectMetadata()
+                });
+            } finally {
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>Отправить заявку</span><i class="fas fa-arrow-right"></i>';
+            }
+        });
+        
+        // ==========================================
+        // INITIAL RENDER
+        // ==========================================
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProperties('all');
+            renderVideos();
+            renderNews();
+        });
+        
+        // ==========================================
+        // DYNAMIC FORM BEHAVIOR
+        // ==========================================
+        
+        document.getElementById('formTopic').addEventListener('change', function(e) {
+            // Динамически подстраиваем интерфейс в зависимости от выбора
+            const topicValue = e.target.value;
+            
+            if (topicValue === 'realestate') {
+                console.log('User interested in Real Estate');
+                // Можно добавить подсказки или изменить цвет формы
+            } else if (topicValue === 'automation') {
+                console.log('User interested in Automation');
+            }
+        });
+        
+        // Close modals on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('videoModal').classList.remove('active');
+                document.getElementById('propertyModal').classList.remove('active');
+                document.getElementById('videoContainer').innerHTML = '';
+            }
+        });
+    </script>
+</body>
+</html>
