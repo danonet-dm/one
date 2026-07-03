@@ -1007,9 +1007,13 @@ function renderQuickActions(){
 function renderSocials(){
   const S = ONE_CONFIG.socials;
   const label = { youtube:'YouTube', tiktok:'TikTok', instagram:'Instagram', facebook:'Facebook', telegram:'Telegram', whatsapp:'WhatsApp' };
-  $('social-ft').innerHTML = Object.entries(S).filter(([,url]) => url).map(([id,url]) => `
-    <a class="px-3.5 py-2 rounded-xl border border-stroke text-ink-2 text-xs font-mono hover:text-ink hover:border-stroke-hi transition-colors"
-       href="${esc(url)}" target="_blank" rel="noopener">${label[id]}</a>`).join('');
+  $('social-ft').innerHTML = Object.entries(S)
+    .filter(([,url]) => url && url.trim() !== "")
+    .map(([id,url]) => {
+      const text = label[id.toLowerCase()] || id;
+      return `<a class="px-3.5 py-2 rounded-xl border border-stroke text-ink-2 text-xs font-mono hover:text-ink hover:border-stroke-hi transition-colors"
+                 href="${esc(url)}" target="_blank" rel="noopener">${text}</a>`;
+    }).join('');
 }
 
 /* ---------------- Renderers: dynamic (DATA_STORE-driven) ---------------- */
