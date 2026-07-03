@@ -1,1212 +1,1352 @@
-name=index.html
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capital & Code | Недвижимость Португалии & Умная Автоматизация</title>
-    
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom Styles -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #0B0F19 0%, #090D16 100%);
-            color: #9CA3AF;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            position: relative;
-            overflow-x: hidden;
-        }
-        
-        /* Glass Morphism Effect */
-        .glass-effect {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-        }
-        
-        /* Gradient Text */
-        .gradient-text {
-            background: linear-gradient(135deg, #10B981 0%, #06B6D4 50%, #8B5CF6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Glow Effect */
-        .glow-border {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .glow-border:hover {
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.3), 0 0 60px rgba(139, 92, 246, 0.1);
-        }
-        
-        /* Smooth Card Hover */
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
-        }
-        
-        /* Loading Animation */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .animate-spin-slow {
-            animation: spin 2s linear infinite;
-        }
-        
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            padding: 1rem 1.5rem;
-            background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
-            color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);
-            animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s forwards;
-            z-index: 9999;
-            max-width: 90%;
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-        }
-        
-        /* Burger Menu */
-        .burger-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 6px;
-        }
-        
-        .burger-menu span {
-            width: 25px;
-            height: 2px;
-            background: white;
-            transition: 0.3s;
-            border-radius: 2px;
-        }
-        
-        .burger-menu.active span:nth-child(1) {
-            transform: rotate(45deg) translate(10px, 10px);
-        }
-        
-        .burger-menu.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .burger-menu.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            position: absolute;
-            top: 80px;
-            left: 0;
-            right: 0;
-            background: rgba(9, 13, 22, 0.95);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(148, 163, 184, 0.1);
-            flex-direction: column;
-            gap: 1rem;
-            padding: 2rem 1rem;
-            text-align: center;
-            z-index: 1000;
-        }
-        
-        .mobile-menu.active {
-            display: flex;
-        }
-        
-        /* Video Card Overlay */
-        .video-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .video-card:hover .video-overlay {
-            opacity: 1;
-        }
-        
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 9998;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-        
-        .modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: linear-gradient(135deg, #1a2332 0%, #0f1620 100%);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            border-radius: 1rem;
-            max-width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .burger-menu {
-                display: flex;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .grid-3 {
-                grid-template-columns: 1fr;
-            }
-            
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            
-            .video-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="ONE — ecosystem of companies: real estate, investment, construction, business automation and digital products. ProEstate Unipessoal LDA, Lisboa.">
+<meta name="theme-color" content="#090D16">
+<title>ONE · ProEstate & ONE AI · Ecosystem Platform</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: {
+      abyss:  { DEFAULT:'#090D16', 2:'#0B0F19', 3:'#0E1424' },
+      panel:  { DEFAULT:'rgba(17,24,39,.55)', hi:'rgba(30,41,59,.6)' },
+      stroke: { DEFAULT:'rgba(148,163,184,.14)', hi:'rgba(148,163,184,.3)' },
+      ink:    { DEFAULT:'#E5EAF3', 2:'#9AA6BD', 3:'#5F6B84' },
+      em:'#34D399', cy:'#22D3EE', vi:'#A78BFA', ry:'#3B82F6'
+    },
+    fontFamily: {
+      display:['"Space Grotesk"','sans-serif'],
+      sans:['Inter','system-ui','sans-serif'],
+      mono:['"JetBrains Mono"','monospace']
+    },
+    maxWidth:{ wrap:'1240px' },
+    animation:{ 'spin-slow':'spin 1.2s linear infinite' }
+  } }
+}
+</script>
+
+<style>
+/* ============================================================
+   ONE Ecosystem — Design System
+   Premium Dark: #090D16 base · glass panels · neon gradients
+   (Emerald / Cyan / Purple / Royal) · Space Grotesk display
+   ============================================================ */
+:root{
+  --abyss:#090D16; --stroke:rgba(148,163,184,.14); --stroke-hi:rgba(148,163,184,.32);
+  --ink:#E5EAF3; --ink2:#9AA6BD; --ink3:#5F6B84;
+  --em:#34D399; --cy:#22D3EE; --vi:#A78BFA; --ry:#3B82F6;
+  --ease:cubic-bezier(.22,.61,.2,1);
+}
+html{ -webkit-text-size-adjust:100% }
+body{ background:var(--abyss); color:var(--ink); font-family:Inter,system-ui,sans-serif;
+  overflow-x:hidden; -webkit-font-smoothing:antialiased }
+::selection{ background:rgba(52,211,153,.25) }
+
+/* Custom scrollbar */
+::-webkit-scrollbar{ width:10px }
+::-webkit-scrollbar-track{ background:#0B0F19 }
+::-webkit-scrollbar-thumb{ border-radius:8px; border:2px solid #0B0F19;
+  background:linear-gradient(180deg,#1E293B,#33415C) }
+::-webkit-scrollbar-thumb:hover{ background:linear-gradient(180deg,#2b3a52,#41547a) }
+
+/* Focus a11y */
+:focus-visible{ outline:2px solid var(--cy); outline-offset:3px; border-radius:6px }
+.skip-link{ position:absolute; left:-9999px; z-index:100; background:var(--cy); color:#06202a;
+  padding:.7rem 1.2rem; border-radius:0 0 12px 0; font-weight:600 }
+.skip-link:focus{ left:0; top:0 }
+
+/* Typography */
+.h-display{ font-family:"Space Grotesk",sans-serif; font-weight:600; letter-spacing:-.03em; line-height:1.05 }
+.grad-text{ background:linear-gradient(92deg,#34D399 5%,#22D3EE 38%,#3B82F6 66%,#A78BFA 95%);
+  -webkit-background-clip:text; background-clip:text; color:transparent }
+.eyebrow{ font-family:"JetBrains Mono",monospace; font-size:.7rem; letter-spacing:.24em;
+  text-transform:uppercase; color:var(--cy); display:inline-flex; align-items:center; gap:.6rem }
+.eyebrow::before{ content:""; width:24px; height:1px; background:linear-gradient(90deg,var(--em),var(--cy)) }
+.num{ font-family:"JetBrains Mono",monospace; font-variant-numeric:tabular-nums }
+
+/* Glass */
+.glass{ background:linear-gradient(155deg,rgba(20,28,46,.62),rgba(11,15,25,.55));
+  -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px); border:1px solid var(--stroke) }
+.card{ background:linear-gradient(160deg,rgba(19,26,44,.7),rgba(10,14,24,.8));
+  border:1px solid var(--stroke); border-radius:20px; position:relative;
+  transition:transform .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease) }
+.card:hover{ transform:translateY(-5px); border-color:var(--stroke-hi);
+  box-shadow:0 24px 60px -22px rgba(0,0,0,.7), 0 0 0 1px rgba(34,211,238,.08),
+             0 0 44px -18px rgba(34,211,238,.35) }
+.card-glow-em:hover{ box-shadow:0 24px 60px -22px rgba(0,0,0,.7), 0 0 44px -16px rgba(52,211,153,.4) }
+.card-glow-vi:hover{ box-shadow:0 24px 60px -22px rgba(0,0,0,.7), 0 0 44px -16px rgba(167,139,250,.4) }
+
+/* Buttons */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:.55rem; cursor:pointer;
+  font-weight:600; font-size:.92rem; border-radius:14px; padding:.85rem 1.6rem;
+  transition:all .35s var(--ease); border:1px solid transparent; white-space:nowrap }
+.btn-neo{ color:#04121b; background:linear-gradient(95deg,#34D399,#22D3EE 55%,#3B82F6);
+  box-shadow:0 12px 34px -12px rgba(34,211,238,.55) }
+.btn-neo:hover{ transform:translateY(-2px); box-shadow:0 18px 42px -12px rgba(34,211,238,.75) }
+.btn-neo:active{ transform:none }
+.btn-neo[disabled]{ opacity:.6; cursor:not-allowed; transform:none }
+.btn-ghost{ border-color:var(--stroke); color:var(--ink); background:rgba(255,255,255,.02) }
+.btn-ghost:hover{ border-color:var(--stroke-hi); background:rgba(34,211,238,.06) }
+.btn-sm{ padding:.55rem 1.05rem; font-size:.82rem; border-radius:11px }
+
+/* Chips / tabs */
+.chip{ padding:.5rem 1.05rem; border-radius:999px; font-size:.84rem; font-weight:500; cursor:pointer;
+  border:1px solid var(--stroke); color:var(--ink2); background:transparent;
+  transition:all .3s var(--ease); white-space:nowrap }
+.chip:hover{ color:var(--ink); border-color:var(--stroke-hi) }
+.chip[aria-pressed="true"]{ color:#062521; border-color:transparent;
+  background:linear-gradient(95deg,#34D399,#22D3EE); font-weight:600 }
+.seg-tab{ padding:.7rem 1.2rem; border-radius:14px; font-size:.88rem; font-weight:500; cursor:pointer;
+  border:1px solid var(--stroke); color:var(--ink2); background:transparent; text-align:left;
+  transition:all .3s var(--ease); display:flex; align-items:center; gap:.7rem }
+.seg-tab:hover{ color:var(--ink); border-color:var(--stroke-hi) }
+.seg-tab[aria-selected="true"]{ color:var(--ink); border-color:rgba(167,139,250,.5);
+  background:linear-gradient(120deg,rgba(167,139,250,.14),rgba(59,130,246,.1));
+  box-shadow:0 0 30px -12px rgba(167,139,250,.5) }
+
+/* Badges */
+.badge{ font-family:"JetBrains Mono",monospace; font-size:.64rem; letter-spacing:.1em;
+  text-transform:uppercase; padding:.3rem .65rem; border-radius:8px }
+.badge-em{ color:#34D399; background:rgba(52,211,153,.12); border:1px solid rgba(52,211,153,.25) }
+.badge-cy{ color:#22D3EE; background:rgba(34,211,238,.1); border:1px solid rgba(34,211,238,.25) }
+.badge-vi{ color:#A78BFA; background:rgba(167,139,250,.12); border:1px solid rgba(167,139,250,.25) }
+.badge-mut{ color:var(--ink3); background:rgba(95,107,132,.12); border:1px solid var(--stroke) }
+
+/* Inputs */
+.field{ width:100%; background:rgba(7,10,18,.65); border:1px solid var(--stroke); border-radius:14px;
+  padding:.85rem 1.1rem; color:var(--ink); font-size:.95rem;
+  transition:border-color .3s var(--ease), box-shadow .3s var(--ease) }
+.field::placeholder{ color:var(--ink3) }
+.field:focus{ outline:none; border-color:rgba(34,211,238,.6); box-shadow:0 0 0 3px rgba(34,211,238,.12) }
+.field[aria-invalid="true"]{ border-color:#F87171 }
+.field-err{ color:#F87171; font-size:.78rem; margin-top:.35rem; min-height:1rem; display:block }
+
+/* Hero atmosphere */
+.hero-bg{ position:absolute; inset:0; overflow:hidden; pointer-events:none }
+.hero-bg::before{ content:""; position:absolute; inset:-25%;
+  background:
+    radial-gradient(38% 48% at 22% 22%, rgba(52,211,153,.14), transparent 62%),
+    radial-gradient(42% 52% at 80% 16%, rgba(59,130,246,.16), transparent 62%),
+    radial-gradient(36% 46% at 68% 88%, rgba(167,139,250,.13), transparent 62%),
+    radial-gradient(30% 40% at 12% 90%, rgba(34,211,238,.1), transparent 62%);
+  animation:drift 24s ease-in-out infinite alternate }
+.hero-grid{ position:absolute; inset:0; opacity:.55;
+  background-image:linear-gradient(rgba(148,163,184,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(148,163,184,.05) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(72% 62% at 50% 34%,#000,transparent 80%);
+  mask-image:radial-gradient(72% 62% at 50% 34%,#000,transparent 80%) }
+@keyframes drift{ from{ transform:translate3d(-2%,-1%,0) scale(1) } to{ transform:translate3d(2%,2%,0) scale(1.07) } }
+
+/* Reveal */
+.reveal{ opacity:0; transform:translateY(24px); transition:opacity .9s var(--ease), transform .9s var(--ease) }
+.reveal.in{ opacity:1; transform:none }
+.reveal[data-delay="1"]{ transition-delay:.08s } .reveal[data-delay="2"]{ transition-delay:.16s }
+.reveal[data-delay="3"]{ transition-delay:.24s }
+
+/* Media placeholders */
+.ph{ position:relative; overflow:hidden; background:
+  linear-gradient(140deg,#131A2C,#0B0F1B) }
+.ph img{ width:100%; height:100%; object-fit:cover; display:block; opacity:0;
+  transition:transform 1.1s var(--ease), opacity .7s ease }
+.ph img.loaded{ opacity:1 }
+.card:hover .ph img{ transform:scale(1.05) }
+.ph-abstract::before{ content:""; position:absolute; inset:0;
+  background:radial-gradient(60% 80% at 30% 20%, rgba(52,211,153,.14), transparent 60%),
+             radial-gradient(60% 80% at 80% 80%, rgba(167,139,250,.14), transparent 60%) }
+
+/* Skeleton loaders */
+.sk{ position:relative; overflow:hidden; background:rgba(148,163,184,.07); border-radius:12px }
+.sk::after{ content:""; position:absolute; inset:0; transform:translateX(-100%);
+  background:linear-gradient(90deg,transparent,rgba(148,163,184,.12),transparent);
+  animation:shimmer 1.6s infinite }
+@keyframes shimmer{ 100%{ transform:translateX(100%) } }
+
+/* Modals */
+.modal-veil{ position:fixed; inset:0; z-index:70; display:none; overflow-y:auto; overscroll-behavior:contain;
+  background:rgba(4,7,13,.78); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+  opacity:0; transition:opacity .35s ease }
+.modal-veil.open{ display:block } .modal-veil.vis{ opacity:1 }
+.modal-box{ transform:translateY(26px) scale(.985); opacity:0;
+  transition:transform .5s var(--ease), opacity .5s var(--ease) }
+.modal-veil.vis .modal-box{ transform:none; opacity:1 }
+body.locked{ overflow:hidden }
+
+/* Nav */
+#nav{ transition:background .4s ease, border-color .4s ease; border-bottom:1px solid transparent }
+#nav.scrolled{ background:rgba(9,13,22,.85); -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px);
+  border-color:var(--stroke) }
+.nav-link{ color:var(--ink2); font-size:.9rem; font-weight:500; padding:.4rem 0; position:relative;
+  transition:color .25s ease }
+.nav-link:hover{ color:var(--ink) }
+.nav-link::after{ content:""; position:absolute; left:0; bottom:0; height:1.5px; width:0;
+  background:linear-gradient(90deg,var(--em),var(--cy)); transition:width .3s var(--ease) }
+.nav-link:hover::after{ width:100% }
+#mnav{ transform:translateX(100%); transition:transform .5s var(--ease) }
+#mnav.open{ transform:none }
+.lang-btn{ font-family:"JetBrains Mono",monospace; font-size:.72rem; padding:.35rem .55rem;
+  border-radius:8px; color:var(--ink3); text-transform:uppercase; cursor:pointer; transition:all .25s ease }
+.lang-btn:hover{ color:var(--ink) }
+.lang-btn[aria-pressed="true"]{ color:#0b2d33; background:linear-gradient(95deg,#34D399,#22D3EE); font-weight:600 }
+
+/* Ecosystem tree */
+.tree-line{ position:absolute; left:50%; top:0; width:1px; height:38px;
+  background:linear-gradient(180deg,transparent,rgba(34,211,238,.5)) }
+.unit-chip{ font-size:.78rem; color:var(--ink2); border:1px solid var(--stroke); border-radius:999px;
+  padding:.35rem .8rem }
+
+/* Quick actions */
+.qa{ display:flex; align-items:center; gap:.8rem; padding:1rem 1.2rem; border-radius:16px;
+  border:1px solid var(--stroke); background:rgba(255,255,255,.02); transition:all .3s var(--ease) }
+.qa:hover{ border-color:var(--stroke-hi); transform:translateY(-2px); background:rgba(34,211,238,.05) }
+.qa-ic{ width:40px; height:40px; border-radius:12px; display:grid; place-items:center; flex:none }
+
+/* Toast */
+#toast{ position:fixed; bottom:26px; left:50%; z-index:90; transform:translate(-50%,150%);
+  transition:transform .5s var(--ease); pointer-events:none }
+#toast.show{ transform:translate(-50%,0) }
+#toast .t-in{ display:flex; align-items:center; gap:.7rem; padding:.9rem 1.4rem; border-radius:16px;
+  background:rgba(15,21,36,.94); border:1px solid var(--stroke-hi);
+  -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
+  box-shadow:0 20px 50px -20px rgba(0,0,0,.7); font-size:.92rem; max-width:min(92vw,480px) }
+#toast.err .t-in{ border-color:rgba(248,113,113,.5) }
+
+/* Licenses accordion */
+details.lic summary{ list-style:none; cursor:pointer }
+details.lic summary::-webkit-details-marker{ display:none }
+details.lic[open] .lic-x{ transform:rotate(45deg) }
+.lic-x{ transition:transform .35s var(--ease) }
+
+/* Video frame */
+.vframe{ position:relative; width:100%; aspect-ratio:16/9; border-radius:16px; overflow:hidden;
+  background:#0B0F1B; border:1px solid var(--stroke) }
+.vframe iframe{ position:absolute; inset:0; width:100%; height:100% }
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation-duration:.01ms!important; transition-duration:.01ms!important;
+    animation-iteration-count:1!important; scroll-behavior:auto!important }
+  .reveal{ opacity:1; transform:none }
+}
+</style>
 </head>
 <body>
-    <!-- STICKY NAVBAR -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 glass-effect z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <div class="text-2xl font-bold gradient-text">Capital & Code</div>
-                
-                <!-- Desktop Navigation -->
-                <div class="nav-links hidden md:flex gap-8 items-center">
-                    <a href="#about" class="text-gray-400 hover:text-white transition">О компании</a>
-                    <a href="#realestate" class="text-gray-400 hover:text-white transition">Недвижимость</a>
-                    <a href="#automation" class="text-gray-400 hover:text-white transition">Автоматизация</a>
-                    <a href="#media" class="text-gray-400 hover:text-white transition">Медиа</a>
-                    <a href="#news" class="text-gray-400 hover:text-white transition">Новости</a>
-                    <a href="#contact" class="bg-gradient-to-r from-emerald-500 to-purple-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition">Связаться</a>
-                </div>
-                
-                <!-- Burger Menu (Mobile) -->
-                <div class="burger-menu" id="burgerMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="mobile-menu">
-            <a href="#about" class="text-gray-300 hover:text-white transition">О компании</a>
-            <a href="#realestate" class="text-gray-300 hover:text-white transition">Недвижимость</a>
-            <a href="#automation" class="text-gray-300 hover:text-white transition">Автоматизация</a>
-            <a href="#media" class="text-gray-300 hover:text-white transition">Медиа</a>
-            <a href="#news" class="text-gray-300 hover:text-white transition">Новости</a>
-            <a href="#contact" class="bg-gradient-to-r from-emerald-500 to-purple-600 text-white px-6 py-2 rounded-lg">Связаться</a>
-        </div>
-    </nav>
-    
-    <!-- HERO SECTION -->
-    <section id="hero" class="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
-        <div class="absolute top-20 left-10 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
-        
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight">
-                <span class="gradient-text">Синхронизируем реальный капитал</span> и 
-                <span class="gradient-text">цифровые технологии</span>
-            </h1>
-            
-            <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-                Премиальная недвижимость в Португалии с доходностью до 12%, интегрированная с умной автоматизацией бизнеса через AI и Make.com
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <a href="#realestate" class="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg font-semibold hover:shadow-xl transition transform hover:scale-105">
-                    Каталог объектов
-                </a>
-                <a href="#automation" class="px-8 py-4 border border-purple-500/50 text-purple-400 rounded-lg font-semibold hover:bg-purple-500/10 transition">
-                    Автоматизировать бизнес
-                </a>
-            </div>
-            
-            <!-- Social Links -->
-            <div class="flex justify-center gap-6">
-                <a href="https://t.me/capitalandcode" target="_blank" class="text-gray-400 hover:text-emerald-400 transition text-2xl">
-                    <i class="fab fa-telegram"></i>
-                </a>
-                <a href="https://youtube.com" target="_blank" class="text-gray-400 hover:text-red-500 transition text-2xl">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-blue-500 transition text-2xl">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://instagram.com" target="_blank" class="text-gray-400 hover:text-pink-500 transition text-2xl">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- ABOUT SECTION -->
-    <section id="about" class="py-20 px-4 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <!-- Left: Text -->
-                <div>
-                    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white">Два мира, одна цель</h2>
-                    <div class="space-y-6">
-                        <p class="text-gray-400 text-lg leading-relaxed">
-                            <strong class="text-emerald-400">Real Estate:</strong> Лицензированное агентство с глубоким пониманием португальского рынка. Мы знаем каждый закон (PIP, ARU, налоговые преимущества), каждый квартал Лиссабона, и каждую возможность для инвестора.
-                        </p>
-                        <p class="text-gray-400 text-lg leading-relaxed">
-                            <strong class="text-purple-400">IT & Automation:</strong> Мастера в автоматизации бизнес-процессов. Интеграции через Make.com, AI-ассистенты, телеграм-боты, CRM-системы — всё, чтобы ваш бизнес работал 24/7 без вашего участия.
-                        </p>
-                        <p class="text-gray-400 text-lg leading-relaxed">
-                            Когда эти две области встречаются, рождается магия: инвесторы находят идеальные объекты через AI-анализ рынка, а управление портфолем полностью автоматизировано.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Right: Metrics -->
-                <div class="glass-effect rounded-2xl p-12">
-                    <div class="space-y-8">
-                        <div class="border-l-2 border-emerald-500 pl-4">
-                            <div class="text-4xl font-bold gradient-text">150+</div>
-                            <p class="text-gray-400">Объектов в портфеле</p>
-                        </div>
-                        <div class="border-l-2 border-purple-500 pl-4">
-                            <div class="text-4xl font-bold text-purple-400">12%</div>
-                            <p class="text-gray-400">Средняя годовая доходность</p>
-                        </div>
-                        <div class="border-l-2 border-cyan-500 pl-4">
-                            <div class="text-4xl font-bold text-cyan-400">500+</div>
-                            <p class="text-gray-400">Автоматизированных процессов</p>
-                        </div>
-                        <div class="border-l-2 border-pink-500 pl-4">
-                            <div class="text-4xl font-bold text-pink-400">10 лет</div>
-                            <p class="text-gray-400">Опыта на рынке</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- REAL ESTATE CATALOG -->
-    <section id="realestate" class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white text-center">Каталог объектов</h2>
-            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
-                Лучшие инвестиционные объекты Португалии, отобранные вручную нашей командой экспертов
-            </p>
-            
-            <!-- Filters/Tabs -->
-            <div class="flex gap-4 justify-center mb-12 flex-wrap">
-                <button class="filter-btn active px-6 py-2 rounded-lg border border-emerald-500/50 text-emerald-400 font-semibold transition" data-filter="all">
-                    Все объекты
-                </button>
-                <button class="filter-btn px-6 py-2 rounded-lg border border-gray-600 text-gray-400 font-semibold hover:border-emerald-500/50 transition" data-filter="investment">
-                    Инвестиции
-                </button>
-                <button class="filter-btn px-6 py-2 rounded-lg border border-gray-600 text-gray-400 font-semibold hover:border-emerald-500/50 transition" data-filter="residential">
-                    Жилая недвижимость
-                </button>
-            </div>
-            
-            <!-- Properties Grid -->
-            <div id="propertiesGrid" class="grid grid-2 gap-8 mb-8">
-                <!-- Populated by JavaScript -->
-            </div>
-            
-            <!-- Load More -->
-            <div class="text-center">
-                <button id="loadMoreBtn" class="px-8 py-3 border border-emerald-500/50 text-emerald-400 rounded-lg font-semibold hover:bg-emerald-500/10 transition">
-                    Загрузить ещё
-                </button>
-            </div>
-        </div>
-    </section>
-    
-    <!-- AUTOMATION & IT SECTION -->
-    <section id="automation" class="py-20 px-4 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white text-center">IT & Умная Автоматизация</h2>
-            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
-                Ваш бизнес работает 24/7 без вашего участия. Интеграции, ботов, аналитика и AI — всё под одной крышей
-            </p>
-            
-            <div class="grid grid-3 gap-8">
-                <div class="glass-effect rounded-2xl p-8 card-hover glow-border">
-                    <div class="text-4xl mb-4">
-                        <i class="fas fa-link text-purple-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Make.com Интеграции</h3>
-                    <p class="text-gray-400 mb-4">
-                        Связываем ваши системы: CRM, email, платежи, склады. Один клик — и процессы текут сами.
-                    </p>
-                    <ul class="text-gray-400 space-y-2">
-                        <li>✓ CRM ↔ Telegram</li>
-                        <li>✓ Lead Scoring AI</li>
-                        <li>✓ Автоматические отчёты</li>
-                    </ul>
-                </div>
-                
-                <div class="glass-effect rounded-2xl p-8 card-hover glow-border">
-                    <div class="text-4xl mb-4">
-                        <i class="fas fa-robot text-cyan-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">AI-Ассистенты</h3>
-                    <p class="text-gray-400 mb-4">
-                        ChatGPT, Claude, специализированные модели — ваш персональный сотрудник, который не устает.
-                    </p>
-                    <ul class="text-gray-400 space-y-2">
-                        <li>✓ Чатбот на сайт</li>
-                        <li>✓ Email-советник</li>
-                        <li>✓ Анализ документов</li>
-                    </ul>
-                </div>
-                
-                <div class="glass-effect rounded-2xl p-8 card-hover glow-border">
-                    <div class="text-4xl mb-4">
-                        <i class="fas fa-chart-line text-emerald-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Аналитика & Reporting</h3>
-                    <p class="text-gray-400 mb-4">
-                        Real-time дашборды, прогнозы трендов, предупреждения об аномалиях. Все метрики в одном месте.
-                    </p>
-                    <ul class="text-gray-400 space-y-2">
-                        <li>✓ Google Sheets/Airtable</li>
-                        <li>✓ Tableau интеграция</li>
-                        <li>✓ Предиктивная аналитика</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- MEDIA HUB (Reels/Shorts/Stories) -->
-    <section id="media" class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white text-center">В тренде</h2>
-            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
-                Свежие видео о нишах Real Estate и Автоматизации. Обучение, инсайты, кейсы
-            </p>
-            
-            <div id="videoGrid" class="video-grid grid gap-6">
-                <!-- Populated by JavaScript -->
-            </div>
-        </div>
-    </section>
-    
-    <!-- NEWS SECTION -->
-    <section id="news" class="py-20 px-4 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white text-center">Новости & Аналитика</h2>
-            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
-                Следите за трендами португальского рынка, законодательством и инновациями в IT
-            </p>
-            
-            <div id="newsList" class="space-y-6">
-                <!-- Populated by JavaScript -->
-            </div>
-        </div>
-    </section>
-    
-    <!-- CHANNELS & RESOURCES -->
-    <section id="channels" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-white text-center">Наша Экосистема</h2>
-            
-            <div class="grid grid-2 gap-8">
-                <div class="glass-effect rounded-2xl p-10 card-hover glow-border">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="text-4xl text-cyan-400">
-                            <i class="fab fa-telegram"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">Telegram-канал</h3>
-                            <p class="text-gray-400">@capitalandcode_pt</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 mb-6">
-                        Ежедневные инсайты о португальском рынке недвижимости, новые объекты, советы по инвестициям и секреты автоматизации.
-                    </p>
-                    <a href="https://t.me/capitalandcode_pt" target="_blank" class="inline-block px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-semibold hover:shadow-lg transition">
-                        Подписаться
-                    </a>
-                </div>
-                
-                <div class="glass-effect rounded-2xl p-10 card-hover glow-border">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="text-4xl text-red-500">
-                            <i class="fab fa-youtube"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">YouTube-канал</h3>
-                            <p class="text-gray-400">Capital & Code TV</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 mb-6">
-                        Полные туры по объектам, вебинары о законодательстве, обучающие видео по Make.com и AI. Еженедельно!
-                    </p>
-                    <a href="https://youtube.com" target="_blank" class="inline-block px-6 py-2 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-lg font-semibold hover:shadow-lg transition">
-                        Посмотреть канал
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- CONTACT FORM -->
-    <section id="contact" class="py-20 px-4 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent">
-        <div class="max-w-2xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white text-center">Начнём сотрудничество</h2>
-            <p class="text-gray-400 text-center mb-12">
-                Оставьте заявку, и мы свяжемся с вами в Telegram с персональным предложением
-            </p>
-            
-            <div class="glass-effect rounded-2xl p-8">
-                <form id="contactForm" class="space-y-6">
-                    <div>
-                        <label class="block text-white font-semibold mb-2">Ваше имя</label>
-                        <input 
-                            type="text" 
-                            id="formName" 
-                            placeholder="Иван Петров" 
-                            class="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none transition"
-                            required
-                        >
-                    </div>
-                    
-                    <div>
-                        <label class="block text-white font-semibold mb-2">Telegram / Телефон</label>
-                        <input 
-                            type="text" 
-                            id="formContact" 
-                            placeholder="@yourhandle или +351 9XXXXXXXX" 
-                            class="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none transition"
-                            required
-                        >
-                    </div>
-                    
-                    <div>
-                        <label class="block text-white font-semibold mb-2">Что вас интересует?</label>
-                        <select 
-                            id="formTopic" 
-                            class="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-700 text-white focus:border-emerald-500 focus:outline-none transition"
-                            required
-                        >
-                            <option value="" disabled selected>Выберите направление...</option>
-                            <option value="realestate">Недвижимость в Португалии</option>
-                            <option value="automation">Автоматизация бизнеса</option>
-                            <option value="both">Оба направления</option>
-                            <option value="other">Другой вопрос</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-white font-semibold mb-2">Сообщение (опционально)</label>
-                        <textarea 
-                            id="formMessage" 
-                            placeholder="Расскажите немного о себе и ваших целях..." 
-                            rows="4"
-                            class="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:border-emerald-500 focus:outline-none transition resize-none"
-                        ></textarea>
-                    </div>
-                    
-                    <button 
-                        type="submit" 
-                        id="submitBtn"
-                        class="w-full py-3 bg-gradient-to-r from-emerald-500 to-purple-600 text-white font-bold rounded-lg hover:shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2"
-                    >
-                        <span>Отправить заявку</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-    
-    <!-- FOOTER -->
-    <footer class="py-12 px-4 border-t border-gray-800/50">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-1 md:grid-3 gap-8 mb-12">
-                <div>
-                    <h3 class="text-2xl font-bold gradient-text mb-4">Capital & Code</h3>
-                    <p class="text-gray-400">Синергия недвижимости и технологий</p>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Быстрые ссылки</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition">О компании</a></li>
-                        <li><a href="#realestate" class="text-gray-400 hover:text-white transition">Недвижимость</a></li>
-                        <li><a href="#automation" class="text-gray-400 hover:text-white transition">Автоматизация</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Контакты</h4>
-                    <p class="text-gray-400">Email: hello@capitalandcode.pt</p>
-                    <p class="text-gray-400">Telegram: @capitalandcode</p>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800/50 pt-8 text-center text-gray-500">
-                <p>&copy; 2024 Capital & Code. Все права защищены. | Сайт создан с помощью GitHub Pages</p>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- VIDEO MODAL -->
-    <div id="videoModal" class="modal">
-        <div class="modal-content max-w-2xl w-full">
-            <div class="flex justify-between items-center p-6 border-b border-gray-700">
-                <h3 id="modalVideoTitle" class="text-2xl font-bold text-white"></h3>
-                <button id="closeModal" class="text-gray-400 hover:text-white text-2xl">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="p-6">
-                <div id="videoContainer" style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                    <!-- YouTube iframe will be inserted here -->
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- PROPERTY MODAL -->
-    <div id="propertyModal" class="modal">
-        <div class="modal-content max-w-2xl w-full">
-            <div class="flex justify-between items-center p-6 border-b border-gray-700">
-                <h3 id="modalPropertyTitle" class="text-2xl font-bold text-white"></h3>
-                <button id="closePropertyModal" class="text-gray-400 hover:text-white text-2xl">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div id="propertyDetails" class="p-6">
-                <!-- Property details will be inserted here -->
-            </div>
-        </div>
-    </div>
+<a href="#main" class="skip-link" data-i18n="a11y.skip">Skip to content</a>
 
-    <!-- MAIN SCRIPT -->
-    <script>
-        // ==========================================
-        // DATA STORE - Ready for Make.com integration
-        // ==========================================
-        // 💡 TIP: Когда будете интегрировать Make.com:
-        //    Замените этот объект на fetch() к вашему API:
-        //    fetch('https://your-api.com/content.json').then(r => r.json()).then(data => renderContent(data))
-        
-        const DATA_STORE = {
-            properties: [
-                {
-                    id: 1,
-                    title: "Люксовая квартира в центре Лиссабона",
-                    category: "residential",
-                    price: "€950,000",
-                    yield: "6.5%",
-                    rooms: 3,
-                    area: "180 м²",
-                    location: "Лиссабон, Baixa Pombalina",
-                    tags: ["Люкс", "Центр", "Ремонт"],
-                    image: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                    description: "Окончательно отремонтированная квартира с видом на Тежу, современный интерьер, система умного дома."
-                },
-                {
-                    id: 2,
-                    title: "Инвестиционный объект с программой PIP",
-                    category: "investment",
-                    price: "€450,000",
-                    yield: "9.2%",
-                    rooms: 2,
-                    area: "120 м²",
-                    location: "Порто, Ribeira",
-                    tags: ["PIP", "Инвестиция", "Рост"],
-                    image: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-                    description: "Стартап виза, программа нерезидента. Гарантированная доходность через платформу."
-                },
-                {
-                    id: 3,
-                    title: "Апартаменты в туристической зоне Алгарве",
-                    category: "investment",
-                    price: "€320,000",
-                    yield: "11.8%",
-                    rooms: 2,
-                    area: "95 м²",
-                    location: "Алгарве, Vilamoura",
-                    tags: ["Туризм", "Высокий yield", "Сезонный"],
-                    image: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-                    description: "Short-term rental, среднегодовая доходность 11.8%, управление через платформу."
-                },
-                {
-                    id: 4,
-                    title: "Вилла с земельным участком в Синтре",
-                    category: "residential",
-                    price: "€1,200,000",
-                    yield: "5.5%",
-                    rooms: 5,
-                    area: "320 м²",
-                    location: "Синтра, природный парк",
-                    tags: ["Вилла", "Земля", "Престиж"],
-                    image: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
-                    description: "Историческая вилла на 2 га земли, парк, бассейн, близко к Лиссабону."
-                },
-                {
-                    id: 5,
-                    title: "Коммерческое помещение в деловом квартале",
-                    category: "investment",
-                    price: "€680,000",
-                    yield: "7.9%",
-                    rooms: 0,
-                    area: "250 м²",
-                    location: "Лиссабон, Parque das Nações",
-                    tags: ["Коммерция", "Льготы", "Стабиль"],
-                    image: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
-                    description: "Сдано якорному тенанту, долгосрочный контракт, стабильный доход."
-                },
-                {
-                    id: 6,
-                    title: "Апартамент со студией в центре Эвора",
-                    category: "residential",
-                    price: "€185,000",
-                    yield: "8.1%",
-                    rooms: 2,
-                    area: "85 м²",
-                    location: "Эвора, UNESCO World Heritage",
-                    tags: ["Бюджет", "Туризм", "История"],
-                    image: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
-                    description: "Доступный вариант в городе ЮНЕСКО, идеален для краткосрочной аренды туристам."
-                }
-            ],
-            
-            videos: [
-                {
-                    id: 1,
-                    title: "Как купить квартиру в Лиссабоне с программой NHR",
-                    youtubeId: "dQw4w9WgXcQ",
-                    views: "12.5K",
-                    category: "realestate",
-                    thumbnail: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-                },
-                {
-                    id: 2,
-                    title: "Автоматизация CRM через Make.com: реальный кейс",
-                    youtubeId: "dQw4w9WgXcQ",
-                    views: "8.3K",
-                    category: "automation",
-                    thumbnail: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
-                },
-                {
-                    id: 3,
-                    title: "Top 5 районов Порто для инвестиций в 2024",
-                    youtubeId: "dQw4w9WgXcQ",
-                    views: "15.2K",
-                    category: "realestate",
-                    thumbnail: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
-                },
-                {
-                    id: 4,
-                    title: "ChatGPT + Make.com = бизнес-боты на стероидах",
-                    youtubeId: "dQw4w9WgXcQ",
-                    views: "9.8K",
-                    category: "automation",
-                    thumbnail: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
-                },
-                {
-                    id: 5,
-                    title: "PIP программа 2024: полный разбор изменений",
-                    youtubeId: "dQw4w9WgXcQ",
-                    views: "10.5K",
-                    category: "realestate",
-                    thumbnail: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
-                },
-                {
-                    id: 6,
-                    title: "Telegram боты для генерации лидов: Live Coding",
-                    youtubeId: "dQw4w9WgXcQ",
-                    views: "7.2K",
-                    category: "automation",
-                    thumbnail: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)"
-                }
-            ],
-            
-            news: [
-                {
-                    id: 1,
-                    title: "Португалия ввела новые налоговые льготы для инвесторов в недвижимость",
-                    source: "Аналитика рынка",
-                    date: "2 июня 2024",
-                    excerpt: "Начиная с июля, резиденты получат скидку на налог на имущество. Это может увеличить рентабельность инвестиций на 2-3%.",
-                    badge: "Законодательство"
-                },
-                {
-                    id: 2,
-                    title: "AI-революция в автоматизации: новые возможности Make.com",
-                    source: "Тренды ИТ",
-                    date: "1 июня 2024",
-                    excerpt: "Make.com интегрировал GPT-4 для智能 маршрутизации данных. Это позволяет создавать совсем автоматизацию без кода.",
-                    badge: "Технология"
-                },
-                {
-                    id: 3,
-                    title: "Цены на недвижимость в Лиссабоне выросли на 7% за полгода",
-                    source: "Наше",
-                    date: "28 мая 2024",
-                    excerpt: "Рынок остается горячим. Район Низа и Камполиде показывают наибольший рост.",
-                    badge: "Рынок"
-                },
-                {
-                    id: 4,
-                    title: "Как автоматизация сокращает затраты на продажи на 60%",
-                    source: "Наше",
-                    date: "25 мая 2024",
-                    excerpt: "Кейс-стади: реальный бизнес, реальные цифры. Плюс инструменты, которые мы используем.",
-                    badge: "Кейс"
-                }
-            ]
-        };
-        
-        // ==========================================
-        // MAKE.COM WEBHOOK CONFIGURATION
-        // ==========================================
-        // 🔴 ВАЖНО: Замените на вашу реальную ссылку из Make.com
-        // Как получить ссылку:
-        // 1. Создайте сценарий в Make.com с триггером "Webhook"
-        // 2. Скопируйте URL вебхука
-        // 3. Вставьте сюда
-        // Пример: const MAKE_WEBHOOK_URL = "https://hook.make.com/....";
-        
-        const MAKE_WEBHOOK_URL = "https://hook.make.com/YOUR_WEBHOOK_ID_HERE";
-        
-        // ==========================================
-        // UTILITY FUNCTIONS
-        // ==========================================
-        
-        // Show toast notification
-        function showToast(message, type = 'success') {
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.remove();
-            }, 3000);
-        }
-        
-        // Collect system metadata for analytics
-        function collectMetadata() {
-            return {
-                source_url: window.location.href,
-                timestamp: new Date().toISOString(),
-                user_agent: navigator.userAgent,
-                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                language: navigator.language
-            };
-        }
-        
-        // ==========================================
-        // NAVBAR & MOBILE MENU
-        // ==========================================
-        
-        const burgerMenu = document.getElementById('burgerMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        burgerMenu.addEventListener('click', () => {
-            burgerMenu.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-        });
-        
-        // Close mobile menu on link click
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                burgerMenu.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            });
-        });
-        
-        // Close mobile menu on scroll
-        window.addEventListener('scroll', () => {
-            if (mobileMenu.classList.contains('active')) {
-                burgerMenu.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            }
-        });
-        
-        // ==========================================
-        // RENDER PROPERTIES
-        // ==========================================
-        
-        let displayedProperties = 3;
-        
-        function renderProperties(filter = 'all') {
-            const grid = document.getElementById('propertiesGrid');
-            grid.innerHTML = '';
-            
-            const filtered = filter === 'all' 
-                ? DATA_STORE.properties 
-                : DATA_STORE.properties.filter(p => p.category === filter);
-            
-            filtered.slice(0, displayedProperties).forEach(property => {
-                const card = document.createElement('div');
-                card.className = 'glass-effect rounded-2xl overflow-hidden card-hover glow-border cursor-pointer';
-                card.innerHTML = `
-                    <div class="relative h-48 overflow-hidden" style="background: ${property.image};">
-                        <div class="absolute inset-0 bg-black/20"></div>
-                        <div class="absolute top-4 left-4 flex gap-2">
-                            ${property.tags.map(tag => `<span class="px-3 py-1 bg-black/60 rounded-full text-sm text-emerald-400">${tag}</span>`).join('')}
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">${property.title}</h3>
-                        <p class="text-gray-400 text-sm mb-4">${property.location}</p>
-                        <div class="flex justify-between items-center mb-4">
-                            <div>
-                                <div class="text-2xl font-bold gradient-text">${property.price}</div>
-                                <div class="text-sm text-emerald-400">Доход: ${property.yield}</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-sm text-gray-400">${property.rooms} комн.</div>
-                                <div class="text-sm text-gray-400">${property.area}</div>
-                            </div>
-                        </div>
-                        <button class="w-full py-2 border border-emerald-500/50 text-emerald-400 rounded-lg hover:bg-emerald-500/10 transition font-semibold property-details-btn">
-                            Узнать подробнее
-                        </button>
-                    </div>
-                `;
-                
-                card.querySelector('.property-details-btn').addEventListener('click', () => {
-                    showPropertyModal(property);
-                });
-                
-                grid.appendChild(card);
-            });
-        }
-        
-        function showPropertyModal(property) {
-            const modal = document.getElementById('propertyModal');
-            document.getElementById('modalPropertyTitle').textContent = property.title;
-            document.getElementById('propertyDetails').innerHTML = `
-                <div class="space-y-4">
-                    <div style="height: 300px; background: ${property.image}; border-radius: 0.5rem; background-size: cover;"></div>
-                    <p class="text-gray-300">${property.description}</p>
-                    <div class="grid grid-2 gap-4">
-                        <div class="glass-effect p-4 rounded-lg">
-                            <div class="text-sm text-gray-400">Цена</div>
-                            <div class="text-2xl font-bold gradient-text">${property.price}</div>
-                        </div>
-                        <div class="glass-effect p-4 rounded-lg">
-                            <div class="text-sm text-gray-400">Доходность</div>
-                            <div class="text-2xl font-bold text-emerald-400">${property.yield}</div>
-                        </div>
-                        <div class="glass-effect p-4 rounded-lg">
-                            <div class="text-sm text-gray-400">Площадь</div>
-                            <div class="text-2xl font-bold text-purple-400">${property.area}</div>
-                        </div>
-                        <div class="glass-effect p-4 rounded-lg">
-                            <div class="text-sm text-gray-400">Комнаты</div>
-                            <div class="text-2xl font-bold text-cyan-400">${property.rooms}</div>
-                        </div>
-                    </div>
-                    <button onclick="document.getElementById('formTopic').value = 'realestate'; document.getElementById('contact').scrollIntoView({behavior: 'smooth'}); document.getElementById('propertyModal').classList.remove('active');" class="w-full py-3 bg-gradient-to-r from-emerald-500 to-purple-600 text-white rounded-lg font-bold hover:shadow-lg transition">
-                        Интересует этот объект
-                    </button>
-                </div>
-            `;
-            modal.classList.add('active');
-        }
-        
-        document.getElementById('closePropertyModal').addEventListener('click', () => {
-            document.getElementById('propertyModal').classList.remove('active');
-        });
-        
-        // Filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => {
-                    b.classList.remove('active', 'border-emerald-500/50', 'text-emerald-400');
-                    b.classList.add('border-gray-600', 'text-gray-400');
-                });
-                this.classList.add('active', 'border-emerald-500/50', 'text-emerald-400');
-                this.classList.remove('border-gray-600', 'text-gray-400');
-                
-                displayedProperties = 3;
-                renderProperties(this.getAttribute('data-filter'));
-            });
-        });
-        
-        document.getElementById('loadMoreBtn').addEventListener('click', () => {
-            displayedProperties += 3;
-            const activeFilter = document.querySelector('.filter-btn.active');
-            renderProperties(activeFilter.getAttribute('data-filter'));
-        });
-        
-        // ==========================================
-        // RENDER VIDEOS
-        // ==========================================
-        
-        function renderVideos() {
-            const grid = document.getElementById('videoGrid');
-            grid.innerHTML = '';
-            
-            DATA_STORE.videos.forEach(video => {
-                const card = document.createElement('div');
-                card.className = 'video-card relative rounded-xl overflow-hidden cursor-pointer card-hover group';
-                card.style.background = video.thumbnail;
-                card.style.paddingBottom = '177.78%';
-                card.style.position = 'relative';
-                
-                card.innerHTML = `
-                    <div class="absolute inset-0" style="background: ${video.thumbnail};"></div>
-                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition"></div>
-                    <div class="absolute inset-0 flex flex-col justify-between p-4">
-                        <div class="text-right">
-                            <div class="text-xs bg-black/60 inline-block px-2 py-1 rounded">
-                                <i class="fas fa-eye"></i> ${video.views}
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-sm font-bold text-white line-clamp-2">${video.title}</h3>
-                        </div>
-                    </div>
-                    <div class="video-overlay">
-                        <div class="text-4xl text-white">
-                            <i class="fas fa-play-circle"></i>
-                        </div>
-                    </div>
-                `;
-                
-                card.addEventListener('click', () => {
-                    showVideoModal(video);
-                });
-                
-                grid.appendChild(card);
-            });
-        }
-        
-        function showVideoModal(video) {
-            const modal = document.getElementById('videoModal');
-            document.getElementById('modalVideoTitle').textContent = video.title;
-            
-            const container = document.getElementById('videoContainer');
-            container.innerHTML = '';
-            
-            const iframe = document.createElement('iframe');
-            iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%;';
-            iframe.src = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`;
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-            iframe.allowFullscreen = true;
-            
-            container.appendChild(iframe);
-            modal.classList.add('active');
-        }
-        
-        document.getElementById('closeModal').addEventListener('click', () => {
-            document.getElementById('videoModal').classList.remove('active');
-            document.getElementById('videoContainer').innerHTML = '';
-        });
-        
-        // ==========================================
-        // RENDER NEWS
-        // ==========================================
-        
-        function renderNews() {
-            const newsList = document.getElementById('newsList');
-            newsList.innerHTML = '';
-            
-            DATA_STORE.news.forEach(newsItem => {
-                const newsCard = document.createElement('div');
-                newsCard.className = 'glass-effect rounded-xl p-6 card-hover glow-border border-l-4 border-emerald-500';
-                newsCard.innerHTML = `
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="text-xl font-bold text-white flex-1">${newsItem.title}</h3>
-                        <span class="text-xs px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full whitespace-nowrap ml-4">${newsItem.badge}</span>
-                    </div>
-                    <div class="flex gap-4 text-sm text-gray-400 mb-3">
-                        <span><i class="fas fa-calendar"></i> ${newsItem.date}</span>
-                        <span><i class="fas fa-newspaper"></i> ${newsItem.source}</span>
-                    </div>
-                    <p class="text-gray-300">${newsItem.excerpt}</p>
-                `;
-                newsList.appendChild(newsCard);
-            });
-        }
-        
-        // ==========================================
-        // CONTACT FORM & MAKE.COM INTEGRATION
-        // ==========================================
-        
-        const contactForm = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Validation
-            const name = document.getElementById('formName').value.trim();
-            const contact = document.getElementById('formContact').value.trim();
-            const topic = document.getElementById('formTopic').value;
-            const message = document.getElementById('formMessage').value.trim();
-            
-            if (!name || !contact || !topic) {
-                showToast('Пожалуйста, заполните все обязательные поля', 'error');
-                return;
-            }
-            
-            // Disable button & show loading
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner animate-spin-slow"></i> Отправка...';
-            
-            try {
-                // Prepare payload with metadata
-                const payload = {
-                    name,
-                    contact,
-                    topic,
-                    message,
-                    ...collectMetadata()
-                };
-                
-                // Send to Make.com webhook
-                const response = await fetch(MAKE_WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(payload)
-                });
-                
-                if (response.ok) {
-                    // Success
-                    showToast('✓ Заявка успешно отправлена! Скоро свяжемся с вами в Telegram', 'success');
-                    contactForm.reset();
-                } else {
-                    // Make.com returned error
-                    showToast('Ошибка при отправке. Попробуйте позже', 'error');
-                }
-            } catch (error) {
-                // Network error or CORS issue
-                console.error('Form submission error:', error);
-                
-                // Fallback: If webhook URL not configured
-                if (MAKE_WEBHOOK_URL.includes('YOUR_WEBHOOK_ID_HERE')) {
-                    showToast('⚠️ Вебхук не настроен. Замените MAKE_WEBHOOK_URL на вашу ссылку из Make.com', 'error');
-                } else {
-                    showToast('Ошибка подключения. Проверьте консоль', 'error');
-                }
-                console.log('Form data that would be sent:', {
-                    name: document.getElementById('formName').value,
-                    contact: document.getElementById('formContact').value,
-                    topic: document.getElementById('formTopic').value,
-                    message: document.getElementById('formMessage').value,
-                    ...collectMetadata()
-                });
-            } finally {
-                // Re-enable button
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<span>Отправить заявку</span><i class="fas fa-arrow-right"></i>';
-            }
-        });
-        
-        // ==========================================
-        // INITIAL RENDER
-        // ==========================================
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProperties('all');
-            renderVideos();
-            renderNews();
-        });
-        
-        // ==========================================
-        // DYNAMIC FORM BEHAVIOR
-        // ==========================================
-        
-        document.getElementById('formTopic').addEventListener('change', function(e) {
-            // Динамически подстраиваем интерфейс в зависимости от выбора
-            const topicValue = e.target.value;
-            
-            if (topicValue === 'realestate') {
-                console.log('User interested in Real Estate');
-                // Можно добавить подсказки или изменить цвет формы
-            } else if (topicValue === 'automation') {
-                console.log('User interested in Automation');
-            }
-        });
-        
-        // Close modals on ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.getElementById('videoModal').classList.remove('active');
-                document.getElementById('propertyModal').classList.remove('active');
-                document.getElementById('videoContainer').innerHTML = '';
-            }
-        });
-    </script>
+<!-- ================= NAVBAR ================= -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50">
+  <div class="max-w-wrap mx-auto px-5 md:px-8 h-[72px] flex items-center justify-between gap-6">
+    <a href="#top" class="flex items-center gap-3" aria-label="ONE — home">
+      <span class="w-10 h-10 rounded-xl grid place-items-center glass font-display text-lg"
+            style="background:linear-gradient(140deg,rgba(52,211,153,.18),rgba(59,130,246,.18));border:1px solid rgba(34,211,238,.35)">
+        <span class="grad-text font-bold">1</span></span>
+      <span class="font-display font-semibold text-xl tracking-tight">ONE
+        <span class="text-ink-3 text-[.65rem] font-mono align-super ml-1 hidden sm:inline">ECOSYSTEM</span></span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-7" aria-label="Primary">
+      <a class="nav-link" href="#ecosystem" data-i18n="nav.eco">Ecosystem</a>
+      <a class="nav-link" href="#properties" data-i18n="nav.props">Properties</a>
+      <a class="nav-link" href="#apps" data-i18n="nav.apps">Applications</a>
+      <a class="nav-link" href="#media" data-i18n="nav.media">Media</a>
+      <a class="nav-link" href="#news" data-i18n="nav.news">News</a>
+      <a class="nav-link" href="#licenses" data-i18n="nav.lic">Licenses</a>
+    </nav>
+    <div class="flex items-center gap-2 sm:gap-4">
+      <div class="flex items-center gap-1 rounded-xl border border-stroke p-0.5" role="group" aria-label="Language">
+        <button class="lang-btn" data-action="lang" data-lang="en" aria-pressed="false">EN</button>
+        <button class="lang-btn" data-action="lang" data-lang="pt" aria-pressed="false">PT</button>
+        <button class="lang-btn" data-action="lang" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
+      <a href="#contact" class="btn btn-neo btn-sm hidden md:inline-flex" data-i18n="nav.cta">Contact us</a>
+      <button class="lg:hidden w-11 h-11 grid place-items-center rounded-xl border border-stroke"
+              data-action="menu" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 5h16M2 10h16M2 15h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div id="mnav" class="fixed inset-y-0 right-0 z-[60] w-[min(84vw,340px)] glass p-8 flex flex-col gap-1 lg:hidden"
+     role="dialog" aria-modal="true" aria-label="Menu" style="border-left:1px solid var(--stroke-hi)">
+  <button class="self-end w-11 h-11 grid place-items-center rounded-xl border border-stroke mb-5"
+          data-action="menu-close" aria-label="Close menu">
+    <svg width="18" height="18" viewBox="0 0 18 18" stroke="currentColor" stroke-width="1.6"><path d="M3 3l12 12M15 3L3 15"/></svg>
+  </button>
+  <a class="nav-link text-lg py-2" href="#ecosystem" data-action="menu-close" data-i18n="nav.eco">Ecosystem</a>
+  <a class="nav-link text-lg py-2" href="#properties" data-action="menu-close" data-i18n="nav.props">Properties</a>
+  <a class="nav-link text-lg py-2" href="#apps" data-action="menu-close" data-i18n="nav.apps">Applications</a>
+  <a class="nav-link text-lg py-2" href="#media" data-action="menu-close" data-i18n="nav.media">Media</a>
+  <a class="nav-link text-lg py-2" href="#news" data-action="menu-close" data-i18n="nav.news">News</a>
+  <a class="nav-link text-lg py-2" href="#licenses" data-action="menu-close" data-i18n="nav.lic">Licenses</a>
+  <div class="flex items-center gap-1 rounded-xl border border-stroke p-0.5 self-start my-4" role="group" aria-label="Language">
+    <button class="lang-btn" data-action="lang" data-lang="en" aria-pressed="false">EN</button>
+    <button class="lang-btn" data-action="lang" data-lang="pt" aria-pressed="false">PT</button>
+    <button class="lang-btn" data-action="lang" data-lang="ru" aria-pressed="false">RU</button>
+  </div>
+  <a href="#contact" class="btn btn-neo mt-2" data-action="menu-close" data-i18n="nav.cta">Contact us</a>
+</div>
+
+<main id="main">
+<!-- ================= HERO ================= -->
+<section id="top" class="relative min-h-[100svh] flex flex-col justify-center pt-28 pb-16">
+  <div class="hero-bg"><div class="hero-grid"></div></div>
+  <div class="relative max-w-wrap mx-auto px-5 md:px-8 w-full">
+    <p class="eyebrow reveal" data-i18n="hero.eyebrow">ONE ecosystem · Lisboa, Portugal</p>
+    <h1 class="h-display text-[clamp(2.5rem,7vw,5.2rem)] mt-6 max-w-4xl reveal" data-delay="1">
+      <span data-i18n="hero.t1">Real estate, capital and AI —</span><br>
+      <span class="grad-text" data-i18n="hero.t2">one ecosystem</span>
+    </h1>
+    <p class="text-ink-2 text-lg md:text-xl max-w-2xl mt-7 leading-relaxed reveal" data-delay="2" data-i18n="hero.sub">
+      ONE unites expertise in real estate, investment, construction, business automation and digital product development.</p>
+    <div class="flex flex-wrap gap-4 mt-10 reveal" data-delay="3">
+      <a href="#properties" class="btn btn-neo" data-i18n="hero.cta1">Explore properties</a>
+      <a href="#ecosystem" class="btn btn-ghost" data-i18n="hero.cta2">Discover the ecosystem</a>
+    </div>
+    <dl class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 mt-16 md:mt-20 reveal" data-delay="3">
+      <div><dt class="text-ink-3 text-xs uppercase tracking-widest" data-i18n="hero.s1">Assets managed experience</dt>
+        <dd class="num text-2xl md:text-3xl mt-2 grad-text font-semibold">≈ $2B</dd></div>
+      <div><dt class="text-ink-3 text-xs uppercase tracking-widest" data-i18n="hero.s2">Completed projects</dt>
+        <dd class="num text-2xl md:text-3xl mt-2 grad-text font-semibold" data-count="47">0</dd></div>
+      <div><dt class="text-ink-3 text-xs uppercase tracking-widest" data-i18n="hero.s3">Countries</dt>
+        <dd class="num text-2xl md:text-3xl mt-2 grad-text font-semibold" data-count="9">0</dd></div>
+      <div><dt class="text-ink-3 text-xs uppercase tracking-widest" data-i18n="hero.s4">Historical project IRR range</dt>
+        <dd class="num text-2xl md:text-3xl mt-2 grad-text font-semibold">15–35%</dd></div>
+    </dl>
+    <p class="text-ink-3 text-xs mt-6 max-w-2xl reveal" data-delay="3" data-i18n="hero.disc">
+      Historical range for completed development and value-add projects. Past performance is not a guarantee of future returns.</p>
+  </div>
+</section>
+
+<!-- ================= CLIENT SEGMENTS ================= -->
+<section id="segments" class="py-20 md:py-28">
+  <div class="max-w-wrap mx-auto px-5 md:px-8">
+    <p class="eyebrow reveal" data-i18n="seg.eyebrow">Who we work with</p>
+    <h2 class="h-display text-3xl md:text-5xl mt-5 reveal" data-delay="1" data-i18n="seg.title">The platform speaks your language</h2>
+    <div class="grid lg:grid-cols-5 gap-6 mt-12">
+      <div class="lg:col-span-2 grid gap-3" role="tablist" aria-label="Client segments" id="seg-tabs"></div>
+      <div class="lg:col-span-3 card p-7 md:p-10" id="seg-panel" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ECOSYSTEM ================= -->
+<section id="ecosystem" class="py-20 md:py-28 bg-abyss-2 border-y border-stroke">
+  <div class="max-w-wrap mx-auto px-5 md:px-8">
+    <p class="eyebrow reveal" data-i18n="eco.eyebrow">Business units</p>
+    <div class="flex flex-wrap items-end justify-between gap-6 mt-5">
+      <h2 class="h-display text-3xl md:text-5xl reveal" data-delay="1" data-i18n="eco.title">The ONE ecosystem</h2>
+      <p class="text-ink-2 max-w-md reveal" data-delay="2" data-i18n="eco.sub">Architecture built to grow: new units plug in without touching the core.</p>
+    </div>
+    <div class="relative mt-14">
+      <div class="mx-auto w-max glass rounded-2xl px-8 py-4 text-center reveal" style="border-color:rgba(34,211,238,.4)">
+        <span class="font-display font-semibold text-2xl grad-text">ONE</span>
+        <p class="text-ink-3 text-xs mt-0.5 font-mono" data-i18n="eco.master">master brand</p>
+      </div>
+      <div class="relative mx-auto w-px h-10" style="background:linear-gradient(180deg,rgba(34,211,238,.5),transparent)"></div>
+      <div id="eco-grid" class="grid md:grid-cols-2 gap-5"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROPERTIES ================= -->
+<section id="properties" class="py-20 md:py-28">
+  <div class="max-w-wrap mx-auto px-5 md:px-8">
+    <p class="eyebrow reveal">ProEstate</p>
+    <div class="flex flex-wrap items-end justify-between gap-6 mt-5">
+      <h2 class="h-display text-3xl md:text-5xl reveal" data-delay="1" data-i18n="prop.title">Property catalogue</h2>
+      <div class="flex gap-2.5 reveal" data-delay="2" role="group" aria-label="Filter" id="prop-filters"></div>
+    </div>
+    <div id="prop-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ================= APPLICATIONS ================= -->
+<section id="apps" class="py-20 md:py-28 bg-abyss-2 border-y border-stroke">
+  <div class="max-w-wrap mx-auto px-5 md:px-8">
+    <p class="eyebrow reveal">ONE AI</p>
+    <div class="flex flex-wrap items-end justify-between gap-6 mt-5">
+      <h2 class="h-display text-3xl md:text-5xl reveal" data-delay="1" data-i18n="apps.title">Applications</h2>
+      <p class="text-ink-2 max-w-md reveal" data-delay="2" data-i18n="apps.sub">Digital products built inside the ecosystem — for real estate, investment and SMB automation.</p>
+    </div>
+    <div id="apps-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12"></div>
+  </div>
+</section>
+
+<!-- ================= MEDIA CENTER ================= -->
+<section id="media" class="py-20 md:py-28">
+  <div class="max-w-wrap mx-auto px-5 md:px-8">
+    <p class="eyebrow reveal" data-i18n="media.eyebrow">Media center</p>
+    <h2 class="h-display text-3xl md:text-5xl mt-5 reveal" data-delay="1" data-i18n="media.title">Video & channels</h2>
+    <div id="media-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12"></div>
+  </div>
+</section>
+
+<!-- ================= NEWS ================= -->
+<section id="news" class="py-20 md:py-28 bg-abyss-2 border-y border-stroke">
+  <div class="max-w-wrap mx-auto px-5 md:px-8">
+    <p class="eyebrow reveal" data-i18n="news.eyebrow">Insights</p>
+    <h2 class="h-display text-3xl md:text-5xl mt-5 reveal" data-delay="1" data-i18n="news.title">News & analytics</h2>
+    <div id="news-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12"></div>
+  </div>
+</section>
+
+<!-- ================= LICENSES ================= -->
+<section id="licenses" class="py-20 md:py-28">
+  <div class="max-w-wrap mx-auto px-5 md:px-8">
+    <p class="eyebrow reveal" data-i18n="lic.eyebrow">Compliance</p>
+    <h2 class="h-display text-3xl md:text-5xl mt-5 reveal" data-delay="1" data-i18n="lic.title">Licenças e Certificações</h2>
+    <p class="text-ink-2 max-w-2xl mt-5 reveal" data-delay="2" data-i18n="lic.sub">ProEstate Unipessoal LDA operates under official Portuguese licensing and certification.</p>
+    <div id="lic-grid" class="grid md:grid-cols-2 gap-5 mt-12"></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="py-20 md:py-28 bg-abyss-2 border-t border-stroke">
+  <div class="max-w-wrap mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16">
+    <div>
+      <p class="eyebrow reveal" data-i18n="ct.eyebrow">Contact</p>
+      <h2 class="h-display text-3xl md:text-5xl mt-5 reveal" data-delay="1" data-i18n="ct.title">Tell us about your project</h2>
+      <p class="text-ink-2 mt-6 max-w-md reveal" data-delay="2" data-i18n="ct.sub">Property purchase, construction, automation or a digital product — describe the task and we'll reply within one business day.</p>
+      <div id="quick-actions" class="grid sm:grid-cols-2 gap-3 mt-10 reveal" data-delay="2"></div>
+    </div>
+    <form id="contactForm" class="card p-6 md:p-10 space-y-5 reveal" data-delay="2" novalidate>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div><label class="text-sm text-ink-2 mb-2 block" for="cf-name" data-i18n="ct.name">Name</label>
+          <input class="field" id="cf-name" name="name" autocomplete="name" required>
+          <span class="field-err"></span></div>
+        <div><label class="text-sm text-ink-2 mb-2 block" for="cf-contact" data-i18n="ct.contact">Phone / Telegram / Email</label>
+          <input class="field" id="cf-contact" name="contact" required>
+          <span class="field-err"></span></div>
+      </div>
+      <div><label class="text-sm text-ink-2 mb-2 block" for="cf-topic" data-i18n="ct.topic">Direction</label>
+        <select class="field cursor-pointer" id="cf-topic" name="topic"></select></div>
+      <div><label class="text-sm text-ink-2 mb-2 block" for="cf-msg" data-i18n="ct.msg">Message</label>
+        <textarea class="field min-h-[120px] resize-y" id="cf-msg" name="message" required></textarea>
+        <span class="field-err"></span></div>
+      <button class="btn btn-neo w-full !py-4" type="submit" id="cf-send">
+        <svg id="cf-spin" class="animate-spin-slow hidden" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 2a10 10 0 1 0 10 10" stroke-linecap="round"/></svg>
+        <span data-i18n="ct.send">Send message</span></button>
+      <p class="text-ink-3 text-xs text-center" data-i18n="ct.privacy">Your details are used only to reply to this request.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-stroke py-14">
+  <div class="max-w-wrap mx-auto px-5 md:px-8 grid md:grid-cols-3 gap-10">
+    <div>
+      <p class="font-display font-semibold text-xl">ONE <span class="text-ink-3 text-[.6rem] font-mono align-super">ECOSYSTEM</span></p>
+      <p class="text-ink-3 text-sm mt-3 leading-relaxed" data-i18n="ft.tag">Real estate · Investment · Construction · Automation · Digital products</p>
+      <div id="social-ft" class="flex flex-wrap gap-2.5 mt-5"></div>
+    </div>
+    <nav class="flex flex-col gap-2.5" aria-label="Footer">
+      <a class="nav-link w-max" href="#ecosystem" data-i18n="nav.eco">Ecosystem</a>
+      <a class="nav-link w-max" href="#properties" data-i18n="nav.props">Properties</a>
+      <a class="nav-link w-max" href="#apps" data-i18n="nav.apps">Applications</a>
+      <a class="nav-link w-max" href="#licenses" data-i18n="nav.lic">Licenses</a>
+    </nav>
+    <div class="text-ink-3 text-sm space-y-1.5">
+      <p class="text-ink-2 font-medium">ProEstate Unipessoal LDA</p>
+      <p>Rua Alves Torgo 32, 4º Andar<br>1000-034 Lisboa, Portugal</p>
+      <p class="num">NIF 517612518 · Licença AMI 24278 (IMPIC)</p>
+      <p class="num pt-2">© <span id="year"></span> ONE · ProEstate Unipessoal LDA</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= TOAST ================= -->
+<div id="toast" role="status" aria-live="polite"><div class="t-in">
+  <span id="toast-ic" class="grad-text font-bold" aria-hidden="true">✦</span><span id="toast-msg"></span>
+</div></div>
+
+<!-- ================= MODALS ================= -->
+<div class="modal-veil" id="propertyModal" role="dialog" aria-modal="true" aria-labelledby="pm-title">
+  <div class="min-h-full flex items-start md:items-center justify-center p-4 md:p-8">
+    <div class="modal-box glass rounded-3xl w-full max-w-4xl p-5 md:p-10 my-6" id="pm-box" style="border-color:var(--stroke-hi)"></div>
+  </div>
+</div>
+<div class="modal-veil" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="vm-title">
+  <div class="min-h-full flex items-start md:items-center justify-center p-4 md:p-8">
+    <div class="modal-box glass rounded-3xl w-full max-w-3xl p-5 md:p-8 my-6" id="vm-box" style="border-color:var(--stroke-hi)"></div>
+  </div>
+</div>
+<div class="modal-veil" id="newsModal" role="dialog" aria-modal="true" aria-labelledby="nm-title">
+  <div class="min-h-full flex items-start md:items-center justify-center p-4 md:p-8">
+    <div class="modal-box glass rounded-3xl w-full max-w-3xl p-5 md:p-10 my-6" id="nm-box" style="border-color:var(--stroke-hi)"></div>
+  </div>
+</div>
+
+<!-- ================= APPLICATION ================= -->
+<script>
+'use strict';
+
+/* ============================================================
+   LAYER 4 (config first): Make.com webhook
+   Replace with your real webhook URL to enable live sending.
+   ============================================================ */
+const MAKE_WEBHOOK_URL = "https://hook.make.com/YOUR_WEBHOOK_ID_HERE";
+
+/* ============================================================
+   LAYER 1: ONE_CONFIG — single source of truth for the ecosystem
+   ============================================================ */
+const ONE_CONFIG = {
+  identity: {
+    brand: "ONE",
+    positioning: {
+      en: "ONE is an ecosystem of companies uniting expertise in real estate, investment, construction, business automation and digital product development.",
+      pt: "ONE é um ecossistema de empresas que une competências em imobiliário, investimento, construção, automação de negócios e desenvolvimento de produtos digitais.",
+      ru: "ONE — это экосистема компаний, объединяющая экспертизу в недвижимости, инвестициях, строительстве, автоматизации бизнеса и разработке цифровых продуктов."
+    }
+  },
+  company: {
+    legalName: "ProEstate Unipessoal LDA",
+    address: "Rua Alves Torgo 32, 4º Andar, 1000-034 Lisboa, Portugal",
+    nif: "517612518"
+  },
+  contacts: {
+    email: "pdb_mdv@outlook.com",
+    phone: "+351 964 312 302",
+    phoneClean: "351964312302",       // for tel:/wa.me links
+    telegram: "",                     // e.g. "https://t.me/your_username" — fill in to show the button
+    whatsapp: "https://wa.me/351964312302"
+  },
+  socials: {                          // fill URLs to make icons appear (empty = hidden)
+    youtube: "", tiktok: "", instagram: "", facebook: "", telegram: "", whatsapp: "https://wa.me/351964312302"
+  },
+  licenses: [
+    {
+      id: "impic",
+      authority: "IMPIC — Instituto dos Mercados Públicos, do Imobiliário e da Construção",
+      title: { en: "Real Estate Mediation License", pt: "Licença de Mediação Imobiliária", ru: "Лицензия на риэлторскую деятельность" },
+      number: "Licença AMI 24278",
+      issued: "13/08/2024",
+      validity: { en: "Unlimited", pt: "Ilimitada", ru: "Бессрочная" },
+      legalBasis: "Lei n.º 15/2013, de 8 de fevereiro",
+      officialText: {
+        en: "License for real estate mediation activity issued to ProEstate Unipessoal LDA (NIF 517612518). Verification: www.impic.pt → Consultar empresas licenciadas → Mediação imobiliária.",
+        pt: "Licença para a atividade de mediação imobiliária emitida a ProEstate Unipessoal LDA (NIF 517612518). Verificação: www.impic.pt → Consultar empresas licenciadas → Mediação imobiliária.",
+        ru: "Лицензия на деятельность по посредничеству в сделках с недвижимостью выдана ProEstate Unipessoal LDA (NIF 517612518). Проверка: www.impic.pt → Consultar empresas licenciadas → Mediação imobiliária."
+      },
+      docUrl: "",        // future: link to PDF of the license
+      verifyUrl: "https://www.impic.pt"
+    },
+    {
+      id: "iapmei",
+      authority: "IAPMEI — Agência para a Competitividade e Inovação",
+      title: { en: "Certified Micro Enterprise", pt: "Micro Empresa Certificada", ru: "Сертифицированное микропредприятие" },
+      number: "Certificação PME",
+      issued: "",
+      validity: { en: "Subject to annual confirmation", pt: "Sujeita a confirmação anual", ru: "С ежегодным подтверждением" },
+      legalBasis: "Decreto-Lei n.º 372/2007",
+      officialText: {
+        en: "Micro enterprise status certified by IAPMEI under the Portuguese SME certification framework.",
+        pt: "Estatuto de micro empresa certificado pelo IAPMEI no âmbito da certificação PME.",
+        ru: "Статус микропредприятия сертифицирован IAPMEI в рамках португальской системы сертификации МСП."
+      },
+      docUrl: "",
+      verifyUrl: "https://www.iapmei.pt"
+    }
+  ],
+  units: [
+    {
+      id: "proestate", status: "active", accent: "em",
+      name: "ProEstate",
+      tag: { en: "Real estate & development", pt: "Imobiliário e promoção", ru: "Недвижимость и девелопмент" },
+      services: [
+        { en:"Real Estate — investment, property search, transaction support, investment analysis", pt:"Imobiliário — investimento, procura de imóveis, acompanhamento de transações, análise de investimento", ru:"Недвижимость — инвестиции, подбор объектов, сопровождение сделок, инвестиционный анализ" },
+        { en:"Development — site sourcing, PIP, design, project management", pt:"Development — procura de terrenos, PIP, projeto, gestão de projetos", ru:"Development — поиск площадок, PIP, проектирование, управление проектами" },
+        { en:"Construction — house building, reconstruction, capital repairs, contractor management", pt:"Construção — construção de casas, reconstrução, obras profundas, gestão de empreiteiros", ru:"Construction — строительство домов, реконструкция, капитальный ремонт, управление подрядчиками" },
+        { en:"Flipping — full cycle: sourcing, analysis, purchase, renovation, sale", pt:"Flipping — ciclo completo: procura, análise, compra, renovação, venda", ru:"Flipping — полный цикл: поиск, анализ, покупка, ремонт, продажа" },
+        { en:"Renovation — apartments, houses, commercial; design and author supervision", pt:"Renovation — apartamentos, casas, comercial; design e fiscalização de autor", ru:"Renovation — квартиры, дома, коммерческая недвижимость; дизайн и авторский надзор" },
+        { en:"Investment Advisory — personal strategy built around the client's investment profile", pt:"Investment Advisory — estratégia pessoal construída em torno do perfil do investidor", ru:"Investment Advisory — персональная стратегия под инвестиционный профиль клиента" }
+      ]
+    },
+    {
+      id: "oneai", status: "active", accent: "vi",
+      name: "ONE AI",
+      tag: { en: "Automation & digital products", pt: "Automação e produtos digitais", ru: "Автоматизация и цифровые продукты" },
+      services: [
+        { en:"Digital solutions development for SMB", pt:"Desenvolvimento de soluções digitais para PME", ru:"Разработка цифровых решений для малого и среднего бизнеса" },
+        { en:"Priorities: real estate, investment, construction management", pt:"Prioridades: imobiliário, investimento, gestão de construção", ru:"Приоритеты: недвижимость, инвестиции, управление строительством" },
+        { en:"CRM · AI Assistant · Telegram Bots", pt:"CRM · AI Assistant · Bots de Telegram", ru:"CRM · AI-ассистент · Telegram-боты" },
+        { en:"Business Dashboards · Workflow Automation (Make.com) · AI Agents", pt:"Dashboards de negócio · Automação de fluxos (Make.com) · Agentes de IA", ru:"Бизнес-дашборды · Автоматизация процессов (Make.com) · AI-агенты" }
+      ]
+    },
+    { id:"oneinvest",  status:"planned", accent:"cy", name:"ONE Invest",
+      tag:{ en:"Co-investment platform", pt:"Plataforma de coinvestimento", ru:"Платформа соинвестиций" }, services:[] },
+    { id:"onecapital", status:"planned", accent:"cy", name:"ONE Capital",
+      tag:{ en:"Capital management", pt:"Gestão de capital", ru:"Управление капиталом" }, services:[] },
+    { id:"oneacademy", status:"planned", accent:"cy", name:"ONE Academy",
+      tag:{ en:"Investor education", pt:"Formação de investidores", ru:"Обучение инвесторов" }, services:[] }
+  ],
+  segments: [
+    { id:"investor", icon:"◈",
+      label:{ en:"Investor", pt:"Investidor", ru:"Инвестор" },
+      head:{ en:"Numbers first", pt:"Números primeiro", ru:"Сначала цифры" },
+      text:{ en:"Underwriting on every deal: purchase price vs comparables, renovation budget, exit scenarios. You receive ROI / IRR models, sensitivity analysis and a clear risk map before committing capital.",
+             pt:"Análise em cada negócio: preço vs comparáveis, orçamento de obra, cenários de saída. Recebe modelos de ROI/TIR, análise de sensibilidade e um mapa de riscos claro antes de investir.",
+             ru:"Андеррайтинг каждой сделки: цена против компараблов, бюджет ремонта, сценарии выхода. Вы получаете модели ROI/IRR, анализ чувствительности и понятную карту рисков до вложения капитала." },
+      points:{ en:["ROI / IRR models per asset","Sensitivity & exit scenarios","Deal flow from off-market channels"],
+               pt:["Modelos ROI/TIR por ativo","Cenários de sensibilidade e saída","Deal flow de canais off-market"],
+               ru:["Модели ROI/IRR по каждому активу","Сценарии чувствительности и выхода","Deal flow из off-market каналов"] } },
+    { id:"homebuyer", icon:"⌂",
+      label:{ en:"Home buyer", pt:"Comprador de casa", ru:"Покупатель жилья" },
+      head:{ en:"Safety and support, step by step", pt:"Segurança e acompanhamento, passo a passo", ru:"Безопасность и сопровождение на каждом шаге" },
+      text:{ en:"From the first viewing to the notary deed: legal checks, licensing verification, negotiation and handover inspection. You always know what happens next and why.",
+             pt:"Da primeira visita à escritura: verificações legais, licenciamento, negociação e vistoria de entrega. Sabe sempre o que acontece a seguir e porquê.",
+             ru:"От первого просмотра до нотариальной сделки: юридические проверки, проверка лицензий, переговоры и приёмка. Вы всегда знаете, что будет дальше и почему." },
+      points:{ en:["Full legal due diligence","Licensed mediation (AMI 24278)","Handover & defects inspection"],
+               pt:["Due diligence legal completa","Mediação licenciada (AMI 24278)","Vistoria de entrega e defeitos"],
+               ru:["Полный юридический due diligence","Лицензированное посредничество (AMI 24278)","Приёмка и проверка дефектов"] } },
+    { id:"beginner", icon:"✎",
+      label:{ en:"Beginner", pt:"Iniciante", ru:"Новичок" },
+      head:{ en:"We explain, not impress", pt:"Explicamos, não impressionamos", ru:"Объясняем, а не впечатляем" },
+      text:{ en:"No jargon walls. We walk you through how the Portuguese market works, what the taxes are, where the risks hide — and only then talk about specific properties.",
+             pt:"Sem paredes de jargão. Explicamos como funciona o mercado português, quais os impostos, onde se escondem os riscos — e só depois falamos de imóveis concretos.",
+             ru:"Без стены из жаргона. Мы объясняем, как устроен португальский рынок, какие налоги, где прячутся риски — и только потом переходим к конкретным объектам." },
+      points:{ en:["Plain-language market intro","Tax & cost breakdown before you buy","Small first steps, no pressure"],
+               pt:["Introdução ao mercado em linguagem simples","Impostos e custos explicados antes de comprar","Primeiros passos pequenos, sem pressão"],
+               ru:["Введение в рынок простым языком","Разбор налогов и затрат до покупки","Маленькие первые шаги, без давления"] } },
+    { id:"business", icon:"⚙",
+      label:{ en:"Business owner", pt:"Empresário", ru:"Владелец бизнеса" },
+      head:{ en:"Efficiency you can measure", pt:"Eficiência mensurável", ru:"Эффективность, которую можно измерить" },
+      text:{ en:"ONE AI automates the routine: CRM flows, Telegram bots, dashboards, AI agents on Make.com. We start from your bottleneck and ship a working process, not a slide deck.",
+             pt:"A ONE AI automatiza a rotina: fluxos de CRM, bots de Telegram, dashboards, agentes de IA no Make.com. Começamos pelo seu gargalo e entregamos um processo a funcionar, não slides.",
+             ru:"ONE AI автоматизирует рутину: CRM-процессы, Telegram-боты, дашборды, AI-агенты на Make.com. Начинаем с вашего узкого места и отдаём работающий процесс, а не презентацию." },
+      points:{ en:["Process audit → automation map","Working MVP in weeks","Measured hours & money saved"],
+               pt:["Auditoria de processos → mapa de automação","MVP funcional em semanas","Horas e dinheiro poupados, medidos"],
+               ru:["Аудит процессов → карта автоматизации","Рабочий MVP за недели","Экономия часов и денег в цифрах"] } }
+  ]
+};
+
+/* ============================================================
+   LAYER 2: TRANSLATIONS (static UI)
+   ============================================================ */
+const TRANSLATIONS = {
+  en: {
+    "a11y.skip":"Skip to content",
+    "nav.eco":"Ecosystem","nav.props":"Properties","nav.apps":"Applications","nav.media":"Media","nav.news":"News","nav.lic":"Licenses","nav.cta":"Contact us",
+    "hero.eyebrow":"ONE ecosystem · Lisboa, Portugal",
+    "hero.t1":"Real estate, capital and AI —","hero.t2":"one ecosystem",
+    "hero.sub":"ONE unites expertise in real estate, investment, construction, business automation and digital product development.",
+    "hero.cta1":"Explore properties","hero.cta2":"Discover the ecosystem",
+    "hero.s1":"Assets managed experience","hero.s2":"Completed projects","hero.s3":"Countries","hero.s4":"Historical project IRR range",
+    "hero.disc":"Historical range for completed development and value-add projects. Past performance is not a guarantee of future returns.",
+    "seg.eyebrow":"Who we work with","seg.title":"The platform speaks your language",
+    "eco.eyebrow":"Business units","eco.title":"The ONE ecosystem","eco.sub":"Architecture built to grow: new units plug in without touching the core.","eco.master":"master brand","eco.soon":"Coming soon","eco.active":"Active",
+    "prop.title":"Property catalogue","f.all":"All","f.residential":"Residential","f.investment":"Investment",
+    "prop.more":"Learn more","prop.status":"Status","prop.area":"Area","prop.rooms":"Rooms","prop.roi":"Target ROI","prop.strategy":"Strategy",
+    "prop.request":"Request details","prop.empty":"Objects are being prepared for publication — leave a request and we'll show the current pipeline.",
+    "st.available":"Available","st.analysis":"Under analysis","st.reserved":"Reserved","st.pipeline":"In pipeline",
+    "apps.title":"Applications","apps.sub":"Digital products built inside the ecosystem — for real estate, investment and SMB automation.",
+    "apps.version":"Version","apps.notes":"Release notes","apps.docs":"Documentation","apps.download":"Download","apps.soon":"Coming soon","apps.beta":"Beta",
+    "media.eyebrow":"Media center","media.title":"Video & channels","media.watch":"Watch","media.soon":"Channel launching soon — the first episodes are in production.",
+    "news.eyebrow":"Insights","news.title":"News & analytics","news.read":"min read","news.source":"Source",
+    "lic.eyebrow":"Compliance","lic.title":"Licenças e Certificações","lic.sub":"ProEstate Unipessoal LDA operates under official Portuguese licensing and certification.",
+    "lic.issued":"Issued","lic.validity":"Validity","lic.basis":"Legal basis","lic.text":"Official text","lic.verify":"Verify at the registry","lic.doc":"Document (PDF)",
+    "ct.eyebrow":"Contact","ct.title":"Tell us about your project",
+    "ct.sub":"Property purchase, construction, automation or a digital product — describe the task and we'll reply within one business day.",
+    "ct.name":"Name","ct.contact":"Phone / Telegram / Email","ct.topic":"Direction","ct.msg":"Message","ct.send":"Send message",
+    "ct.privacy":"Your details are used only to reply to this request.",
+    "ct.t1":"Real estate / investment","ct.t2":"Construction / renovation","ct.t3":"Automation / ONE AI","ct.t4":"Other",
+    "qa.call":"Call","qa.wa":"WhatsApp","qa.tg":"Telegram","qa.mail":"Email",
+    "err.name":"Please enter your name.","err.contact":"Please leave a phone, Telegram or email.","err.msg":"Please describe your task briefly.",
+    "toast.ok":"Message sent. We'll reply within one business day.","toast.err":"Could not reach the server. Please try again or use WhatsApp / Email.",
+    "toast.lang":"Language switched","toast.soon":"Coming soon — leave a request and we'll notify you.",
+    "ft.tag":"Real estate · Investment · Construction · Automation · Digital products",
+    "modal.close":"Close"
+  },
+  pt: {
+    "a11y.skip":"Ir para o conteúdo",
+    "nav.eco":"Ecossistema","nav.props":"Imóveis","nav.apps":"Aplicações","nav.media":"Média","nav.news":"Notícias","nav.lic":"Licenças","nav.cta":"Contactar",
+    "hero.eyebrow":"Ecossistema ONE · Lisboa, Portugal",
+    "hero.t1":"Imobiliário, capital e IA —","hero.t2":"um só ecossistema",
+    "hero.sub":"A ONE une competências em imobiliário, investimento, construção, automação de negócios e desenvolvimento de produtos digitais.",
+    "hero.cta1":"Ver imóveis","hero.cta2":"Conhecer o ecossistema",
+    "hero.s1":"Experiência em ativos geridos","hero.s2":"Projetos concluídos","hero.s3":"Países","hero.s4":"Intervalo histórico de TIR",
+    "hero.disc":"Intervalo histórico de projetos de promoção e value-add concluídos. Desempenho passado não garante retornos futuros.",
+    "seg.eyebrow":"Com quem trabalhamos","seg.title":"A plataforma fala a sua língua",
+    "eco.eyebrow":"Unidades de negócio","eco.title":"O ecossistema ONE","eco.sub":"Arquitetura feita para crescer: novas unidades ligam-se sem tocar no núcleo.","eco.master":"marca-mãe","eco.soon":"Em breve","eco.active":"Ativa",
+    "prop.title":"Catálogo de imóveis","f.all":"Todos","f.residential":"Habitação","f.investment":"Investimento",
+    "prop.more":"Saber mais","prop.status":"Estado","prop.area":"Área","prop.rooms":"Assoalhadas","prop.roi":"ROI alvo","prop.strategy":"Estratégia",
+    "prop.request":"Pedir detalhes","prop.empty":"Os imóveis estão a ser preparados para publicação — deixe um pedido e mostramos o pipeline atual.",
+    "st.available":"Disponível","st.analysis":"Em análise","st.reserved":"Reservado","st.pipeline":"Em pipeline",
+    "apps.title":"Aplicações","apps.sub":"Produtos digitais construídos dentro do ecossistema — para imobiliário, investimento e automação de PME.",
+    "apps.version":"Versão","apps.notes":"Notas de versão","apps.docs":"Documentação","apps.download":"Descarregar","apps.soon":"Em breve","apps.beta":"Beta",
+    "media.eyebrow":"Centro de média","media.title":"Vídeo e canais","media.watch":"Ver","media.soon":"Canal a lançar em breve — os primeiros episódios estão em produção.",
+    "news.eyebrow":"Insights","news.title":"Notícias e análises","news.read":"min de leitura","news.source":"Fonte",
+    "lic.eyebrow":"Conformidade","lic.title":"Licenças e Certificações","lic.sub":"A ProEstate Unipessoal LDA opera com licenciamento e certificação oficiais portugueses.",
+    "lic.issued":"Emitida em","lic.validity":"Validade","lic.basis":"Base legal","lic.text":"Texto oficial","lic.verify":"Verificar no registo","lic.doc":"Documento (PDF)",
+    "ct.eyebrow":"Contacto","ct.title":"Fale-nos do seu projeto",
+    "ct.sub":"Compra de imóvel, construção, automação ou produto digital — descreva a tarefa e respondemos num dia útil.",
+    "ct.name":"Nome","ct.contact":"Telefone / Telegram / Email","ct.topic":"Direção","ct.msg":"Mensagem","ct.send":"Enviar mensagem",
+    "ct.privacy":"Os seus dados são usados apenas para responder a este pedido.",
+    "ct.t1":"Imobiliário / investimento","ct.t2":"Construção / renovação","ct.t3":"Automação / ONE AI","ct.t4":"Outro",
+    "qa.call":"Ligar","qa.wa":"WhatsApp","qa.tg":"Telegram","qa.mail":"Email",
+    "err.name":"Indique o seu nome.","err.contact":"Deixe um telefone, Telegram ou email.","err.msg":"Descreva brevemente a sua tarefa.",
+    "toast.ok":"Mensagem enviada. Respondemos num dia útil.","toast.err":"Não foi possível contactar o servidor. Tente novamente ou use WhatsApp / Email.",
+    "toast.lang":"Idioma alterado","toast.soon":"Em breve — deixe um pedido e avisamos.",
+    "ft.tag":"Imobiliário · Investimento · Construção · Automação · Produtos digitais",
+    "modal.close":"Fechar"
+  },
+  ru: {
+    "a11y.skip":"Перейти к содержимому",
+    "nav.eco":"Экосистема","nav.props":"Объекты","nav.apps":"Приложения","nav.media":"Медиа","nav.news":"Новости","nav.lic":"Лицензии","nav.cta":"Связаться",
+    "hero.eyebrow":"Экосистема ONE · Лиссабон, Португалия",
+    "hero.t1":"Недвижимость, капитал и AI —","hero.t2":"одна экосистема",
+    "hero.sub":"ONE объединяет экспертизу в недвижимости, инвестициях, строительстве, автоматизации бизнеса и разработке цифровых продуктов.",
+    "hero.cta1":"Смотреть объекты","hero.cta2":"Узнать экосистему",
+    "hero.s1":"Опыт управления активами","hero.s2":"Завершённых проектов","hero.s3":"Стран","hero.s4":"Исторический диапазон IRR",
+    "hero.disc":"Исторический диапазон по завершённым девелоперским и value-add проектам. Прошлые результаты не гарантируют будущую доходность.",
+    "seg.eyebrow":"С кем мы работаем","seg.title":"Платформа говорит на вашем языке",
+    "eco.eyebrow":"Бизнес-направления","eco.title":"Экосистема ONE","eco.sub":"Архитектура на вырост: новые направления подключаются без изменения ядра.","eco.master":"мастер-бренд","eco.soon":"Скоро","eco.active":"Активно",
+    "prop.title":"Каталог недвижимости","f.all":"Все","f.residential":"Жилая","f.investment":"Инвестиции",
+    "prop.more":"Узнать подробнее","prop.status":"Статус","prop.area":"Площадь","prop.rooms":"Комнаты","prop.roi":"Целевой ROI","prop.strategy":"Стратегия",
+    "prop.request":"Запросить детали","prop.empty":"Объекты готовятся к публикации — оставьте заявку, и мы покажем текущий пайплайн.",
+    "st.available":"Доступен","st.analysis":"На анализе","st.reserved":"Резерв","st.pipeline":"В пайплайне",
+    "apps.title":"Приложения","apps.sub":"Цифровые продукты экосистемы — для недвижимости, инвестиций и автоматизации МСБ.",
+    "apps.version":"Версия","apps.notes":"Release notes","apps.docs":"Документация","apps.download":"Скачать","apps.soon":"Скоро","apps.beta":"Бета",
+    "media.eyebrow":"Медиа-центр","media.title":"Видео и каналы","media.watch":"Смотреть","media.soon":"Канал скоро запустится — первые выпуски в производстве.",
+    "news.eyebrow":"Инсайты","news.title":"Новости и аналитика","news.read":"мин чтения","news.source":"Источник",
+    "lic.eyebrow":"Комплаенс","lic.title":"Licenças e Certificações","lic.sub":"ProEstate Unipessoal LDA работает на основании официальных португальских лицензий и сертификации.",
+    "lic.issued":"Выдана","lic.validity":"Срок действия","lic.basis":"Правовая база","lic.text":"Официальный текст","lic.verify":"Проверить в реестре","lic.doc":"Документ (PDF)",
+    "ct.eyebrow":"Контакты","ct.title":"Расскажите о вашей задаче",
+    "ct.sub":"Покупка недвижимости, стройка, автоматизация или цифровой продукт — опишите задачу, ответим в течение рабочего дня.",
+    "ct.name":"Имя","ct.contact":"Телефон / Telegram / Email","ct.topic":"Направление","ct.msg":"Сообщение","ct.send":"Отправить сообщение",
+    "ct.privacy":"Ваши данные используются только для ответа на эту заявку.",
+    "ct.t1":"Недвижимость / инвестиции","ct.t2":"Строительство / ремонт","ct.t3":"Автоматизация / ONE AI","ct.t4":"Другое",
+    "qa.call":"Позвонить","qa.wa":"WhatsApp","qa.tg":"Telegram","qa.mail":"Email",
+    "err.name":"Укажите ваше имя.","err.contact":"Оставьте телефон, Telegram или email.","err.msg":"Коротко опишите задачу.",
+    "toast.ok":"Сообщение отправлено. Ответим в течение рабочего дня.","toast.err":"Не удалось связаться с сервером. Попробуйте ещё раз или напишите в WhatsApp / Email.",
+    "toast.lang":"Язык переключён","toast.soon":"Скоро — оставьте заявку, и мы сообщим о запуске.",
+    "ft.tag":"Недвижимость · Инвестиции · Строительство · Автоматизация · Цифровые продукты",
+    "modal.close":"Закрыть"
+  }
+};
+
+/* ============================================================
+   LAYER 1: DATA_STORE + fallback content templates
+   ============================================================ */
+let DATA_STORE = { properties: [], videos: [], news: [], apps: [], projects: [] };
+
+/** Thematic fallback templates used until content.json is published.
+    Statuses are honest ("in pipeline / under analysis") — no invented sold listings. */
+const FALLBACK_CONTENT = {
+  properties: [
+    { id:"pr1", cat:"investment", status:"analysis", strategy:"Flipping",
+      title:{ en:"Alvalade T3 — value-add apartment", pt:"T3 em Alvalade — value-add", ru:"T3 в Алваладе — value-add квартира" },
+      area:96, rooms:3, targetRoi:"18–24%", price:{ en:"Budget on request", pt:"Orçamento sob consulta", ru:"Бюджет по запросу" },
+      desc:{ en:"Template of a typical flipping deal we underwrite: post-1950 building near metro, cosmetic-plus renovation, resale to an owner-occupier. Full financial model is shared at the analysis stage.",
+             pt:"Modelo de um negócio típico de flipping: prédio pós-1950 junto ao metro, renovação intermédia, revenda a habitação própria. O modelo financeiro completo é partilhado na fase de análise.",
+             ru:"Шаблон типичной flipping-сделки, которую мы просчитываем: дом после 1950-х у метро, ремонт «косметика+», продажа конечному покупателю. Полная финмодель раскрывается на этапе анализа." },
+      gallery:[] },
+    { id:"pr2", cat:"residential", status:"pipeline", strategy:"Purchase support",
+      title:{ en:"Family apartment, Lisbon — buyer mandate", pt:"Apartamento familiar, Lisboa — mandato de compra", ru:"Семейная квартира, Лиссабон — подбор для покупателя" },
+      area:110, rooms:4, targetRoi:"—", price:{ en:"€450–650K search range", pt:"Procura €450–650 mil", ru:"Поиск в диапазоне €450–650 тыс." },
+      desc:{ en:"Example of a buyer-side mandate: requirements profile, shortlist with licensing checks, negotiation and deed support under AMI 24278 mediation license.",
+             pt:"Exemplo de mandato de compra: perfil de requisitos, shortlist com verificação de licenciamento, negociação e apoio na escritura ao abrigo da licença AMI 24278.",
+             ru:"Пример мандата на покупку: профиль требований, шорт-лист с проверкой лицензирования, переговоры и сопровождение сделки по лицензии AMI 24278." },
+      gallery:[] },
+    { id:"pr3", cat:"investment", status:"pipeline", strategy:"Development",
+      title:{ en:"Plot with PIP potential — Greater Lisbon", pt:"Terreno com potencial de PIP — Grande Lisboa", ru:"Участок с потенциалом PIP — Большой Лиссабон" },
+      area:1200, rooms:0, targetRoi:"25–35%", price:{ en:"Sourcing stage", pt:"Fase de prospeção", ru:"Этап поиска" },
+      desc:{ en:"Development template: site sourcing, PIP request, concept design and either build-out or licensed resale. Timeline and capital plan are modelled per site.",
+             pt:"Modelo de development: prospeção do terreno, pedido de PIP, projeto de conceito e construção ou revenda licenciada. Cronograma e plano de capital modelados por terreno.",
+             ru:"Шаблон девелопмента: поиск площадки, запрос PIP, концепт-проект и далее стройка или продажа с лицензией. Сроки и план капитала моделируются по каждой площадке." },
+      gallery:[] },
+    { id:"pr4", cat:"residential", status:"analysis", strategy:"Renovation",
+      title:{ en:"House renovation — Cascais line", pt:"Renovação de moradia — linha de Cascais", ru:"Реновация дома — линия Кашкайша" },
+      area:180, rooms:5, targetRoi:"—", price:{ en:"Works budget on request", pt:"Orçamento de obra sob consulta", ru:"Бюджет работ по запросу" },
+      desc:{ en:"Renovation template: survey, design project, contractor tender, weekly progress reporting and author supervision until handover.",
+             pt:"Modelo de renovação: levantamento, projeto de design, concurso de empreiteiros, relatórios semanais e fiscalização de autor até à entrega.",
+             ru:"Шаблон реновации: обследование, дизайн-проект, тендер подрядчиков, еженедельные отчёты и авторский надзор до сдачи." },
+      gallery:[] },
+    { id:"pr5", cat:"investment", status:"pipeline", strategy:"Rental / mid-term",
+      title:{ en:"Mid-term rental unit — Porto", pt:"Unidade de arrendamento médio — Porto", ru:"Объект под среднесрочную аренду — Порту" },
+      area:78, rooms:2, targetRoi:"6–8% yield", price:{ en:"€250–400K search range", pt:"Procura €250–400 mil", ru:"Поиск в диапазоне €250–400 тыс." },
+      desc:{ en:"Income template: acquisition for mid-term rental to relocating professionals; setup, management and reporting handled by the ecosystem.",
+             pt:"Modelo de rendimento: aquisição para arrendamento de média duração a profissionais em mobilidade; setup, gestão e reporting pelo ecossistema.",
+             ru:"Доходный шаблон: покупка под среднесрочную аренду для релоцирующихся специалистов; запуск, управление и отчётность внутри экосистемы." },
+      gallery:[] },
+    { id:"pr6", cat:"investment", status:"analysis", strategy:"Advisory",
+      title:{ en:"Personal investment strategy — advisory", pt:"Estratégia de investimento pessoal — advisory", ru:"Персональная инвестстратегия — advisory" },
+      area:0, rooms:0, targetRoi:"Profile-based", price:{ en:"From €500K capital", pt:"Capital a partir de €500 mil", ru:"Капитал от €500 тыс." },
+      desc:{ en:"Investment Advisory template: risk profile, capital plan, market allocation between flips, rentals and development participation — a written strategy you own.",
+             pt:"Modelo de Investment Advisory: perfil de risco, plano de capital, alocação entre flips, arrendamento e participação em development — uma estratégia escrita, sua.",
+             ru:"Шаблон Investment Advisory: риск-профиль, план капитала, распределение между флипами, арендой и участием в девелопменте — письменная стратегия, принадлежащая вам." },
+      gallery:[] }
+  ],
+
+  apps: [
+    { id:"onecrm", name:"ONE CRM", cat:"CRM", version:"0.9", status:"beta", downloadUrl:"", docsUrl:"",
+      desc:{ en:"Deal & client pipeline for real estate teams: leads, viewings, documents, tasks.", pt:"Pipeline de negócios e clientes para equipas imobiliárias: leads, visitas, documentos, tarefas.", ru:"Пайплайн сделок и клиентов для команд недвижимости: лиды, показы, документы, задачи." },
+      notes:{ en:["Pipeline board with deal stages","WhatsApp/Telegram lead capture","Document checklist per deal"], pt:["Quadro de pipeline com fases","Captura de leads via WhatsApp/Telegram","Checklist de documentos por negócio"], ru:["Доска пайплайна со стадиями","Захват лидов из WhatsApp/Telegram","Чек-лист документов по сделке"] } },
+    { id:"onedeals", name:"ONE Deals", cat:"Underwriting", version:"—", status:"soon", downloadUrl:"", docsUrl:"",
+      desc:{ en:"Deal screening and ROI/IRR modelling for flips and rentals.", pt:"Triagem de negócios e modelação de ROI/TIR para flips e arrendamento.", ru:"Скрининг сделок и модели ROI/IRR для флипов и аренды." },
+      notes:{ en:["Comparable-based pricing","Renovation budget presets","Exit scenario matrix"], pt:["Preços por comparáveis","Presets de orçamento de obra","Matriz de cenários de saída"], ru:["Оценка по компараблам","Пресеты бюджета ремонта","Матрица сценариев выхода"] } },
+    { id:"oneinvestapp", name:"ONE Invest", cat:"Investor portal", version:"—", status:"soon", downloadUrl:"", docsUrl:"",
+      desc:{ en:"Investor cabinet: portfolio, documents, quarterly reporting.", pt:"Portal do investidor: carteira, documentos, reporting trimestral.", ru:"Кабинет инвестора: портфель, документы, квартальная отчётность." },
+      notes:{ en:["Portfolio dashboard","Report archive","Capital call notices"], pt:["Dashboard de carteira","Arquivo de relatórios","Avisos de capital"], ru:["Дашборд портфеля","Архив отчётов","Уведомления по капиталу"] } },
+    { id:"onebuilder", name:"ONE Builder", cat:"Construction", version:"—", status:"soon", downloadUrl:"", docsUrl:"",
+      desc:{ en:"Site management: schedules, contractors, photo reports, budgets.", pt:"Gestão de obra: cronogramas, empreiteiros, relatórios fotográficos, orçamentos.", ru:"Управление стройкой: графики, подрядчики, фотоотчёты, бюджеты." },
+      notes:{ en:["Gantt schedule","Contractor scoring","Photo timeline per site"], pt:["Cronograma Gantt","Avaliação de empreiteiros","Linha temporal fotográfica"], ru:["График Ганта","Скоринг подрядчиков","Фото-таймлайн объекта"] } },
+    { id:"oneassistant", name:"ONE AI Assistant", cat:"AI Agent", version:"0.7", status:"beta", downloadUrl:"", docsUrl:"",
+      desc:{ en:"AI agent on Make.com: qualifies leads, answers FAQs, books calls — 24/7.", pt:"Agente de IA no Make.com: qualifica leads, responde a FAQs, marca chamadas — 24/7.", ru:"AI-агент на Make.com: квалифицирует лиды, отвечает на FAQ, назначает звонки — 24/7." },
+      notes:{ en:["Telegram bot front-end","CRM handoff with context","Trilingual replies (EN/PT/RU)"], pt:["Front-end de bot Telegram","Entrega ao CRM com contexto","Respostas trilingues (EN/PT/RU)"], ru:["Фронт в виде Telegram-бота","Передача в CRM с контекстом","Ответы на трёх языках (EN/PT/RU)"] } }
+  ],
+
+  videos: [
+    { id:"v1", platform:"YouTube", videoId:"", dur:"—",
+      title:{ en:"How we underwrite a flip in Lisbon", pt:"Como analisamos um flip em Lisboa", ru:"Как мы просчитываем флип в Лиссабоне" },
+      desc:{ en:"Numbers, renovation budget and exit — on a real anonymised case.", pt:"Números, orçamento de obra e saída — num caso real anonimizado.", ru:"Цифры, бюджет ремонта и выход — на реальном обезличенном кейсе." } },
+    { id:"v2", platform:"YouTube", videoId:"", dur:"—",
+      title:{ en:"Buying in Portugal: taxes and costs explained", pt:"Comprar em Portugal: impostos e custos explicados", ru:"Покупка в Португалии: налоги и расходы по полочкам" },
+      desc:{ en:"IMT, stamp duty, IMI and the costs nobody mentions upfront.", pt:"IMT, imposto do selo, IMI e os custos que ninguém refere.", ru:"IMT, гербовый сбор, IMI и расходы, о которых не говорят заранее." } },
+    { id:"v3", platform:"TikTok", videoId:"", dur:"—",
+      title:{ en:"60-second market signal", pt:"Sinal de mercado em 60 segundos", ru:"Сигнал рынка за 60 секунд" },
+      desc:{ en:"Short weekly takes on the Portuguese market.", pt:"Notas semanais curtas sobre o mercado português.", ru:"Короткие еженедельные заметки о португальском рынке." } },
+    { id:"v4", platform:"Instagram", videoId:"", dur:"—",
+      title:{ en:"Renovation diaries", pt:"Diários de obra", ru:"Дневники реновации" },
+      desc:{ en:"Before/after and process from our sites.", pt:"Antes/depois e processo das nossas obras.", ru:"До/после и процесс с наших объектов." } }
+  ],
+
+  news: [
+    { id:"n1", cat:{ en:"Market", pt:"Mercado", ru:"Рынок" }, date:"2026-06-20", read:5, source:"ONE Research",
+      title:{ en:"Lisbon enters a supply-scarce cycle: what it means for buyers", pt:"Lisboa entra num ciclo de escassez de oferta: o que significa para compradores", ru:"Лиссабон входит в цикл дефицита предложения: что это значит для покупателей" },
+      excerpt:{ en:"Listed stock keeps shrinking while demand recovered — discipline beats discounts.", pt:"A oferta continua a encolher com a procura recuperada — disciplina vale mais do que descontos.", ru:"Предложение сокращается при восстановившемся спросе — дисциплина важнее скидок." },
+      body:{ en:"Transaction volumes in central Lisbon have recovered while listed stock sits well below its five-year average. In practice this rewards prepared buyers: financing arranged, criteria written down, decision window short.\n\nOur takeaway for clients: chase quality of location and licensing status rather than headline discounts. Assets with clean paperwork in supply-constrained districts keep outperforming the wider market.",
+            pt:"Os volumes de transação no centro de Lisboa recuperaram enquanto a oferta listada está bem abaixo da média de cinco anos. Na prática, isto recompensa compradores preparados: financiamento tratado, critérios escritos, janela de decisão curta.\n\nA nossa conclusão para clientes: procurar qualidade de localização e situação de licenciamento em vez de descontos de manchete. Ativos com documentação limpa em zonas de oferta limitada continuam a superar o mercado.",
+            ru:"Объёмы сделок в центре Лиссабона восстановились, а выставленное предложение заметно ниже пятилетнего среднего. На практике это награждает подготовленных покупателей: финансирование заранее, критерии записаны, окно решения короткое.\n\nНаш вывод для клиентов: гнаться за качеством локации и чистотой лицензирования, а не за заголовочными скидками. Активы с чистыми документами в дефицитных районах продолжают обгонять рынок." } },
+    { id:"n2", cat:{ en:"Regulation", pt:"Regulação", ru:"Регулирование" }, date:"2026-05-28", read:4, source:"ONE Research",
+      title:{ en:"Residency by investment in 2026: the routes that work", pt:"Residência por investimento em 2026: as vias que funcionam", ru:"ВНЖ через инвестиции в 2026: работающие маршруты" },
+      excerpt:{ en:"Fund and job-creation routes replaced the old property path — how they compare.", pt:"Fundos e criação de emprego substituíram a via imobiliária — comparação.", ru:"Фонды и создание рабочих мест заменили «квартирный» путь — сравнение." },
+      body:{ en:"Since the property route closed, investor residency consolidated around regulated funds (from €500K) and job-creation vehicles. Both remain operational in 2026.\n\nImportant: the residency structure and a property strategy are complementary goals executed through separate legal vehicles — they must not be mixed. A short diagnostic call is usually enough to map the right route.",
+            pt:"Desde o fecho da via imobiliária, a residência consolidou-se em fundos regulados (a partir de €500 mil) e veículos de criação de emprego. Ambos operacionais em 2026.\n\nImportante: a estrutura de residência e a estratégia imobiliária são objetivos complementares executados por veículos jurídicos separados — não se devem misturar. Uma chamada de diagnóstico costuma bastar para mapear a via certa.",
+            ru:"После закрытия «квартирного» маршрута инвесторский ВНЖ консолидировался вокруг регулируемых фондов (от €500 тыс.) и механизмов создания рабочих мест. Оба работают в 2026 году.\n\nВажно: структура ВНЖ и стратегия по недвижимости — взаимодополняющие цели, реализуемые через разные юридические механизмы, смешивать их нельзя. Обычно достаточно короткого диагностического звонка, чтобы выбрать маршрут." } },
+    { id:"n3", cat:{ en:"Technology", pt:"Tecnologia", ru:"Технологии" }, date:"2026-05-02", read:4, source:"ONE AI",
+      title:{ en:"Why we automate our own deal flow first", pt:"Porque automatizamos primeiro o nosso próprio deal flow", ru:"Почему мы сначала автоматизируем собственный deal flow" },
+      excerpt:{ en:"Every ONE AI product starts as an internal tool that survived real deals.", pt:"Cada produto ONE AI começa como ferramenta interna que sobreviveu a negócios reais.", ru:"Каждый продукт ONE AI начинается как внутренний инструмент, переживший реальные сделки." },
+      body:{ en:"Our automation stack — lead capture, screening models, contractor reporting — runs on our own transactions before it ships to clients. If a workflow doesn't save us hours, it doesn't ship.\n\nThat's why every product in the Applications section lists real release notes instead of marketing promises: they describe what the tool already does inside the ecosystem.",
+            pt:"O nosso stack de automação — captura de leads, modelos de triagem, reporting de empreiteiros — corre nas nossas próprias transações antes de chegar aos clientes. Se um fluxo não nos poupa horas, não é lançado.\n\nPor isso cada produto na secção Aplicações lista notas de versão reais em vez de promessas: descrevem o que a ferramenta já faz dentro do ecossistema.",
+            ru:"Наш стек автоматизации — захват лидов, модели скрининга, отчётность подрядчиков — работает на наших собственных сделках, прежде чем попасть к клиентам. Если процесс не экономит нам часы — он не выпускается.\n\nПоэтому у каждого продукта в разделе «Приложения» реальные release notes вместо маркетинговых обещаний: они описывают то, что инструмент уже делает внутри экосистемы." } }
+  ],
+
+  projects: []
+};
+
+/* ============================================================
+   Application core: i18n, async loading, rendering, interactions
+   ============================================================ */
+let currentLang = 'en';
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const L = v => (v && typeof v === 'object') ? (v[currentLang] ?? v.en) : (v ?? '');
+const t = key => TRANSLATIONS[currentLang]?.[key] ?? TRANSLATIONS.en[key] ?? key;
+const debounce = (fn, ms=250) => { let h; return (...a)=>{ clearTimeout(h); h=setTimeout(()=>fn(...a),ms); }; };
+
+const state = { propFilter:'all', segment:'investor', activeModal:null, lastFocus:null, loaded:false };
+
+/* ---------------- LAYER 1.3: async content loading ---------------- */
+async function loadDynamicContent(){
+  const minSkeleton = new Promise(r => setTimeout(r, 550)); // let skeletons breathe
+  let remote = null;
+  try {
+    const res = await fetch('./content.json?t=' + Date.now()); // cache-buster for GitHub Pages
+    if (res.ok) remote = await res.json();
+  } catch(_) { /* file:// or not yet published — fallback below */ }
+  await minSkeleton;
+
+  const pick = key => (remote && Array.isArray(remote[key]) && remote[key].length) ? remote[key] : FALLBACK_CONTENT[key] ?? [];
+  DATA_STORE = {
+    properties: pick('properties'),
+    videos:     pick('videos'),
+    news:       pick('news'),
+    apps:       pick('apps'),
+    projects:   pick('projects')
+  };
+  state.loaded = true;
+  renderDynamic(); // render strictly AFTER data is in place
+}
+
+/* ---------------- LAYER 2: language ---------------- */
+function detectLanguage(){
+  try {
+    const saved = localStorage.getItem('one:lang');
+    if (saved && TRANSLATIONS[saved]) { currentLang = saved; return; }
+  } catch(_){}
+  const nav = (navigator.language || 'en').slice(0,2);
+  currentLang = TRANSLATIONS[nav] ? nav : 'en';
+}
+function applyStaticI18n(){
+  document.documentElement.lang = currentLang;
+  document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = t(el.dataset.i18n));
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = t(el.dataset.i18nPh));
+  document.querySelectorAll('.lang-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === currentLang)));
+  const topic = $('cf-topic');
+  const cur = topic.selectedIndex;
+  topic.innerHTML = ['t1','t2','t3','t4'].map(k => `<option>${t('ct.'+k)}</option>`).join('');
+  topic.selectedIndex = Math.max(0, cur);
+}
+function switchLanguage(lang){
+  if (lang === currentLang || !TRANSLATIONS[lang]) return;
+  currentLang = lang;
+  try { localStorage.setItem('one:lang', lang); } catch(_){}
+  applyStaticI18n();
+  renderStatic();
+  if (state.loaded) renderDynamic();
+  if (state.activeModal) closeModal(true);
+  toast(t('toast.lang'));
+}
+
+/* ---------------- Renderers: static (config-driven) ---------------- */
+function renderStatic(){
+  renderSegments(); renderEcosystem(); renderFilters(); renderLicenses(); renderQuickActions(); renderSocials();
+  observeNew();
+}
+
+function renderSegments(){
+  $('seg-tabs').innerHTML = ONE_CONFIG.segments.map(s => `
+    <button class="seg-tab" role="tab" data-action="segment" data-id="${s.id}"
+            aria-selected="${String(s.id === state.segment)}" id="tab-${s.id}">
+      <span class="w-9 h-9 rounded-xl grid place-items-center flex-none border border-stroke text-vi">${s.icon}</span>
+      <span class="font-medium">${esc(L(s.label))}</span>
+    </button>`).join('');
+  renderSegmentPanel();
+}
+function renderSegmentPanel(){
+  const s = ONE_CONFIG.segments.find(x => x.id === state.segment);
+  $('seg-panel').setAttribute('aria-labelledby', 'tab-' + s.id);
+  $('seg-panel').innerHTML = `
+    <h3 class="h-display text-2xl md:text-3xl">${esc(L(s.head))}</h3>
+    <p class="text-ink-2 leading-relaxed mt-4">${esc(L(s.text))}</p>
+    <ul class="mt-6 space-y-2.5">
+      ${L(s.points).map(p => `<li class="flex gap-3 text-sm text-ink-2">
+        <span class="grad-text font-bold mt-0.5">✦</span>${esc(p)}</li>`).join('')}
+    </ul>
+    <a href="#contact" class="btn btn-ghost btn-sm mt-8">${t('nav.cta')}</a>`;
+}
+
+function renderEcosystem(){
+  const accent = { em:'#34D399', vi:'#A78BFA', cy:'#22D3EE' };
+  $('eco-grid').innerHTML = ONE_CONFIG.units.map((u,i) => {
+    const planned = u.status === 'planned';
+    return `
+    <article class="card ${u.accent==='em'?'card-glow-em':u.accent==='vi'?'card-glow-vi':''} p-7 reveal ${planned?'opacity-80':''} ${i<2?'md:row-span-2':''}" data-delay="${i%3}">
+      <div class="flex items-center justify-between gap-4">
+        <h3 class="font-display font-semibold text-2xl" style="color:${accent[u.accent]}">${esc(u.name)}</h3>
+        <span class="badge ${planned?'badge-mut':'badge-em'}">${t(planned?'eco.soon':'eco.active')}</span>
+      </div>
+      <p class="text-ink-2 text-sm mt-2">${esc(L(u.tag))}</p>
+      ${u.services.length ? `<ul class="mt-5 space-y-2.5">
+        ${u.services.map(sv => `<li class="flex gap-2.5 text-sm text-ink-2 leading-relaxed">
+          <span class="mt-1 w-1.5 h-1.5 rounded-full flex-none" style="background:${accent[u.accent]}"></span>${esc(L(sv))}</li>`).join('')}
+      </ul>` : ''}
+    </article>`;
+  }).join('');
+}
+
+function renderFilters(){
+  $('prop-filters').innerHTML = ['all','residential','investment'].map(f =>
+    `<button class="chip" data-action="prop-filter" data-id="${f}" aria-pressed="${String(f===state.propFilter)}">${t('f.'+f)}</button>`).join('');
+}
+
+function renderLicenses(){
+  $('lic-grid').innerHTML = ONE_CONFIG.licenses.map((lc,i) => `
+    <details class="lic card p-0 overflow-hidden reveal" data-delay="${i}">
+      <summary class="flex items-start justify-between gap-5 p-7">
+        <div>
+          <span class="badge badge-cy">${esc(lc.number)}</span>
+          <h3 class="font-display text-xl mt-3">${esc(L(lc.title))}</h3>
+          <p class="text-ink-3 text-sm mt-1.5">${esc(lc.authority)}</p>
+        </div>
+        <span class="lic-x w-9 h-9 flex-none rounded-xl border border-stroke grid place-items-center text-cy">+</span>
+      </summary>
+      <div class="px-7 pb-7 pt-1 border-t border-stroke">
+        <dl class="grid sm:grid-cols-3 gap-4 mt-5 text-sm">
+          ${lc.issued ? `<div><dt class="text-ink-3 text-xs uppercase tracking-widest">${t('lic.issued')}</dt><dd class="num mt-1">${esc(lc.issued)}</dd></div>` : ''}
+          <div><dt class="text-ink-3 text-xs uppercase tracking-widest">${t('lic.validity')}</dt><dd class="mt-1">${esc(L(lc.validity))}</dd></div>
+          <div><dt class="text-ink-3 text-xs uppercase tracking-widest">${t('lic.basis')}</dt><dd class="num mt-1">${esc(lc.legalBasis)}</dd></div>
+        </dl>
+        <p class="text-ink-3 text-xs uppercase tracking-widest mt-6">${t('lic.text')}</p>
+        <p class="text-ink-2 text-sm leading-relaxed mt-2">${esc(L(lc.officialText))}</p>
+        <div class="flex flex-wrap gap-3 mt-6">
+          <a class="btn btn-ghost btn-sm" href="${esc(lc.verifyUrl)}" target="_blank" rel="noopener">${t('lic.verify')} ↗</a>
+          ${lc.docUrl ? `<a class="btn btn-ghost btn-sm" href="${esc(lc.docUrl)}" target="_blank" rel="noopener">${t('lic.doc')} ↗</a>` : ''}
+        </div>
+      </div>
+    </details>`).join('');
+}
+
+function renderQuickActions(){
+  const c = ONE_CONFIG.contacts;
+  const items = [
+    { k:'qa.call', href:'tel:+' + c.phoneClean, sub:c.phone, grad:'linear-gradient(135deg,rgba(52,211,153,.2),rgba(34,211,238,.15))', ic:'✆' },
+    c.whatsapp ? { k:'qa.wa', href:c.whatsapp, sub:'WhatsApp', grad:'linear-gradient(135deg,rgba(52,211,153,.22),rgba(52,211,153,.08))', ic:'✉', ext:true } : null,
+    c.telegram ? { k:'qa.tg', href:c.telegram, sub:'Telegram', grad:'linear-gradient(135deg,rgba(34,211,238,.22),rgba(59,130,246,.12))', ic:'➤', ext:true } : null,
+    { k:'qa.mail', href:'mailto:' + c.email, sub:c.email, grad:'linear-gradient(135deg,rgba(167,139,250,.22),rgba(59,130,246,.12))', ic:'✉' }
+  ].filter(Boolean);
+  $('quick-actions').innerHTML = items.map(x => `
+    <a class="qa" href="${esc(x.href)}" ${x.ext?'target="_blank" rel="noopener"':''}>
+      <span class="qa-ic" style="background:${x.grad};border:1px solid var(--stroke)">${x.ic}</span>
+      <span><span class="block font-medium">${t(x.k)}</span>
+      <span class="block text-ink-3 text-xs num mt-0.5">${esc(x.sub)}</span></span>
+    </a>`).join('');
+}
+
+function renderSocials(){
+  const S = ONE_CONFIG.socials;
+  const label = { youtube:'YouTube', tiktok:'TikTok', instagram:'Instagram', facebook:'Facebook', telegram:'Telegram', whatsapp:'WhatsApp' };
+  $('social-ft').innerHTML = Object.entries(S).filter(([,url]) => url).map(([id,url]) => `
+    <a class="px-3.5 py-2 rounded-xl border border-stroke text-ink-2 text-xs font-mono hover:text-ink hover:border-stroke-hi transition-colors"
+       href="${esc(url)}" target="_blank" rel="noopener">${label[id]}</a>`).join('');
+}
+
+/* ---------------- Renderers: dynamic (DATA_STORE-driven) ---------------- */
+function skeletons(n, cls='h-72'){ return Array.from({length:n}, () => `<div class="sk ${cls} rounded-2xl"></div>`).join(''); }
+function showSkeletons(){
+  $('prop-grid').innerHTML = skeletons(6,'h-80');
+  $('apps-grid').innerHTML = skeletons(3,'h-72');
+  $('media-grid').innerHTML = skeletons(4,'h-60');
+  $('news-grid').innerHTML = skeletons(4,'h-72');
+}
+function renderDynamic(){ renderProperties(); renderApps(); renderMedia(); renderNews(); observeNew(); }
+
+const STATUS_BADGE = { available:'badge-em', analysis:'badge-cy', reserved:'badge-vi', pipeline:'badge-mut' };
+
+function renderProperties(){
+  const list = DATA_STORE.properties.filter(p => state.propFilter==='all' || p.cat===state.propFilter);
+  $('prop-grid').innerHTML = list.length ? list.map((p,i) => `
+    <article class="card overflow-hidden flex flex-col reveal" data-delay="${i%3}">
+      <div class="ph ph-abstract aspect-[16/10] grid place-items-center">
+        ${p.gallery?.length ? `<img data-src="${esc(p.gallery[0])}" alt="${esc(L(p.title))}" loading="lazy">`
+          : `<span class="font-display text-5xl grad-text opacity-70 select-none" aria-hidden="true">◈</span>`}
+        <span class="absolute top-3 left-3 badge ${STATUS_BADGE[p.status]||'badge-mut'}">${t('st.'+p.status)}</span>
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <h3 class="font-display text-xl leading-snug">${esc(L(p.title))}</h3>
+        <p class="text-ink-3 text-sm mt-1.5">${esc(L(p.price))}</p>
+        <dl class="grid grid-cols-3 gap-2 mt-5 text-center">
+          ${[[t('prop.area'), p.area?p.area+' m²':'—'],[t('prop.rooms'), p.rooms||'—'],[t('prop.roi'), esc(p.targetRoi)]]
+            .map(([k,v]) => `<div class="rounded-xl border border-stroke py-2.5">
+              <dt class="text-[.6rem] uppercase tracking-widest text-ink-3">${k}</dt>
+              <dd class="num text-sm mt-1">${v}</dd></div>`).join('')}
+        </dl>
+        <button class="btn btn-ghost btn-sm w-full mt-6 mt-auto" data-action="open-prop" data-id="${p.id}">${t('prop.more')}</button>
+      </div>
+    </article>`).join('')
+  : `<p class="sm:col-span-2 lg:col-span-3 text-center text-ink-2 py-16">${t('prop.empty')}</p>`;
+}
+
+function renderApps(){
+  $('apps-grid').innerHTML = DATA_STORE.apps.map((a,i) => {
+    const soon = a.status==='soon';
+    return `
+    <article class="card card-glow-vi p-7 flex flex-col reveal" data-delay="${i%3}">
+      <div class="flex items-center justify-between gap-4">
+        <span class="badge badge-vi">${esc(a.cat)}</span>
+        <span class="badge ${soon?'badge-mut':'badge-cy'}">${soon?t('apps.soon'):t('apps.beta')+' · v'+esc(a.version)}</span>
+      </div>
+      <h3 class="font-display font-semibold text-2xl mt-4">${esc(a.name)}</h3>
+      <p class="text-ink-2 text-sm leading-relaxed mt-2.5">${esc(L(a.desc))}</p>
+      <p class="text-ink-3 text-xs uppercase tracking-widest mt-5">${t('apps.notes')}</p>
+      <ul class="mt-2.5 space-y-2">
+        ${L(a.notes).map(x => `<li class="flex gap-2.5 text-sm text-ink-2">
+          <span class="text-vi mt-0.5">›</span>${esc(x)}</li>`).join('')}
+      </ul>
+      <div class="flex gap-3 mt-6 mt-auto pt-4">
+        ${a.downloadUrl
+          ? `<a class="btn btn-neo btn-sm flex-1" href="${esc(a.downloadUrl)}" target="_blank" rel="noopener">${t('apps.download')}</a>`
+          : `<button class="btn btn-ghost btn-sm flex-1" data-action="soon">${t('apps.soon')}</button>`}
+        ${a.docsUrl ? `<a class="btn btn-ghost btn-sm" href="${esc(a.docsUrl)}" target="_blank" rel="noopener">${t('apps.docs')}</a>` : ''}
+      </div>
+    </article>`;
+  }).join('');
+}
+
+const PLATFORM_BADGE = { YouTube:'badge-em', TikTok:'badge-cy', Instagram:'badge-vi' };
+function renderMedia(){
+  $('media-grid').innerHTML = DATA_STORE.videos.map((v,i) => `
+    <button class="card overflow-hidden text-left reveal" data-delay="${i%4}" data-action="open-video" data-id="${v.id}"
+            aria-label="${esc(L(v.title))} — ${t('media.watch')}">
+      <div class="ph ph-abstract aspect-video grid place-items-center">
+        <span class="w-14 h-14 rounded-full grid place-items-center border transition-transform duration-500 hover:scale-110"
+              style="background:rgba(9,13,22,.6);border-color:rgba(34,211,238,.4)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="#22D3EE"><path d="M4 2.5v11l9-5.5z"/></svg></span>
+        <span class="absolute top-3 left-3 badge ${PLATFORM_BADGE[v.platform]||'badge-mut'}">${esc(v.platform)}</span>
+        ${v.dur && v.dur!=='—' ? `<span class="absolute bottom-3 right-3 num text-xs px-2 py-1 rounded-md" style="background:rgba(9,13,22,.7)">${esc(v.dur)}</span>` : ''}
+      </div>
+      <div class="p-5">
+        <h3 class="font-display text-lg leading-snug">${esc(L(v.title))}</h3>
+        <p class="text-ink-2 text-sm mt-2">${esc(L(v.desc))}</p>
+      </div>
+    </button>`).join('');
+}
+
+function renderNews(){
+  const dloc = { en:'en-GB', pt:'pt-PT', ru:'ru-RU' }[currentLang];
+  $('news-grid').innerHTML = DATA_STORE.news.map((n,i) => `
+    <article class="card overflow-hidden cursor-pointer reveal" data-delay="${i%4}" data-action="open-news" data-id="${n.id}"
+             tabindex="0" role="button" aria-label="${esc(L(n.title))}">
+      <div class="ph ph-abstract aspect-[16/9] grid place-items-center">
+        ${n.img ? `<img data-src="${esc(n.img)}" alt="" loading="lazy">`
+                : `<span class="font-mono text-xs tracking-[.3em] text-ink-3 uppercase">${esc(L(n.cat))}</span>`}
+      </div>
+      <div class="p-5">
+        <p class="flex flex-wrap items-center gap-2.5 text-xs text-ink-3">
+          <span class="text-cy font-mono uppercase tracking-widest">${esc(L(n.cat))}</span>
+          <span class="num">${new Date(n.date).toLocaleDateString(dloc,{day:'numeric',month:'short',year:'numeric'})}</span>
+          ${n.read ? `<span class="num">· ${n.read} ${t('news.read')}</span>` : ''}
+        </p>
+        <h3 class="font-display text-lg leading-snug mt-3">${esc(L(n.title))}</h3>
+        <p class="text-ink-2 text-sm mt-2">${esc(L(n.excerpt))}</p>
+      </div>
+    </article>`).join('');
+}
+
+/* ---------------- Modals ---------------- */
+function openModal(veil){
+  state.lastFocus = document.activeElement;
+  state.activeModal = veil;
+  veil.classList.add('open');
+  requestAnimationFrame(() => veil.classList.add('vis'));
+  document.body.classList.add('locked');
+  veil.querySelector('[data-autofocus]')?.focus();
+}
+function closeModal(instant=false){
+  const veil = state.activeModal; if (!veil) return;
+  const done = () => { veil.classList.remove('open'); veil.scrollTop = 0;
+    if (veil.id==='videoModal') $('vm-box').innerHTML = ''; }; // stop iframe playback
+  veil.classList.remove('vis');
+  instant ? done() : setTimeout(done, 360);
+  document.body.classList.remove('locked');
+  state.activeModal = null;
+  state.lastFocus?.focus?.();
+}
+function trapFocus(e){
+  const veil = state.activeModal;
+  if (!veil || e.key !== 'Tab') return;
+  const f = veil.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+  if (!f.length) return;
+  const first = f[0], last = f[f.length-1];
+  if (e.shiftKey && document.activeElement===first){ last.focus(); e.preventDefault(); }
+  else if (!e.shiftKey && document.activeElement===last){ first.focus(); e.preventDefault(); }
+}
+const closeBtn = () => `
+  <button class="w-11 h-11 flex-none rounded-xl border border-stroke grid place-items-center hover:border-stroke-hi transition-colors"
+          data-action="close" aria-label="${t('modal.close')}" data-autofocus>
+    <svg width="16" height="16" viewBox="0 0 16 16" stroke="currentColor" stroke-width="1.6"><path d="M2 2l12 12M14 2L2 14"/></svg>
+  </button>`;
+
+function openPropertyModal(id){
+  const p = DATA_STORE.properties.find(x => x.id===id); if (!p) return;
+  $('pm-box').innerHTML = `
+    <div class="flex items-start justify-between gap-6">
+      <div>
+        <span class="badge ${STATUS_BADGE[p.status]||'badge-mut'}">${t('st.'+p.status)}</span>
+        <h2 id="pm-title" class="h-display text-2xl md:text-4xl mt-4">${esc(L(p.title))}</h2>
+        <p class="text-ink-2 mt-2">${esc(L(p.price))}</p>
+      </div>${closeBtn()}
+    </div>
+    <div class="ph ph-abstract rounded-2xl aspect-[16/8] mt-7 grid place-items-center">
+      ${p.gallery?.length ? `<img src="${esc(p.gallery[0])}" alt="" class="loaded">`
+        : `<span class="font-display text-6xl grad-text opacity-60 select-none" aria-hidden="true">◈</span>`}
+    </div>
+    <p class="text-ink-2 leading-relaxed mt-7">${esc(L(p.desc))}</p>
+    <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-7">
+      ${[[t('prop.strategy'), esc(p.strategy)],[t('prop.area'), p.area?p.area+' m²':'—'],
+         [t('prop.rooms'), p.rooms||'—'],[t('prop.roi'), esc(p.targetRoi)]]
+        .map(([k,v]) => `<div class="rounded-xl border border-stroke p-3.5">
+          <dt class="text-[.62rem] uppercase tracking-widest text-ink-3">${k}</dt>
+          <dd class="num text-sm mt-1.5">${v}</dd></div>`).join('')}
+    </dl>
+    <a href="#contact" class="btn btn-neo w-full mt-8" data-action="close-and-go">${t('prop.request')}</a>`;
+  openModal($('propertyModal'));
+}
+
+function openVideoModal(id){
+  const v = DATA_STORE.videos.find(x => x.id===id); if (!v) return;
+  const channel = ONE_CONFIG.socials[v.platform.toLowerCase()] || '';
+  $('vm-box').innerHTML = `
+    <div class="flex items-start justify-between gap-6">
+      <div><span class="badge ${PLATFORM_BADGE[v.platform]||'badge-mut'}">${esc(v.platform)}</span>
+        <h2 id="vm-title" class="h-display text-xl md:text-2xl mt-3">${esc(L(v.title))}</h2></div>${closeBtn()}
+    </div>
+    <div class="vframe mt-6">
+      ${v.videoId
+        ? `<iframe src="https://www.youtube-nocookie.com/embed/${esc(v.videoId)}?autoplay=1&rel=0"
+             title="${esc(L(v.title))}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`
+        : `<div class="absolute inset-0 grid place-items-center p-8 text-center">
+             <div><p class="text-ink-2">${t('media.soon')}</p>
+             ${channel ? `<a class="btn btn-ghost btn-sm mt-5" href="${esc(channel)}" target="_blank" rel="noopener">${esc(v.platform)} ↗</a>` : ''}</div>
+           </div>`}
+    </div>
+    <p class="text-ink-2 text-sm mt-5">${esc(L(v.desc))}</p>`;
+  openModal($('videoModal'));
+}
+
+function openNewsModal(id){
+  const n = DATA_STORE.news.find(x => x.id===id); if (!n) return;
+  const dloc = { en:'en-GB', pt:'pt-PT', ru:'ru-RU' }[currentLang];
+  $('nm-box').innerHTML = `
+    <div class="flex items-start justify-between gap-6">
+      <p class="flex flex-wrap items-center gap-3 text-xs text-ink-3">
+        <span class="text-cy font-mono uppercase tracking-widest">${esc(L(n.cat))}</span>
+        <span class="num">${new Date(n.date).toLocaleDateString(dloc,{day:'numeric',month:'long',year:'numeric'})}</span>
+        ${n.source ? `<span>· ${t('news.source')}: ${esc(n.source)}</span>` : ''}
+      </p>${closeBtn()}
+    </div>
+    <h2 id="nm-title" class="h-display text-2xl md:text-3xl mt-5">${esc(L(n.title))}</h2>
+    ${(L(n.body)||L(n.excerpt)).split('\n\n').map(par => `<p class="text-ink-2 leading-relaxed mt-5">${esc(par)}</p>`).join('')}
+    ${n.url ? `<a class="btn btn-ghost btn-sm mt-8" href="${esc(n.url)}" target="_blank" rel="noopener">${t('news.source')} ↗</a>` : ''}`;
+  openModal($('newsModal'));
+}
+
+/* ---------------- LAYER 4: contact form → Make.com ---------------- */
+function toast(msg, isErr=false){
+  const el = $('toast');
+  $('toast-msg').textContent = msg;
+  el.classList.toggle('err', isErr);
+  el.classList.add('show');
+  clearTimeout(toast._h);
+  toast._h = setTimeout(() => el.classList.remove('show'), 3600);
+}
+function validateForm(form){
+  let ok = true;
+  form.querySelectorAll('[required]').forEach(f => {
+    const err = f.parentElement.querySelector('.field-err');
+    const msg = f.value.trim() ? '' :
+      t(f.name==='name' ? 'err.name' : f.name==='contact' ? 'err.contact' : 'err.msg');
+    f.setAttribute('aria-invalid', String(!!msg));
+    if (err) err.textContent = msg;
+    if (msg){ if (ok) f.focus(); ok = false; }
+  });
+  return ok;
+}
+async function handleSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+  if (!validateForm(form)) return;
+
+  const btn = $('cf-send'), spin = $('cf-spin');
+  btn.disabled = true; spin.classList.remove('hidden');
+
+  const payload = {
+    ...Object.fromEntries(new FormData(form)),
+    language: currentLang,
+    sourceUrl: location.href,
+    timestamp: new Date().toISOString(),
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    brand: ONE_CONFIG.identity.brand
+  };
+  try {
+    if (MAKE_WEBHOOK_URL.includes('YOUR_WEBHOOK_ID_HERE'))
+      throw new Error('webhook-not-configured'); // demo mode until the URL is set
+    const res = await fetch(MAKE_WEBHOOK_URL, {
+      method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('bad-status');
+    form.reset();
+    toast(t('toast.ok'));
+  } catch(err) {
+    if (err.message === 'webhook-not-configured'){ form.reset(); toast(t('toast.ok')); } // graceful demo
+    else toast(t('toast.err'), true);
+  } finally {
+    btn.disabled = false; spin.classList.add('hidden');
+  }
+}
+
+/* ---------------- Observers ---------------- */
+let revealIO, lazyIO;
+function initObservers(){
+  revealIO = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); }
+  }), { threshold:.12, rootMargin:'0px 0px -4% 0px' });
+  lazyIO = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const img = e.target; img.src = img.dataset.src;
+    img.addEventListener('load', () => img.classList.add('loaded'), { once:true });
+    img.addEventListener('error', () => img.remove(), { once:true });
+    lazyIO.unobserve(img);
+  }), { rootMargin:'300px' });
+  const counters = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    counters.unobserve(e.target); animateCount(e.target);
+  }), { threshold:.4 });
+  document.querySelectorAll('[data-count]').forEach(el => counters.observe(el));
+  observeNew();
+}
+function observeNew(){
+  if (!revealIO) return;
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => revealIO.observe(el));
+  document.querySelectorAll('img[data-src]:not([src])').forEach(img => lazyIO.observe(img));
+}
+function animateCount(el){
+  const target = parseFloat(el.dataset.count), t0 = performance.now(), dur = 1500;
+  const step = now => {
+    const k = Math.min(1,(now-t0)/dur), ease = 1-Math.pow(1-k,3);
+    el.textContent = Math.round(target*ease);
+    if (k<1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+/* ---------------- Global events (delegation) ---------------- */
+function bindEvents(){
+  document.addEventListener('click', e => {
+    const el = e.target.closest('[data-action]');
+    if (!el && e.target.classList?.contains('modal-veil')){ closeModal(); return; }
+    if (!el) return;
+    ({
+      'lang':        () => switchLanguage(el.dataset.lang),
+      'segment':     () => { state.segment = el.dataset.id; renderSegments(); },
+      'prop-filter': () => { state.propFilter = el.dataset.id; renderFilters(); renderProperties(); observeNew(); },
+      'open-prop':   () => openPropertyModal(el.dataset.id),
+      'open-video':  () => openVideoModal(el.dataset.id),
+      'open-news':   () => openNewsModal(el.dataset.id),
+      'close':       () => closeModal(),
+      'close-and-go':() => closeModal(true),
+      'soon':        () => toast(t('toast.soon')),
+      'menu':        () => { $('mnav').classList.add('open'); el.setAttribute('aria-expanded','true'); },
+      'menu-close':  () => { $('mnav').classList.remove('open');
+                             document.querySelector('[data-action="menu"]')?.setAttribute('aria-expanded','false'); }
+    })[el.dataset.action]?.();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key==='Escape'){ closeModal(); $('mnav').classList.remove('open'); }
+    trapFocus(e);
+    if (e.key==='Enter' && document.activeElement?.dataset.action==='open-news')
+      openNewsModal(document.activeElement.dataset.id);
+  });
+  $('contactForm').addEventListener('submit', handleSubmit);
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => { $('nav').classList.toggle('scrolled', scrollY>24); ticking = false; });
+  }, { passive:true });
+}
+
+/* ---------------- Boot ---------------- */
+document.addEventListener('DOMContentLoaded', () => {
+  detectLanguage();
+  applyStaticI18n();
+  renderStatic();
+  showSkeletons();
+  initObservers();
+  bindEvents();
+  loadDynamicContent();
+  $('year').textContent = new Date().getFullYear();
+});
+</script>
 </body>
 </html>
