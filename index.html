@@ -522,7 +522,7 @@ const ONE_CONFIG = {
     whatsapp: "https://wa.me/351964312302"
   },
   socials: {                          // fill URLs to make icons appear (empty = hidden)
-    youtube: "https://www.youtube.com/@AIPLUSONE", tiktok: "https://www.tiktok.com/@da_no_net", instagram: "https://www.instagram.com/moskalenkodmitry", facebook: "https://www.facebook.com/iDmitryMoskalenko", telegram: "https://t.me/danonetone", whatsapp: "https://wa.me/351964312302"
+    linkedin: "https://www.linkedin.com/in/dmitrymoskalenko", youtube: "https://www.youtube.com/@AIPLUSONE", tiktok: "https://www.tiktok.com/@da_no_net", instagram: "https://www.instagram.com/moskalenkodmitry", facebook: "https://www.facebook.com/iDmitryMoskalenko", telegram: "https://t.me/danonetone", whatsapp: "https://wa.me/351964312302"
   },
   licenses: [
     {
@@ -1006,7 +1006,7 @@ function renderQuickActions(){
 
 function renderSocials(){
   const S = ONE_CONFIG.socials;
-  const label = { youtube:'YouTube', tiktok:'TikTok', instagram:'Instagram', facebook:'Facebook', telegram:'Telegram', whatsapp:'WhatsApp' };
+  const label = {linkedin:'LinkedIn', youtube:'YouTube', tiktok:'TikTok', instagram:'Instagram', facebook:'Facebook', telegram:'Telegram', whatsapp:'WhatsApp' };
   $('social-ft').innerHTML = Object.entries(S)
     .filter(([,url]) => url && url.trim() !== "")
     .map(([id,url]) => {
