@@ -1199,6 +1199,18 @@ function openVideoModal(id){
   openModal($('videoModal'));
 }
 
+function renderRichBody(txt){
+  const inline = s => esc(s).replace(/\*\*(.+?)\*\*/g,'<strong class="text-ink font-semibold">$1</strong>');
+  return String(txt ?? '').split('\n\n').map(block => {
+    const b = block.trim(); if (!b) return '';
+    if (b.startsWith('## '))
+      return `<h3 class="h-display text-xl md:text-2xl mt-8">${inline(b.slice(3))}</h3>`;
+    if (b.startsWith('> '))
+      return `<blockquote class="mt-6 p-4 rounded-xl text-ink-2 text-sm leading-relaxed" style="background:rgba(34,211,238,.06);border:1px solid var(--stroke);border-left:3px solid var(--cy)">${inline(b.replace(/^> ?/gm,' ').trim())}</blockquote>`;
+    return `<p class="text-ink-2 leading-relaxed mt-5">${inline(b)}</p>`;
+  }).join('');
+}
+
 function openNewsModal(id){
   const n = DATA_STORE.news.find(x => x.id===id); if (!n) return;
   const dloc = { en:'en-GB', pt:'pt-PT', ru:'ru-RU' }[currentLang];
@@ -1211,7 +1223,7 @@ function openNewsModal(id){
       </p>${closeBtn()}
     </div>
     <h2 id="nm-title" class="h-display text-2xl md:text-3xl mt-5">${esc(L(n.title))}</h2>
-    ${(L(n.body)||L(n.excerpt)).split('\n\n').map(par => `<p class="text-ink-2 leading-relaxed mt-5">${esc(par)}</p>`).join('')}
+    ${renderRichBody(L(n.body)||L(n.excerpt))}
     ${n.url ? `<a class="btn btn-ghost btn-sm mt-8" href="${esc(n.url)}" target="_blank" rel="noopener">${t('news.source')} ↗</a>` : ''}`;
   openModal($('newsModal'));
 }
