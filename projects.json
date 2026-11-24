@@ -393,6 +393,191 @@
     "ru": "Отдельная комната со своим балконом, свободна сейчас, в полностью обновлённой квартире в Arroios — одном из самых центральных районов Лиссабона, в нескольких минутах пешком от Instituto Superior Técnico; рядом метро и автобусы.\n\n## Комната\n\nДля одного человека. Односпальная кровать, письменный стол, стул, комод, зеркало и вешалка. Свой холодильник с морозилкой в комнате. Свой балкон с видом на крыши.\n\n## Квартира\n\nПолностью оборудованная кухня, стиральная машина с сушкой, 3 санузла, интернет. Еженедельная уборка общих зон включена. Спокойная квартира с понятными правилами проживания. Курить нельзя. 4-й этаж без лифта.\n\n## Условия\n\nАренда: **490 € в месяц**. Коммунальные расходы (электричество, вода и газ) оплачиваются отдельно и делятся между сданными комнатами. Депозит: 1 месяц. Письменный договор на 1 год.\n\nПодходит студентам и молодым специалистам. Запишитесь на просмотр.\n\nКонтакт: +351 964 312 302"
    },
    "share": "https://danonet-dm.github.io/one/quarto-4a/"
+  },
+  {
+   "id": "quarto-6",
+   "status": "available",
+   "cover": "./media/quarto-6/capa.jpg",
+   "title": {
+    "pt": "Quarto individual em Arroios, Lisboa — a partir de 1 de dezembro",
+    "en": "Single room in Arroios, Lisbon — from 1 December",
+    "ru": "Отдельная комната в Arroios, Лиссабон — с 1 декабря"
+   },
+   "loc": {
+    "pt": "Arroios · Lisboa · junto ao IST",
+    "en": "Arroios · Lisbon · near IST",
+    "ru": "Arroios · Лиссабон · рядом с IST"
+   },
+   "price": {
+    "pt": "490 €/mês",
+    "en": "€490/month",
+    "ru": "490 €/мес."
+   },
+   "summary": {
+    "pt": "Quarto individual, disponível a partir de 1 de dezembro de 2026. Apartamento renovado a poucos minutos a pé do Instituto Superior Técnico. Despesas à parte.",
+    "en": "Single room, available from 1 December 2026. Renovated apartment a few minutes' walk from Instituto Superior Técnico. Utilities extra.",
+    "ru": "Отдельная комната, свободна с 1 декабря 2026 года. Обновлённая квартира в нескольких минутах пешком от Instituto Superior Técnico. Коммунальные отдельно."
+   },
+   "facts": [
+    {
+     "k": {
+      "pt": "Disponível",
+      "en": "Available",
+      "ru": "Свободна"
+     },
+     "v": {
+      "pt": "1 dez. 2026",
+      "en": "1 Dec 2026",
+      "ru": "с 1 дек. 2026"
+     }
+    },
+    {
+     "k": {
+      "pt": "Caução",
+      "en": "Deposit",
+      "ru": "Депозит"
+     },
+     "v": {
+      "pt": "1 mês",
+      "en": "1 month",
+      "ru": "1 месяц"
+     }
+    },
+    {
+     "k": {
+      "pt": "Contrato",
+      "en": "Contract",
+      "ru": "Договор"
+     },
+     "v": {
+      "pt": "1 ano",
+      "en": "1 year",
+      "ru": "1 год"
+     }
+    },
+    {
+     "k": {
+      "pt": "Despesas",
+      "en": "Utilities",
+      "ru": "Коммунальные"
+     },
+     "v": {
+      "pt": "à parte",
+      "en": "extra",
+      "ru": "отдельно"
+     }
+    },
+    {
+     "k": {
+      "pt": "Andar",
+      "en": "Floor",
+      "ru": "Этаж"
+     },
+     "v": {
+      "pt": "4.º, sem elevador",
+      "en": "4th, no lift",
+      "ru": "4-й, без лифта"
+     }
+    }
+   ],
+   "gallery": [
+    {
+     "src": "./media/quarto-6/foto-01.jpg",
+     "thumb": "./media/quarto-6/t-foto-01.jpg",
+     "cap": {
+      "pt": "Quarto 6",
+      "en": "Room 6",
+      "ru": "Комната 6"
+     }
+    },
+    {
+     "src": "./media/quarto-6/foto-02.jpg",
+     "thumb": "./media/quarto-6/t-foto-02.jpg",
+     "cap": {
+      "pt": "Cama e secretária junto à janela",
+      "en": "Bed and desk by the window",
+      "ru": "Кровать и стол у окна"
+     }
+    },
+    {
+     "src": "./media/quarto-6/foto-03.jpg",
+     "thumb": "./media/quarto-6/t-foto-03.jpg",
+     "cap": {
+      "pt": "Secretária e roupeiro",
+      "en": "Desk and wardrobe",
+      "ru": "Стол и шкаф"
+     }
+    },
+    {
+     "src": "./media/quarto-6/foto-04.jpg",
+     "thumb": "./media/quarto-6/t-foto-04.jpg",
+     "cap": {
+      "pt": "Secretária",
+      "en": "Desk",
+      "ru": "Письменный стол"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-05.jpg",
+     "thumb": "./media/quarto-4a/t-foto-05.jpg",
+     "cap": {
+      "pt": "Cozinha",
+      "en": "Kitchen",
+      "ru": "Кухня"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-06.jpg",
+     "thumb": "./media/quarto-4a/t-foto-06.jpg",
+     "cap": {
+      "pt": "Cozinha: lava-loiça e máquina de lavar",
+      "en": "Kitchen: sink and washing machine",
+      "ru": "Кухня: мойка и стиральная машина"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-07.jpg",
+     "thumb": "./media/quarto-4a/t-foto-07.jpg",
+     "cap": {
+      "pt": "Cozinha: placa a gás",
+      "en": "Kitchen: gas hob",
+      "ru": "Кухня: газовая плита"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-08.jpg",
+     "thumb": "./media/quarto-4a/t-foto-08.jpg",
+     "cap": {
+      "pt": "Casa de banho com duche",
+      "en": "Bathroom with shower",
+      "ru": "Санузел с душем"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-09.jpg",
+     "thumb": "./media/quarto-4a/t-foto-09.jpg",
+     "cap": {
+      "pt": "Casa de banho: lavatórios",
+      "en": "Bathroom: washbasins",
+      "ru": "Санузел: умывальники"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-10.jpg",
+     "thumb": "./media/quarto-4a/t-foto-10.jpg",
+     "cap": {
+      "pt": "Corredor",
+      "en": "Hallway",
+      "ru": "Коридор"
+     }
+    }
+   ],
+   "body": {
+    "pt": "Quarto individual, disponível a partir de 1 de dezembro de 2026, num apartamento totalmente renovado em Arroios, uma das zonas mais centrais de Lisboa, a poucos minutos a pé do Instituto Superior Técnico e com boas ligações de metro e autocarro.\n\n## O quarto\n\nUso individual. Cama individual, secretária, cadeira e roupeiro de duas portas. Frigorífico/congelador próprio no quarto. Janela com estores.\n\n## O apartamento\n\nCozinha totalmente equipada, máquina de lavar e secar roupa, 3 casas de banho, internet. Limpeza semanal das áreas comuns incluída. Ambiente tranquilo, com regras de convivência claras. Não é permitido fumar. 4.º andar sem elevador.\n\n## Condições\n\nRenda: **490 € por mês**. Despesas de consumo (eletricidade, água e gás) à parte, repartidas pelos quartos arrendados. Caução: 1 mês. Contrato escrito de 1 ano.\n\nIdeal para estudantes e jovens profissionais. Marque já a sua visita.\n\nContacto: +351 964 312 302",
+    "en": "Single room, available from 1 December 2026, in a fully renovated apartment in Arroios, one of the most central areas of Lisbon, a few minutes' walk from Instituto Superior Técnico, with good metro and bus connections.\n\n## The room\n\nFor one person. Single bed, desk, chair and a two-door wardrobe. Your own fridge/freezer in the room. Window with shutters.\n\n## The apartment\n\nFully equipped kitchen, washer-dryer, 3 bathrooms, internet. Weekly cleaning of the common areas is included. Quiet home with clear house rules. No smoking. 4th floor, no lift.\n\n## Terms\n\nRent: **€490 per month**. Utilities (electricity, water and gas) are extra and split between the rented rooms. Deposit: 1 month. Written 1-year contract.\n\nIdeal for students and young professionals. Book a viewing.\n\nContact: +351 964 312 302",
+    "ru": "Отдельная комната, свободна с 1 декабря 2026 года, в полностью обновлённой квартире в Arroios — одном из самых центральных районов Лиссабона, в нескольких минутах пешком от Instituto Superior Técnico; рядом метро и автобусы.\n\n## Комната\n\nДля одного человека. Односпальная кровать, письменный стол, стул и двухдверный шкаф. Свой холодильник с морозилкой в комнате. Окно с рольставнями.\n\n## Квартира\n\nПолностью оборудованная кухня, стиральная машина с сушкой, 3 санузла, интернет. Еженедельная уборка общих зон включена. Спокойная квартира с понятными правилами проживания. Курить нельзя. 4-й этаж без лифта.\n\n## Условия\n\nАренда: **490 € в месяц**. Коммунальные расходы (электричество, вода и газ) оплачиваются отдельно и делятся между сданными комнатами. Депозит: 1 месяц. Письменный договор на 1 год.\n\nПодходит студентам и молодым специалистам. Запишитесь на просмотр.\n\nКонтакт: +351 964 312 302"
+   },
+   "share": "https://danonet-dm.github.io/one/quarto-6/"
   }
  ]
 }
