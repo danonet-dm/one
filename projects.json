@@ -578,6 +578,349 @@
     "ru": "Отдельная комната, свободна с 1 декабря 2026 года, в полностью обновлённой квартире в Arroios — одном из самых центральных районов Лиссабона, в нескольких минутах пешком от Instituto Superior Técnico; рядом метро и автобусы.\n\n## Комната\n\nДля одного человека. Односпальная кровать, письменный стол, стул и двухдверный шкаф. Свой холодильник с морозилкой в комнате. Окно с рольставнями.\n\n## Квартира\n\nПолностью оборудованная кухня, стиральная машина с сушкой, 3 санузла, интернет. Еженедельная уборка общих зон включена. Спокойная квартира с понятными правилами проживания. Курить нельзя. 4-й этаж без лифта.\n\n## Условия\n\nАренда: **490 € в месяц**. Коммунальные расходы (электричество, вода и газ) оплачиваются отдельно и делятся между сданными комнатами. Депозит: 1 месяц. Письменный договор на 1 год.\n\nПодходит студентам и молодым специалистам. Запишитесь на просмотр.\n\nКонтакт: +351 964 312 302"
    },
    "share": "https://danonet-dm.github.io/one/quarto-6/"
+  },
+  {
+   "id": "quarto-2",
+   "status": "available",
+   "cover": "./media/quarto-2/foto-01.jpg",
+   "title": {
+    "pt": "Quarto individual em Arroios, Lisboa — 375 €/mês",
+    "en": "Single room in Arroios, Lisbon — €375/month",
+    "ru": "Отдельная комната в Arroios, Лиссабон — 375 €/мес."
+   },
+   "loc": {
+    "pt": "Arroios · Lisboa · junto ao IST",
+    "en": "Arroios · Lisbon · near IST",
+    "ru": "Arroios · Лиссабон · рядом с IST"
+   },
+   "price": {
+    "pt": "375 €/mês",
+    "en": "€375/month",
+    "ru": "375 €/мес."
+   },
+   "summary": {
+    "pt": "Quarto individual, disponível em breve. Apartamento renovado a poucos minutos a pé do Instituto Superior Técnico. Despesas à parte.",
+    "en": "Single room, available soon. Renovated apartment a few minutes' walk from Instituto Superior Técnico. Utilities extra.",
+    "ru": "Отдельная комната, скоро освободится. Обновлённая квартира в нескольких минутах пешком от Instituto Superior Técnico. Коммунальные отдельно."
+   },
+   "facts": [
+    {
+     "k": {
+      "pt": "Disponível",
+      "en": "Available",
+      "ru": "Свободна"
+     },
+     "v": {
+      "pt": "em breve",
+      "en": "soon",
+      "ru": "скоро"
+     }
+    },
+    {
+     "k": {
+      "pt": "Caução",
+      "en": "Deposit",
+      "ru": "Депозит"
+     },
+     "v": {
+      "pt": "1 mês",
+      "en": "1 month",
+      "ru": "1 месяц"
+     }
+    },
+    {
+     "k": {
+      "pt": "Contrato",
+      "en": "Contract",
+      "ru": "Договор"
+     },
+     "v": {
+      "pt": "1 ano",
+      "en": "1 year",
+      "ru": "1 год"
+     }
+    },
+    {
+     "k": {
+      "pt": "Despesas",
+      "en": "Utilities",
+      "ru": "Коммунальные"
+     },
+     "v": {
+      "pt": "à parte",
+      "en": "extra",
+      "ru": "отдельно"
+     }
+    },
+    {
+     "k": {
+      "pt": "Andar",
+      "en": "Floor",
+      "ru": "Этаж"
+     },
+     "v": {
+      "pt": "4.º, sem elevador",
+      "en": "4th, no lift",
+      "ru": "4-й, без лифта"
+     }
+    }
+   ],
+   "gallery": [
+    {
+     "src": "./media/quarto-2/foto-01.jpg",
+     "thumb": "./media/quarto-2/t-foto-01.jpg",
+     "cap": {
+      "pt": "Quarto 2: cama e secretária",
+      "en": "Room 2: bed and desk",
+      "ru": "Комната 2: кровать и стол"
+     }
+    },
+    {
+     "src": "./media/quarto-2/foto-02.jpg",
+     "thumb": "./media/quarto-2/t-foto-02.jpg",
+     "cap": {
+      "pt": "Cómoda e frigorífico",
+      "en": "Chest of drawers and fridge",
+      "ru": "Комод и холодильник"
+     }
+    },
+    {
+     "src": "./media/quarto-2/foto-03.jpg",
+     "thumb": "./media/quarto-2/t-foto-03.jpg",
+     "cap": {
+      "pt": "Vista da entrada",
+      "en": "View from the door",
+      "ru": "Вид от двери"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-05.jpg",
+     "thumb": "./media/quarto-4a/t-foto-05.jpg",
+     "cap": {
+      "pt": "Cozinha",
+      "en": "Kitchen",
+      "ru": "Кухня"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-06.jpg",
+     "thumb": "./media/quarto-4a/t-foto-06.jpg",
+     "cap": {
+      "pt": "Cozinha: lava-loiça e máquina de lavar",
+      "en": "Kitchen: sink and washing machine",
+      "ru": "Кухня: мойка и стиральная машина"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-07.jpg",
+     "thumb": "./media/quarto-4a/t-foto-07.jpg",
+     "cap": {
+      "pt": "Cozinha: placa a gás",
+      "en": "Kitchen: gas hob",
+      "ru": "Кухня: газовая плита"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-08.jpg",
+     "thumb": "./media/quarto-4a/t-foto-08.jpg",
+     "cap": {
+      "pt": "Casa de banho com duche",
+      "en": "Bathroom with shower",
+      "ru": "Санузел с душем"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-09.jpg",
+     "thumb": "./media/quarto-4a/t-foto-09.jpg",
+     "cap": {
+      "pt": "Casa de banho: lavatórios",
+      "en": "Bathroom: washbasins",
+      "ru": "Санузел: умывальники"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-10.jpg",
+     "thumb": "./media/quarto-4a/t-foto-10.jpg",
+     "cap": {
+      "pt": "Corredor",
+      "en": "Hallway",
+      "ru": "Коридор"
+     }
+    }
+   ],
+   "body": {
+    "pt": "Quarto individual, disponível em breve, num apartamento totalmente renovado em Arroios, uma das zonas mais centrais de Lisboa, a poucos minutos a pé do Instituto Superior Técnico e com boas ligações de metro e autocarro.\n\n## O quarto\n\nUso individual. Quarto compacto, com teto inclinado numa das paredes. Cama individual, secretária, cadeira e cómoda. Frigorífico/congelador próprio no quarto.\n\n## O apartamento\n\nCozinha totalmente equipada, máquina de lavar e secar roupa, 3 casas de banho, internet. Limpeza semanal das áreas comuns incluída. Ambiente tranquilo, com regras de convivência claras. Não é permitido fumar. 4.º andar sem elevador.\n\n## Condições\n\nRenda: **375 € por mês**. Despesas de consumo (eletricidade, água e gás) à parte, repartidas pelos quartos arrendados. Caução: 1 mês. Contrato escrito de 1 ano.\n\nIdeal para estudantes e jovens profissionais. Marque já a sua visita.\n\nContacto: +351 964 312 302",
+    "en": "Single room, available soon, in a fully renovated apartment in Arroios, one of the most central areas of Lisbon, a few minutes' walk from Instituto Superior Técnico, with good metro and bus connections.\n\n## The room\n\nFor one person. A compact room with a sloping ceiling along one wall. Single bed, desk, chair and chest of drawers. Your own fridge/freezer in the room.\n\n## The apartment\n\nFully equipped kitchen, washer-dryer, 3 bathrooms, internet. Weekly cleaning of the common areas is included. Quiet home with clear house rules. No smoking. 4th floor, no lift.\n\n## Terms\n\nRent: **€375 per month**. Utilities (electricity, water and gas) are extra and split between the rented rooms. Deposit: 1 month. Written 1-year contract.\n\nIdeal for students and young professionals. Book a viewing.\n\nContact: +351 964 312 302",
+    "ru": "Отдельная комната, скоро освободится, в полностью обновлённой квартире в Arroios — одном из самых центральных районов Лиссабона, в нескольких минутах пешком от Instituto Superior Técnico; рядом метро и автобусы.\n\n## Комната\n\nДля одного человека. Компактная комната со скошенным потолком у одной стены. Односпальная кровать, письменный стол, стул и комод. Свой холодильник с морозилкой в комнате.\n\n## Квартира\n\nПолностью оборудованная кухня, стиральная машина с сушкой, 3 санузла, интернет. Еженедельная уборка общих зон включена. Спокойная квартира с понятными правилами проживания. Курить нельзя. 4-й этаж без лифта.\n\n## Условия\n\nАренда: **375 € в месяц**. Коммунальные расходы (электричество, вода и газ) оплачиваются отдельно и делятся между сданными комнатами. Депозит: 1 месяц. Письменный договор на 1 год.\n\nПодходит студентам и молодым специалистам. Запишитесь на просмотр.\n\nКонтакт: +351 964 312 302"
+   },
+   "share": "https://danonet-dm.github.io/one/quarto-2/"
+  },
+  {
+   "id": "cama-7",
+   "status": "available",
+   "cover": "./media/cama-7/foto-01.jpg",
+   "title": {
+    "pt": "Cama em quarto partilhado (2 pessoas) em Arroios, Lisboa",
+    "en": "Bed in a shared room (2 people) in Arroios, Lisbon",
+    "ru": "Кровать в комнате на двоих в Arroios, Лиссабон"
+   },
+   "loc": {
+    "pt": "Arroios · Lisboa · junto ao IST",
+    "en": "Arroios · Lisbon · near IST",
+    "ru": "Arroios · Лиссабон · рядом с IST"
+   },
+   "price": {
+    "pt": "350 €/mês",
+    "en": "€350/month",
+    "ru": "350 €/мес."
+   },
+   "summary": {
+    "pt": "Uma cama livre num quarto partilhado para 2 pessoas, disponível de imediato. Apartamento renovado a poucos minutos a pé do Instituto Superior Técnico. Despesas à parte.",
+    "en": "One free bed in a room shared by 2 people, available now. Renovated apartment a few minutes' walk from Instituto Superior Técnico. Utilities extra.",
+    "ru": "Одна свободная кровать в комнате на двоих, свободна сейчас. Обновлённая квартира в нескольких минутах пешком от Instituto Superior Técnico. Коммунальные отдельно."
+   },
+   "facts": [
+    {
+     "k": {
+      "pt": "Disponível",
+      "en": "Available",
+      "ru": "Свободна"
+     },
+     "v": {
+      "pt": "de imediato",
+      "en": "now",
+      "ru": "сейчас"
+     }
+    },
+    {
+     "k": {
+      "pt": "Caução",
+      "en": "Deposit",
+      "ru": "Депозит"
+     },
+     "v": {
+      "pt": "1 mês",
+      "en": "1 month",
+      "ru": "1 месяц"
+     }
+    },
+    {
+     "k": {
+      "pt": "Contrato",
+      "en": "Contract",
+      "ru": "Договор"
+     },
+     "v": {
+      "pt": "1 ano",
+      "en": "1 year",
+      "ru": "1 год"
+     }
+    },
+    {
+     "k": {
+      "pt": "Despesas",
+      "en": "Utilities",
+      "ru": "Коммунальные"
+     },
+     "v": {
+      "pt": "à parte",
+      "en": "extra",
+      "ru": "отдельно"
+     }
+    },
+    {
+     "k": {
+      "pt": "Andar",
+      "en": "Floor",
+      "ru": "Этаж"
+     },
+     "v": {
+      "pt": "4.º, sem elevador",
+      "en": "4th, no lift",
+      "ru": "4-й, без лифта"
+     }
+    }
+   ],
+   "gallery": [
+    {
+     "src": "./media/cama-7/foto-01.jpg",
+     "thumb": "./media/cama-7/t-foto-01.jpg",
+     "cap": {
+      "pt": "Quarto 7: duas camas individuais",
+      "en": "Room 7: two single beds",
+      "ru": "Комната 7: две односпальные кровати"
+     }
+    },
+    {
+     "src": "./media/cama-7/foto-02.jpg",
+     "thumb": "./media/cama-7/t-foto-02.jpg",
+     "cap": {
+      "pt": "Roupeiro, frigorífico e secretária",
+      "en": "Wardrobe, fridge and desk",
+      "ru": "Шкаф, холодильник и стол"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-05.jpg",
+     "thumb": "./media/quarto-4a/t-foto-05.jpg",
+     "cap": {
+      "pt": "Cozinha",
+      "en": "Kitchen",
+      "ru": "Кухня"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-06.jpg",
+     "thumb": "./media/quarto-4a/t-foto-06.jpg",
+     "cap": {
+      "pt": "Cozinha: lava-loiça e máquina de lavar",
+      "en": "Kitchen: sink and washing machine",
+      "ru": "Кухня: мойка и стиральная машина"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-07.jpg",
+     "thumb": "./media/quarto-4a/t-foto-07.jpg",
+     "cap": {
+      "pt": "Cozinha: placa a gás",
+      "en": "Kitchen: gas hob",
+      "ru": "Кухня: газовая плита"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-08.jpg",
+     "thumb": "./media/quarto-4a/t-foto-08.jpg",
+     "cap": {
+      "pt": "Casa de banho com duche",
+      "en": "Bathroom with shower",
+      "ru": "Санузел с душем"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-09.jpg",
+     "thumb": "./media/quarto-4a/t-foto-09.jpg",
+     "cap": {
+      "pt": "Casa de banho: lavatórios",
+      "en": "Bathroom: washbasins",
+      "ru": "Санузел: умывальники"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-10.jpg",
+     "thumb": "./media/quarto-4a/t-foto-10.jpg",
+     "cap": {
+      "pt": "Corredor",
+      "en": "Hallway",
+      "ru": "Коридор"
+     }
+    }
+   ],
+   "body": {
+    "pt": "Cama em quarto partilhado para 2 pessoas, disponível de imediato, num apartamento totalmente renovado em Arroios, uma das zonas mais centrais de Lisboa, a poucos minutos a pé do Instituto Superior Técnico e com boas ligações de metro e autocarro.\n\n## O quarto\n\nQuarto partilhado por 2 pessoas; está livre uma cama. Duas camas individuais, duas secretárias com cadeira, roupeiro e frigorífico/congelador no quarto.\n\n## O apartamento\n\nCozinha totalmente equipada, máquina de lavar e secar roupa, 3 casas de banho, internet. Limpeza semanal das áreas comuns incluída. Ambiente tranquilo, com regras de convivência claras. Não é permitido fumar. 4.º andar sem elevador.\n\n## Condições\n\nRenda: **350 € por mês por cama**. Despesas de consumo (eletricidade, água e gás) à parte, repartidas pelos quartos arrendados. Caução: 1 mês. Contrato escrito de 1 ano.\n\nIdeal para estudantes e jovens profissionais. Marque já a sua visita.\n\nContacto: +351 964 312 302",
+    "en": "A bed in a room shared by 2 people, available now, in a fully renovated apartment in Arroios, one of the most central areas of Lisbon, a few minutes' walk from Instituto Superior Técnico, with good metro and bus connections.\n\n## The room\n\nA room shared by 2 people; one bed is free. Two single beds, two desks with chairs, a wardrobe and a fridge/freezer in the room.\n\n## The apartment\n\nFully equipped kitchen, washer-dryer, 3 bathrooms, internet. Weekly cleaning of the common areas is included. Quiet home with clear house rules. No smoking. 4th floor, no lift.\n\n## Terms\n\nRent: **€350 per month per bed**. Utilities (electricity, water and gas) are extra and split between the rented rooms. Deposit: 1 month. Written 1-year contract.\n\nIdeal for students and young professionals. Book a viewing.\n\nContact: +351 964 312 302",
+    "ru": "Кровать в комнате на двоих, свободна сейчас, в полностью обновлённой квартире в Arroios — одном из самых центральных районов Лиссабона, в нескольких минутах пешком от Instituto Superior Técnico; рядом метро и автобусы.\n\n## Комната\n\nКомната на двоих; свободна одна кровать. Две односпальные кровати, два письменных стола со стульями, шкаф и холодильник с морозилкой в комнате.\n\n## Квартира\n\nПолностью оборудованная кухня, стиральная машина с сушкой, 3 санузла, интернет. Еженедельная уборка общих зон включена. Спокойная квартира с понятными правилами проживания. Курить нельзя. 4-й этаж без лифта.\n\n## Условия\n\nАренда: **350 € в месяц за кровать**. Коммунальные расходы (электричество, вода и газ) оплачиваются отдельно и делятся между сданными комнатами. Депозит: 1 месяц. Письменный договор на 1 год.\n\nПодходит студентам и молодым специалистам. Запишитесь на просмотр.\n\nКонтакт: +351 964 312 302"
+   },
+   "share": "https://danonet-dm.github.io/one/cama-7/"
   }
  ]
 }
