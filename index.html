@@ -254,6 +254,7 @@ details.lic[open] .lic-x{ transform:rotate(45deg) }
     </a>
     <nav class="hidden lg:flex items-center gap-7" aria-label="Primary">
       <a class="nav-link" href="#ecosystem" data-i18n="nav.eco">Ecosystem</a>
+      <a class="nav-link proj-link hidden" href="#projects" data-i18n="nav.proj">Projects</a>
       <a class="nav-link" href="#properties" data-i18n="nav.props">Properties</a>
       <a class="nav-link" href="#apps" data-i18n="nav.apps">Applications</a>
       <a class="nav-link" href="#media" data-i18n="nav.media">Media</a>
@@ -283,6 +284,7 @@ details.lic[open] .lic-x{ transform:rotate(45deg) }
     <svg width="18" height="18" viewBox="0 0 18 18" stroke="currentColor" stroke-width="1.6"><path d="M3 3l12 12M15 3L3 15"/></svg>
   </button>
   <a class="nav-link text-lg py-2" href="#ecosystem" data-action="menu-close" data-i18n="nav.eco">Ecosystem</a>
+  <a class="nav-link text-lg py-2 proj-link hidden" href="#projects" data-action="menu-close" data-i18n="nav.proj">Projects</a>
   <a class="nav-link text-lg py-2" href="#properties" data-action="menu-close" data-i18n="nav.props">Properties</a>
   <a class="nav-link text-lg py-2" href="#apps" data-action="menu-close" data-i18n="nav.apps">Applications</a>
   <a class="nav-link text-lg py-2" href="#media" data-action="menu-close" data-i18n="nav.media">Media</a>
@@ -355,6 +357,18 @@ details.lic[open] .lic-x{ transform:rotate(45deg) }
       <div class="relative mx-auto w-px h-10" style="background:linear-gradient(180deg,rgba(34,211,238,.5),transparent)"></div>
       <div id="eco-grid" class="grid md:grid-cols-2 gap-5"></div>
     </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects" class="py-20 md:py-28 hidden">
+  <div class="max-w-wrap mx-auto px-5 md:px-8">
+    <p class="eyebrow reveal" data-i18n="proj.eyebrow">Our own projects</p>
+    <div class="flex flex-wrap items-end justify-between gap-6 mt-5">
+      <h2 class="h-display text-3xl md:text-5xl reveal" data-delay="1" data-i18n="proj.title">Projects</h2>
+      <p class="text-ink-2 max-w-md reveal" data-delay="2" data-i18n="proj.sub">Properties we own and manage ourselves — with photos, video and documents.</p>
+    </div>
+    <div id="proj-grid" class="grid md:grid-cols-2 gap-6 mt-12" aria-live="polite"></div>
   </div>
 </section>
 
@@ -453,6 +467,7 @@ details.lic[open] .lic-x{ transform:rotate(45deg) }
     </div>
     <nav class="flex flex-col gap-2.5" aria-label="Footer">
       <a class="nav-link w-max" href="#ecosystem" data-i18n="nav.eco">Ecosystem</a>
+      <a class="nav-link w-max proj-link hidden" href="#projects" data-i18n="nav.proj">Projects</a>
       <a class="nav-link w-max" href="#properties" data-i18n="nav.props">Properties</a>
       <a class="nav-link w-max" href="#apps" data-i18n="nav.apps">Applications</a>
       <a class="nav-link w-max" href="#licenses" data-i18n="nav.lic">Licenses</a>
@@ -480,6 +495,11 @@ details.lic[open] .lic-x{ transform:rotate(45deg) }
 <div class="modal-veil" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="vm-title">
   <div class="min-h-full flex items-start md:items-center justify-center p-4 md:p-8">
     <div class="modal-box glass rounded-3xl w-full max-w-3xl p-5 md:p-8 my-6" id="vm-box" style="border-color:var(--stroke-hi)"></div>
+  </div>
+</div>
+<div class="modal-veil" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="pj-title">
+  <div class="min-h-full flex items-start md:items-center justify-center p-4 md:p-8">
+    <div class="modal-box glass rounded-3xl w-full max-w-4xl p-5 md:p-10 my-6" id="pj-box" style="border-color:var(--stroke-hi)"></div>
   </div>
 </div>
 <div class="modal-veil" id="newsModal" role="dialog" aria-modal="true" aria-labelledby="nm-title">
@@ -666,7 +686,11 @@ const TRANSLATIONS = {
     "toast.ok":"Message sent. We'll reply within one business day.","toast.err":"Could not reach the server. Please try again or use WhatsApp / Email.",
     "toast.lang":"Language switched","toast.soon":"Coming soon — leave a request and we'll notify you.",
     "ft.tag":"Real estate · Investment · Construction · Automation · Digital products",
-    "modal.close":"Close"
+    "modal.close":"Close",
+    "nav.proj":"Projects","proj.eyebrow":"Our own projects","proj.title":"Projects",
+    "proj.sub":"Properties we own and manage ourselves — with photos, video and documents.",
+    "proj.video":"Video","proj.docs":"Documents","st.sale":"For sale",
+    "proj.ask":"Ask about this property on WhatsApp","proj.askmsg":"Hello! I'm interested in this property:"
   },
   pt: {
     "a11y.skip":"Ir para o conteúdo",
@@ -699,7 +723,11 @@ const TRANSLATIONS = {
     "toast.ok":"Mensagem enviada. Respondemos num dia útil.","toast.err":"Não foi possível contactar o servidor. Tente novamente ou use WhatsApp / Email.",
     "toast.lang":"Idioma alterado","toast.soon":"Em breve — deixe um pedido e avisamos.",
     "ft.tag":"Imobiliário · Investimento · Construção · Automação · Produtos digitais",
-    "modal.close":"Fechar"
+    "modal.close":"Fechar",
+    "nav.proj":"Projetos","proj.eyebrow":"Projetos próprios","proj.title":"Projetos",
+    "proj.sub":"Imóveis que detemos e gerimos — com fotos, vídeo e documentos.",
+    "proj.video":"Vídeo","proj.docs":"Documentos","st.sale":"À venda",
+    "proj.ask":"Perguntar sobre este imóvel no WhatsApp","proj.askmsg":"Olá! Tenho interesse neste imóvel:"
   },
   ru: {
     "a11y.skip":"Перейти к содержимому",
@@ -732,7 +760,11 @@ const TRANSLATIONS = {
     "toast.ok":"Сообщение отправлено. Ответим в течение рабочего дня.","toast.err":"Не удалось связаться с сервером. Попробуйте ещё раз или напишите в WhatsApp / Email.",
     "toast.lang":"Язык переключён","toast.soon":"Скоро — оставьте заявку, и мы сообщим о запуске.",
     "ft.tag":"Недвижимость · Инвестиции · Строительство · Автоматизация · Цифровые продукты",
-    "modal.close":"Закрыть"
+    "modal.close":"Закрыть",
+    "nav.proj":"Проекты","proj.eyebrow":"Собственные проекты","proj.title":"Проекты",
+    "proj.sub":"Объекты, которыми мы владеем и управляем сами, — с фото, видео и документами.",
+    "proj.video":"Видео","proj.docs":"Документы","st.sale":"В продаже",
+    "proj.ask":"Спросить об объекте в WhatsApp","proj.askmsg":"Здравствуйте! Меня интересует объект:"
   }
 };
 
@@ -866,6 +898,11 @@ async function loadDynamicContent(){
     const res = await fetch('./content.json?t=' + Date.now()); // cache-buster for GitHub Pages
     if (res.ok) remote = await res.json();
   } catch(_) { /* file:// or not yet published — fallback below */ }
+  let remoteProjects = null;
+  try {
+    const resP = await fetch('./projects.json?t=' + Date.now());
+    if (resP.ok) remoteProjects = await resP.json();
+  } catch(_) { /* no projects file yet */ }
   await minSkeleton;
 
   const pick = key => (remote && Array.isArray(remote[key]) && remote[key].length) ? remote[key] : FALLBACK_CONTENT[key] ?? [];
@@ -874,7 +911,7 @@ async function loadDynamicContent(){
     videos:     pick('videos'),
     news:       pick('news'),
     apps:       pick('apps'),
-    projects:   pick('projects')
+    projects:   (remoteProjects && Array.isArray(remoteProjects.projects) && remoteProjects.projects.length) ? remoteProjects.projects : pick('projects')
   };
   state.loaded = true;
   renderDynamic(); // render strictly AFTER data is in place
@@ -1027,9 +1064,33 @@ function showSkeletons(){
   $('media-grid').innerHTML = skeletons(4,'h-60');
   $('news-grid').innerHTML = skeletons(4,'h-72');
 }
-function renderDynamic(){ renderProperties(); renderApps(); renderMedia(); renderNews(); observeNew(); }
+function renderDynamic(){ renderProjects(); renderProperties(); renderApps(); renderMedia(); renderNews(); observeNew(); }
 
-const STATUS_BADGE = { available:'badge-em', analysis:'badge-cy', reserved:'badge-vi', pipeline:'badge-mut' };
+const STATUS_BADGE = { available:'badge-em', analysis:'badge-cy', reserved:'badge-vi', pipeline:'badge-mut', sale:'badge-em' };
+
+function renderProjects(){
+  const list = DATA_STORE.projects || [];
+  $('projects').classList.toggle('hidden', !list.length);
+  document.querySelectorAll('.proj-link').forEach(a => a.classList.toggle('hidden', !list.length));
+  $('proj-grid').innerHTML = list.map((p,i) => `
+    <article class="card card-glow-em overflow-hidden flex flex-col reveal" data-delay="${i%3}">
+      <div class="ph ph-abstract aspect-[16/10]">
+        ${p.cover ? `<img data-src="${esc(p.cover)}" alt="${esc(L(p.title))}" loading="lazy">` : ''}
+        <span class="absolute top-3 left-3 badge ${STATUS_BADGE[p.status]||'badge-mut'}" style="background:rgba(9,13,22,.78)">${t('st.'+p.status)}</span>
+        ${p.video?.src ? `<span class="absolute bottom-3 right-3 badge badge-cy" style="background:rgba(9,13,22,.78)">▶ ${t('proj.video')}</span>` : ''}
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <p class="text-ink-3 text-xs font-mono uppercase tracking-widest">${esc(L(p.loc))}</p>
+        <h3 class="font-display text-2xl leading-snug mt-2">${esc(L(p.title))}</h3>
+        ${p.price ? `<p class="num text-xl mt-2 grad-text font-semibold">${esc(L(p.price))}</p>` : ''}
+        <p class="text-ink-2 text-sm leading-relaxed mt-3">${esc(L(p.summary))}</p>
+        <div class="flex flex-wrap gap-2 mt-5">
+          ${(p.facts||[]).map(f => `<span class="unit-chip">${esc(L(f.k))}: <span class="num text-ink">${esc(L(f.v))}</span></span>`).join('')}
+        </div>
+        <button class="btn btn-ghost btn-sm w-full mt-6" data-action="open-proj" data-id="${esc(p.id)}">${t('prop.more')}</button>
+      </div>
+    </article>`).join('');
+}
 
 function renderProperties(){
   const list = DATA_STORE.properties.filter(p => state.propFilter==='all' || p.cat===state.propFilter);
@@ -1133,7 +1194,8 @@ function openModal(veil){
 function closeModal(instant=false){
   const veil = state.activeModal; if (!veil) return;
   const done = () => { veil.classList.remove('open'); veil.scrollTop = 0;
-    if (veil.id==='videoModal') $('vm-box').innerHTML = ''; }; // stop iframe playback
+    if (veil.id==='videoModal') $('vm-box').innerHTML = '';
+    if (veil.id==='projectModal') $('pj-box').innerHTML = ''; }; // stop iframe playback
   veil.classList.remove('vis');
   instant ? done() : setTimeout(done, 360);
   document.body.classList.remove('locked');
@@ -1179,6 +1241,51 @@ function openPropertyModal(id){
     </dl>
     <a href="#contact" class="btn btn-neo w-full mt-8" data-action="close-and-go">${t('prop.request')}</a>`;
   openModal($('propertyModal'));
+}
+
+function openProjectModal(id){
+  const p = (DATA_STORE.projects || []).find(x => x.id===id); if (!p) return;
+  const g = p.gallery || [];
+  const wa = ONE_CONFIG.contacts.whatsapp;
+  $('pj-box').innerHTML = `
+    <div class="flex items-start justify-between gap-6">
+      <div>
+        <span class="badge ${STATUS_BADGE[p.status]||'badge-mut'}">${t('st.'+p.status)}</span>
+        <h2 id="pj-title" class="h-display text-2xl md:text-4xl mt-4">${esc(L(p.title))}</h2>
+        <p class="text-ink-2 mt-2">${esc(L(p.loc))}${p.price ? ' · <span class="num text-ink">'+esc(L(p.price))+'</span>' : ''}</p>
+      </div>${closeBtn()}
+    </div>
+    ${g.length ? `
+    <div class="rounded-2xl overflow-hidden mt-7 grid place-items-center border border-stroke" style="background:#0B0F1B;aspect-ratio:4/3">
+      <img id="pj-main" src="${esc(g[0].src)}" alt="${esc(L(g[0].cap))}" style="width:100%;height:100%;object-fit:contain">
+    </div>
+    <p id="pj-cap" class="text-ink-3 text-xs mt-2.5">${esc(L(g[0].cap))}</p>
+    <div class="flex gap-2 mt-3 overflow-x-auto pb-2">
+      ${g.map(x => `<button class="flex-none rounded-lg overflow-hidden border border-stroke hover:border-stroke-hi transition-colors"
+          data-action="proj-photo" data-src="${esc(x.src)}" data-cap="${esc(L(x.cap))}" aria-label="${esc(L(x.cap))}">
+          <img src="${esc(x.thumb||x.src)}" alt="" loading="lazy" style="width:84px;height:64px;object-fit:cover;display:block"></button>`).join('')}
+    </div>` : ''}
+    <div class="grid ${p.video?.src ? 'md:grid-cols-5' : ''} gap-8 mt-8">
+      <div class="${p.video?.src ? 'md:col-span-3' : ''}">${renderRichBody(L(p.body)||L(p.summary))}</div>
+      ${p.video?.src ? `<div class="md:col-span-2">
+        <p class="text-ink-3 text-xs uppercase tracking-widest mt-5">${t('proj.video')}</p>
+        <video class="w-full rounded-2xl border border-stroke mt-3" style="background:#0B0F1B;max-width:320px" controls playsinline preload="none"
+               ${p.video.poster ? `poster="${esc(p.video.poster)}"` : ''} src="${esc(p.video.src)}"></video>
+      </div>` : ''}
+    </div>
+    ${(p.facts||[]).length ? `<dl class="grid grid-cols-2 sm:grid-cols-5 gap-3 mt-8">
+      ${p.facts.map(f => `<div class="rounded-xl border border-stroke p-3.5">
+        <dt class="text-[.62rem] uppercase tracking-widest text-ink-3">${esc(L(f.k))}</dt>
+        <dd class="num text-sm mt-1.5">${esc(L(f.v))}</dd></div>`).join('')}
+    </dl>` : ''}
+    ${(p.docs||[]).length ? `<p class="text-ink-3 text-xs uppercase tracking-widest mt-8">${t('proj.docs')}</p>
+    <div class="flex flex-wrap gap-3 mt-3">
+      ${p.docs.map(d => `<a class="btn btn-ghost btn-sm" href="${esc(d.url)}" target="_blank" rel="noopener">${esc(L(d.label))} ↗</a>`).join('')}
+    </div>` : ''}
+    ${wa ? `<a class="btn btn-neo w-full mt-8" target="_blank" rel="noopener"
+       href="${esc(wa + '?text=' + encodeURIComponent(t('proj.askmsg') + ' ' + L(p.title)))}">${t('proj.ask')}</a>` : ''}
+    <a href="#contact" class="btn btn-ghost w-full mt-3" data-action="close-and-go">${t('prop.request')}</a>`;
+  openModal($('projectModal'));
 }
 
 function openVideoModal(id){
@@ -1333,6 +1440,8 @@ function bindEvents(){
       'open-prop':   () => openPropertyModal(el.dataset.id),
       'open-video':  () => openVideoModal(el.dataset.id),
       'open-news':   () => openNewsModal(el.dataset.id),
+      'open-proj':   () => openProjectModal(el.dataset.id),
+      'proj-photo':  () => { const m = $('pj-main'); if (m){ m.src = el.dataset.src; m.alt = el.dataset.cap; $('pj-cap').textContent = el.dataset.cap; } },
       'close':       () => closeModal(),
       'close-and-go':() => closeModal(true),
       'soon':        () => toast(t('toast.soon')),

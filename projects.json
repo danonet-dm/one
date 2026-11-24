@@ -1,0 +1,212 @@
+{
+ "projects": [
+  {
+   "id": "outeiro-grande",
+   "status": "sale",
+   "cover": "./media/outeiro-grande/foto-01.jpg",
+   "title": {
+    "pt": "Moradia T3 em Outeiro Grande (Assentiz, Torres Novas)",
+    "en": "3-bedroom house in Outeiro Grande (Assentiz, Torres Novas)",
+    "ru": "Дом T3 в Outeiro Grande (Assentiz, Torres Novas)"
+   },
+   "loc": {
+    "pt": "Outeiro Grande · Assentiz · Torres Novas",
+    "en": "Outeiro Grande · Assentiz · Torres Novas",
+    "ru": "Outeiro Grande · Assentiz · Torres Novas"
+   },
+   "price": {
+    "pt": "195.000 €",
+    "en": "€195,000",
+    "ru": "195 000 €"
+   },
+   "summary": {
+    "pt": "Moradia T3 de 2 pisos, 6 divisões. Telhado novo e janelas em PVC com vidro duplo (2025). Certificado energético: classe F (SCE422736226).",
+    "en": "Two-storey 3-bedroom house (T3), 6 rooms. New roof and double-glazed PVC windows (2025). Energy certificate: class F (SCE422736226).",
+    "ru": "Двухэтажный дом, 3 спальни, 6 помещений. Новая крыша и окна PVC с двойным стеклопакетом (2025). Энергосертификат: класс F (SCE422736226)."
+   },
+   "facts": [
+    {
+     "k": {
+      "pt": "Tipologia",
+      "en": "Type",
+      "ru": "Тип"
+     },
+     "v": "T3"
+    },
+    {
+     "k": {
+      "pt": "Área útil",
+      "en": "Usable area",
+      "ru": "Полезная площадь"
+     },
+     "v": {
+      "pt": "75,56 m²",
+      "en": "75.56 m²",
+      "ru": "75,56 m²"
+     }
+    },
+    {
+     "k": {
+      "pt": "Área bruta de construção",
+      "en": "Gross construction area",
+      "ru": "Общая застройки"
+     },
+     "v": {
+      "pt": "105,40 m²",
+      "en": "105.40 m²",
+      "ru": "105,40 m²"
+     }
+    },
+    {
+     "k": {
+      "pt": "Terreno",
+      "en": "Plot",
+      "ru": "Участок"
+     },
+     "v": {
+      "pt": "61,74 m²",
+      "en": "61.74 m²",
+      "ru": "61,74 m²"
+     }
+    },
+    {
+     "k": {
+      "pt": "Classe energética",
+      "en": "Energy class",
+      "ru": "Энергокласс"
+     },
+     "v": "F"
+    }
+   ],
+   "gallery": [
+    {
+     "src": "./media/outeiro-grande/foto-01.jpg",
+     "thumb": "./media/outeiro-grande/t-foto-01.jpg",
+     "cap": {
+      "pt": "Fachada, junto à igreja da aldeia",
+      "en": "Façade, next to the village church",
+      "ru": "Фасад, рядом с деревенской церковью"
+     }
+    },
+    {
+     "src": "./media/outeiro-grande/foto-02.jpg",
+     "thumb": "./media/outeiro-grande/t-foto-02.jpg",
+     "cap": {
+      "pt": "Fachada",
+      "en": "Façade",
+      "ru": "Фасад"
+     }
+    },
+    {
+     "src": "./media/outeiro-grande/foto-03.jpg",
+     "thumb": "./media/outeiro-grande/t-foto-03.jpg",
+     "cap": {
+      "pt": "Entrada lateral",
+      "en": "Side entrance",
+      "ru": "Боковой вход"
+     }
+    },
+    {
+     "src": "./media/outeiro-grande/foto-04.jpg",
+     "thumb": "./media/outeiro-grande/t-foto-04.jpg",
+     "cap": {
+      "pt": "Cozinha",
+      "en": "Kitchen",
+      "ru": "Кухня"
+     }
+    },
+    {
+     "src": "./media/outeiro-grande/foto-05.jpg",
+     "thumb": "./media/outeiro-grande/t-foto-05.jpg",
+     "cap": {
+      "pt": "Escada interior entre pisos",
+      "en": "Interior staircase between floors",
+      "ru": "Внутренняя лестница между этажами"
+     }
+    },
+    {
+     "src": "./media/outeiro-grande/foto-06.jpg",
+     "thumb": "./media/outeiro-grande/t-foto-06.jpg",
+     "cap": {
+      "pt": "Divisão com luz natural",
+      "en": "Room with natural light",
+      "ru": "Комната с естественным светом"
+     }
+    },
+    {
+     "src": "./media/outeiro-grande/foto-07.jpg",
+     "thumb": "./media/outeiro-grande/t-foto-07.jpg",
+     "cap": {
+      "pt": "Divisão",
+      "en": "Room",
+      "ru": "Комната"
+     }
+    },
+    {
+     "src": "./media/outeiro-grande/foto-08.jpg",
+     "thumb": "./media/outeiro-grande/t-foto-08.jpg",
+     "cap": {
+      "pt": "Divisão com vista para o campo",
+      "en": "Room with a view over the fields",
+      "ru": "Комната с видом на поля"
+     }
+    },
+    {
+     "src": "./media/outeiro-grande/foto-09.jpg",
+     "thumb": "./media/outeiro-grande/t-foto-09.jpg",
+     "cap": {
+      "pt": "Divisão no 1.º piso",
+      "en": "Room on the first floor",
+      "ru": "Комната на втором этаже"
+     }
+    },
+    {
+     "src": "./media/outeiro-grande/foto-10.jpg",
+     "thumb": "./media/outeiro-grande/t-foto-10.jpg",
+     "cap": {
+      "pt": "Divisão no 1.º piso",
+      "en": "Room on the first floor",
+      "ru": "Комната на втором этаже"
+     }
+    },
+    {
+     "src": "./media/outeiro-grande/foto-11.jpg",
+     "thumb": "./media/outeiro-grande/t-foto-11.jpg",
+     "cap": {
+      "pt": "Anexo com lareira",
+      "en": "Annex with fireplace",
+      "ru": "Пристройка с очагом"
+     }
+    },
+    {
+     "src": "./media/outeiro-grande/foto-12.jpg",
+     "thumb": "./media/outeiro-grande/t-foto-12.jpg",
+     "cap": {
+      "pt": "Anexo com lareira",
+      "en": "Annex with fireplace",
+      "ru": "Пристройка с очагом"
+     }
+    }
+   ],
+   "video": {
+    "src": "./media/outeiro-grande/reel-pt.mp4",
+    "poster": "./media/outeiro-grande/reel-poster.jpg"
+   },
+   "body": {
+    "pt": "Moradia T3 de 2 pisos, 6 divisões, em Outeiro Grande (Assentiz, Torres Novas).\n\n## Distribuição\n\nR/chão: sala, 1 quarto, cozinha equipada e casa de banho. 1.º piso: 2 quartos, closet e escritório.\n\n## Áreas\n\nÁrea útil 75,56 m² · área bruta privativa 87,40 m² · área bruta de construção 105,40 m² · terreno 61,74 m².\n\n## Obras realizadas\n\nTelhado novo e janelas em PVC com vidro duplo (2025). Interior pintado, cozinha equipada. Eletricidade ligada (contador instalado em novembro de 2026).\n\n## Documentação\n\nEdifício construído antes de 1951 (declaração da Junta de Freguesia). Certificado energético: **classe F** (SCE422736226).\n\n**Preço: 195.000 €**\n\n> Venda direta pelo proprietário: ProEstate Unipessoal, Lda (mediadora licenciada AMI 24278). Imóvel próprio da empresa — a venda não constitui mediação imobiliária.\n\nContacto: +351 964 312 302",
+    "en": "Two-storey 3-bedroom house (T3), 6 rooms, in Outeiro Grande (Assentiz, Torres Novas).\n\nGround floor: living room, 1 bedroom, equipped kitchen and bathroom. First floor: 2 bedrooms, walk-in closet and study.\n\nUsable area 75.56 m² · private gross area 87.40 m² · gross construction area 105.40 m² · plot 61.74 m².\n\nNew roof and double-glazed PVC windows (2025). Interior repainted, equipped kitchen. Electricity connected (meter installed in November 2026).\n\nBuilding constructed before 1951 (parish council declaration). Energy certificate: **class F** (SCE422736226).\n\n**Price: €195,000**\n\n> Direct sale by the owner: ProEstate Unipessoal, Lda (licensed real estate agency AMI 24278). The property is owned by the company — the sale is not a brokerage service.\n\nContact: +351 964 312 302",
+    "ru": "Двухэтажный дом, 3 спальни, 6 помещений.\n\n1-й этаж: гостиная, 1 спальня, оборудованная кухня, санузел. 2-й этаж: 2 спальни, гардеробная, кабинет.\n\nПолезная площадь 75,56 m²; общая частная 87,40 m²; общая застройки 105,40 m²; участок 61,74 m².\n\nНовая крыша и окна PVC с двойным стеклопакетом (2025), внутри покрашено, кухня оборудована. Электричество подключено (счётчик установлен в ноябре 2026).\n\nДом построен до 1951 года (справка Junta de Freguesia). Энергосертификат: **класс F** (SCE422736226).\n\n**Цена: 195 000 €**\n\n> Продаёт собственник — ProEstate Unipessoal, Lda (AMI 24278).\n\nКонтакт: +351 964 312 302"
+   },
+   "docs": [
+    {
+     "label": {
+      "pt": "Certificado energético (PDF)",
+      "en": "Energy certificate (PDF)",
+      "ru": "Энергосертификат (PDF)"
+     },
+     "url": "./media/outeiro-grande/certificado-energetico.pdf"
+    }
+   ]
+  }
+ ]
+}
