@@ -690,7 +690,7 @@ const TRANSLATIONS = {
     "nav.proj":"Projects","proj.eyebrow":"Our own projects","proj.title":"Projects",
     "proj.sub":"Properties we own and manage ourselves — with photos, video and documents.",
     "proj.video":"Video","proj.docs":"Documents","st.sale":"For sale",
-    "proj.ask":"Ask about this property on WhatsApp","proj.askmsg":"Hello! I'm interested in this property:"
+    "proj.share":"Copy link to this property","proj.copied":"Link copied","proj.ask":"Ask about this property on WhatsApp","proj.askmsg":"Hello! I'm interested in this property:"
   },
   pt: {
     "a11y.skip":"Ir para o conteúdo",
@@ -727,7 +727,7 @@ const TRANSLATIONS = {
     "nav.proj":"Projetos","proj.eyebrow":"Projetos próprios","proj.title":"Projetos",
     "proj.sub":"Imóveis que detemos e gerimos — com fotos, vídeo e documentos.",
     "proj.video":"Vídeo","proj.docs":"Documentos","st.sale":"À venda",
-    "proj.ask":"Perguntar sobre este imóvel no WhatsApp","proj.askmsg":"Olá! Tenho interesse neste imóvel:"
+    "proj.share":"Copiar link deste imóvel","proj.copied":"Link copiado","proj.ask":"Perguntar sobre este imóvel no WhatsApp","proj.askmsg":"Olá! Tenho interesse neste imóvel:"
   },
   ru: {
     "a11y.skip":"Перейти к содержимому",
@@ -764,7 +764,7 @@ const TRANSLATIONS = {
     "nav.proj":"Проекты","proj.eyebrow":"Собственные проекты","proj.title":"Проекты",
     "proj.sub":"Объекты, которыми мы владеем и управляем сами, — с фото, видео и документами.",
     "proj.video":"Видео","proj.docs":"Документы","st.sale":"В продаже",
-    "proj.ask":"Спросить об объекте в WhatsApp","proj.askmsg":"Здравствуйте! Меня интересует объект:"
+    "proj.share":"Скопировать ссылку на объект","proj.copied":"Ссылка скопирована","proj.ask":"Спросить об объекте в WhatsApp","proj.askmsg":"Здравствуйте! Меня интересует объект:"
   }
 };
 
@@ -915,6 +915,7 @@ async function loadDynamicContent(){
   };
   state.loaded = true;
   renderDynamic(); // render strictly AFTER data is in place
+  openProjectFromUrl(); // deep link: ?p=<project id>
 }
 
 /* ---------------- LAYER 2: language ---------------- */
@@ -1195,7 +1196,8 @@ function closeModal(instant=false){
   const veil = state.activeModal; if (!veil) return;
   const done = () => { veil.classList.remove('open'); veil.scrollTop = 0;
     if (veil.id==='videoModal') $('vm-box').innerHTML = '';
-    if (veil.id==='projectModal') $('pj-box').innerHTML = ''; }; // stop iframe playback
+    if (veil.id==='projectModal') $('pj-box').innerHTML = ''; };
+  if (veil.id==='projectModal'){ try { history.replaceState(null, '', location.pathname); } catch(_){} } // stop iframe playback
   veil.classList.remove('vis');
   instant ? done() : setTimeout(done, 360);
   document.body.classList.remove('locked');
@@ -1243,6 +1245,11 @@ function openPropertyModal(id){
   openModal($('propertyModal'));
 }
 
+function projectShareUrl(p){ return p.share || (location.origin + location.pathname + '?p=' + encodeURIComponent(p.id)); }
+function openProjectFromUrl(){
+  const id = new URLSearchParams(location.search).get('p');
+  if (id && (DATA_STORE.projects || []).some(x => x.id===id)) openProjectModal(id);
+}
 function openProjectModal(id){
   const p = (DATA_STORE.projects || []).find(x => x.id===id); if (!p) return;
   const g = p.gallery || [];
@@ -1284,7 +1291,9 @@ function openProjectModal(id){
     </div>` : ''}
     ${wa ? `<a class="btn btn-neo w-full mt-8" target="_blank" rel="noopener"
        href="${esc(wa + '?text=' + encodeURIComponent(t('proj.askmsg') + ' ' + L(p.title)))}">${t('proj.ask')}</a>` : ''}
-    <a href="#contact" class="btn btn-ghost w-full mt-3" data-action="close-and-go">${t('prop.request')}</a>`;
+    <a href="#contact" class="btn btn-ghost w-full mt-3" data-action="close-and-go">${t('prop.request')}</a>
+    <button class="btn btn-ghost btn-sm w-full mt-3" data-action="proj-share" data-url="${esc(projectShareUrl(p))}">${t('proj.share')}</button>`;
+  try { history.replaceState(null, '', location.pathname + '?p=' + encodeURIComponent(p.id)); } catch(_){}
   openModal($('projectModal'));
 }
 
@@ -1441,6 +1450,7 @@ function bindEvents(){
       'open-video':  () => openVideoModal(el.dataset.id),
       'open-news':   () => openNewsModal(el.dataset.id),
       'open-proj':   () => openProjectModal(el.dataset.id),
+      'proj-share':  () => { const u = el.dataset.url; (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => toast(t('proj.copied'))).catch(() => toast(u)); },
       'proj-photo':  () => { const m = $('pj-main'); if (m){ m.src = el.dataset.src; m.alt = el.dataset.cap; $('pj-cap').textContent = el.dataset.cap; } },
       'close':       () => closeModal(),
       'close-and-go':() => closeModal(true),
