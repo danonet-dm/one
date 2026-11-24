@@ -208,6 +208,191 @@
     }
    ],
    "share": "https://danonet-dm.github.io/one/outeiro-grande/"
+  },
+  {
+   "id": "quarto-4a",
+   "status": "available",
+   "cover": "./media/quarto-4a/foto-01.jpg",
+   "title": {
+    "pt": "Quarto individual com varanda em Arroios, Lisboa",
+    "en": "Single room with balcony in Arroios, Lisbon",
+    "ru": "Отдельная комната с балконом в Arroios, Лиссабон"
+   },
+   "loc": {
+    "pt": "Arroios · Lisboa · junto ao IST",
+    "en": "Arroios · Lisbon · near IST",
+    "ru": "Arroios · Лиссабон · рядом с IST"
+   },
+   "price": {
+    "pt": "490 €/mês",
+    "en": "€490/month",
+    "ru": "490 €/мес."
+   },
+   "summary": {
+    "pt": "Quarto individual com varanda própria, disponível de imediato. Apartamento renovado a poucos minutos a pé do Instituto Superior Técnico. Despesas à parte.",
+    "en": "Single room with a private balcony, available now. Renovated apartment a few minutes' walk from Instituto Superior Técnico. Utilities extra.",
+    "ru": "Отдельная комната со своим балконом, свободна сейчас. Обновлённая квартира в нескольких минутах пешком от Instituto Superior Técnico. Коммунальные отдельно."
+   },
+   "facts": [
+    {
+     "k": {
+      "pt": "Disponível",
+      "en": "Available",
+      "ru": "Свободна"
+     },
+     "v": {
+      "pt": "de imediato",
+      "en": "now",
+      "ru": "сейчас"
+     }
+    },
+    {
+     "k": {
+      "pt": "Caução",
+      "en": "Deposit",
+      "ru": "Депозит"
+     },
+     "v": {
+      "pt": "1 mês",
+      "en": "1 month",
+      "ru": "1 месяц"
+     }
+    },
+    {
+     "k": {
+      "pt": "Contrato",
+      "en": "Contract",
+      "ru": "Договор"
+     },
+     "v": {
+      "pt": "1 ano",
+      "en": "1 year",
+      "ru": "1 год"
+     }
+    },
+    {
+     "k": {
+      "pt": "Despesas",
+      "en": "Utilities",
+      "ru": "Коммунальные"
+     },
+     "v": {
+      "pt": "à parte",
+      "en": "extra",
+      "ru": "отдельно"
+     }
+    },
+    {
+     "k": {
+      "pt": "Andar",
+      "en": "Floor",
+      "ru": "Этаж"
+     },
+     "v": {
+      "pt": "4.º, sem elevador",
+      "en": "4th, no lift",
+      "ru": "4-й, без лифта"
+     }
+    }
+   ],
+   "gallery": [
+    {
+     "src": "./media/quarto-4a/foto-01.jpg",
+     "thumb": "./media/quarto-4a/t-foto-01.jpg",
+     "cap": {
+      "pt": "Quarto 4A",
+      "en": "Room 4A",
+      "ru": "Комната 4A"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-02.jpg",
+     "thumb": "./media/quarto-4a/t-foto-02.jpg",
+     "cap": {
+      "pt": "Quarto com acesso à varanda",
+      "en": "Room with access to the balcony",
+      "ru": "Комната с выходом на балкон"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-03.jpg",
+     "thumb": "./media/quarto-4a/t-foto-03.jpg",
+     "cap": {
+      "pt": "Varanda própria",
+      "en": "Private balcony",
+      "ru": "Свой балкон"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-04.jpg",
+     "thumb": "./media/quarto-4a/t-foto-04.jpg",
+     "cap": {
+      "pt": "Vista da varanda",
+      "en": "View from the balcony",
+      "ru": "Вид с балкона"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-05.jpg",
+     "thumb": "./media/quarto-4a/t-foto-05.jpg",
+     "cap": {
+      "pt": "Cozinha",
+      "en": "Kitchen",
+      "ru": "Кухня"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-06.jpg",
+     "thumb": "./media/quarto-4a/t-foto-06.jpg",
+     "cap": {
+      "pt": "Cozinha: lava-loiça e máquina de lavar",
+      "en": "Kitchen: sink and washing machine",
+      "ru": "Кухня: мойка и стиральная машина"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-07.jpg",
+     "thumb": "./media/quarto-4a/t-foto-07.jpg",
+     "cap": {
+      "pt": "Cozinha: placa a gás",
+      "en": "Kitchen: gas hob",
+      "ru": "Кухня: газовая плита"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-08.jpg",
+     "thumb": "./media/quarto-4a/t-foto-08.jpg",
+     "cap": {
+      "pt": "Casa de banho com duche",
+      "en": "Bathroom with shower",
+      "ru": "Санузел с душем"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-09.jpg",
+     "thumb": "./media/quarto-4a/t-foto-09.jpg",
+     "cap": {
+      "pt": "Casa de banho: lavatórios",
+      "en": "Bathroom: washbasins",
+      "ru": "Санузел: умывальники"
+     }
+    },
+    {
+     "src": "./media/quarto-4a/foto-10.jpg",
+     "thumb": "./media/quarto-4a/t-foto-10.jpg",
+     "cap": {
+      "pt": "Corredor",
+      "en": "Hallway",
+      "ru": "Коридор"
+     }
+    }
+   ],
+   "body": {
+    "pt": "Quarto individual com varanda própria, disponível de imediato, num apartamento totalmente renovado em Arroios, uma das zonas mais centrais de Lisboa, a poucos minutos a pé do Instituto Superior Técnico e com boas ligações de metro e autocarro.\n\n## O quarto\n\nUso individual. Cama individual, secretária, cadeira, cómoda, espelho e bengaleiro. Frigorífico/congelador próprio no quarto. Varanda própria com vista sobre os telhados.\n\n## O apartamento\n\nCozinha totalmente equipada, máquina de lavar e secar roupa, 3 casas de banho, internet. Limpeza semanal das áreas comuns incluída. Ambiente tranquilo, com regras de convivência claras. Não é permitido fumar. 4.º andar sem elevador.\n\n## Condições\n\nRenda: **490 € por mês**. Despesas de consumo (eletricidade, água e gás) à parte, repartidas pelos quartos arrendados. Caução: 1 mês. Contrato escrito de 1 ano.\n\nIdeal para estudantes e jovens profissionais. Marque já a sua visita.\n\nContacto: +351 964 312 302",
+    "en": "Single room with a private balcony, available now, in a fully renovated apartment in Arroios, one of the most central areas of Lisbon, a few minutes' walk from Instituto Superior Técnico, with good metro and bus connections.\n\n## The room\n\nFor one person. Single bed, desk, chair, chest of drawers, mirror and coat stand. Your own fridge/freezer in the room. Private balcony with a view over the rooftops.\n\n## The apartment\n\nFully equipped kitchen, washer-dryer, 3 bathrooms, internet. Weekly cleaning of the common areas is included. Quiet home with clear house rules. No smoking. 4th floor, no lift.\n\n## Terms\n\nRent: **€490 per month**. Utilities (electricity, water and gas) are extra and split between the rented rooms. Deposit: 1 month. Written 1-year contract.\n\nIdeal for students and young professionals. Book a viewing.\n\nContact: +351 964 312 302",
+    "ru": "Отдельная комната со своим балконом, свободна сейчас, в полностью обновлённой квартире в Arroios — одном из самых центральных районов Лиссабона, в нескольких минутах пешком от Instituto Superior Técnico; рядом метро и автобусы.\n\n## Комната\n\nДля одного человека. Односпальная кровать, письменный стол, стул, комод, зеркало и вешалка. Свой холодильник с морозилкой в комнате. Свой балкон с видом на крыши.\n\n## Квартира\n\nПолностью оборудованная кухня, стиральная машина с сушкой, 3 санузла, интернет. Еженедельная уборка общих зон включена. Спокойная квартира с понятными правилами проживания. Курить нельзя. 4-й этаж без лифта.\n\n## Условия\n\nАренда: **490 € в месяц**. Коммунальные расходы (электричество, вода и газ) оплачиваются отдельно и делятся между сданными комнатами. Депозит: 1 месяц. Письменный договор на 1 год.\n\nПодходит студентам и молодым специалистам. Запишитесь на просмотр.\n\nКонтакт: +351 964 312 302"
+   },
+   "share": "https://danonet-dm.github.io/one/quarto-4a/"
   }
  ]
 }
