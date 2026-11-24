@@ -418,6 +418,7 @@ details.lic[open] .lic-x{ transform:rotate(45deg) }
       <h2 class="h-display text-3xl md:text-5xl mt-5 reveal" data-delay="1" data-i18n="ct.title">Tell us about your project</h2>
       <p class="text-ink-2 mt-6 max-w-md reveal" data-delay="2" data-i18n="ct.sub">Property purchase, construction, automation or a digital product — describe the task and we'll reply within one business day.</p>
       <div id="quick-actions" class="grid sm:grid-cols-2 gap-3 mt-10 reveal" data-delay="2"></div>
+      <a id="wa-ask" class="btn btn-neo mt-4 w-full sm:w-auto" href="#" target="_blank" rel="noopener"></a>
     </div>
     <form id="contactForm" class="card p-6 md:p-10 space-y-5 reveal" data-delay="2" novalidate>
       <div class="grid sm:grid-cols-2 gap-5">
@@ -660,7 +661,7 @@ const TRANSLATIONS = {
     "ct.name":"Name","ct.contact":"Phone / Telegram / Email","ct.topic":"Direction","ct.msg":"Message","ct.send":"Send message",
     "ct.privacy":"Your details are used only to reply to this request.",
     "ct.t1":"Real estate / investment","ct.t2":"Construction / renovation","ct.t3":"Automation / ONE AI","ct.t4":"Other",
-    "qa.call":"Call","qa.wa":"WhatsApp","qa.tg":"Telegram","qa.mail":"Email",
+    "qa.ask":"Ask a question on WhatsApp","qa.askmsg":"Hello! I have a question about your services.","qa.call":"Call","qa.wa":"WhatsApp","qa.tg":"Telegram","qa.mail":"Email",
     "err.name":"Please enter your name.","err.contact":"Please leave a phone, Telegram or email.","err.msg":"Please describe your task briefly.",
     "toast.ok":"Message sent. We'll reply within one business day.","toast.err":"Could not reach the server. Please try again or use WhatsApp / Email.",
     "toast.lang":"Language switched","toast.soon":"Coming soon — leave a request and we'll notify you.",
@@ -693,7 +694,7 @@ const TRANSLATIONS = {
     "ct.name":"Nome","ct.contact":"Telefone / Telegram / Email","ct.topic":"Direção","ct.msg":"Mensagem","ct.send":"Enviar mensagem",
     "ct.privacy":"Os seus dados são usados apenas para responder a este pedido.",
     "ct.t1":"Imobiliário / investimento","ct.t2":"Construção / renovação","ct.t3":"Automação / ONE AI","ct.t4":"Outro",
-    "qa.call":"Ligar","qa.wa":"WhatsApp","qa.tg":"Telegram","qa.mail":"Email",
+    "qa.ask":"Fazer uma pergunta no WhatsApp","qa.askmsg":"Olá! Tenho uma pergunta sobre os vossos serviços.","qa.call":"Ligar","qa.wa":"WhatsApp","qa.tg":"Telegram","qa.mail":"Email",
     "err.name":"Indique o seu nome.","err.contact":"Deixe um telefone, Telegram ou email.","err.msg":"Descreva brevemente a sua tarefa.",
     "toast.ok":"Mensagem enviada. Respondemos num dia útil.","toast.err":"Não foi possível contactar o servidor. Tente novamente ou use WhatsApp / Email.",
     "toast.lang":"Idioma alterado","toast.soon":"Em breve — deixe um pedido e avisamos.",
@@ -726,7 +727,7 @@ const TRANSLATIONS = {
     "ct.name":"Имя","ct.contact":"Телефон / Telegram / Email","ct.topic":"Направление","ct.msg":"Сообщение","ct.send":"Отправить сообщение",
     "ct.privacy":"Ваши данные используются только для ответа на эту заявку.",
     "ct.t1":"Недвижимость / инвестиции","ct.t2":"Строительство / ремонт","ct.t3":"Автоматизация / ONE AI","ct.t4":"Другое",
-    "qa.call":"Позвонить","qa.wa":"WhatsApp","qa.tg":"Telegram","qa.mail":"Email",
+    "qa.ask":"Задать вопрос в WhatsApp","qa.askmsg":"Здравствуйте! У меня вопрос по вашим услугам.","qa.call":"Позвонить","qa.wa":"WhatsApp","qa.tg":"Telegram","qa.mail":"Email",
     "err.name":"Укажите ваше имя.","err.contact":"Оставьте телефон, Telegram или email.","err.msg":"Коротко опишите задачу.",
     "toast.ok":"Сообщение отправлено. Ответим в течение рабочего дня.","toast.err":"Не удалось связаться с сервером. Попробуйте ещё раз или напишите в WhatsApp / Email.",
     "toast.lang":"Язык переключён","toast.soon":"Скоро — оставьте заявку, и мы сообщим о запуске.",
@@ -990,6 +991,8 @@ function renderLicenses(){
 
 function renderQuickActions(){
   const c = ONE_CONFIG.contacts;
+  const wa = $('wa-ask');
+  if (wa && c.whatsapp) { wa.href = c.whatsapp + '?text=' + encodeURIComponent(t('qa.askmsg')); wa.textContent = t('qa.ask'); }
   const items = [
     { k:'qa.call', href:'tel:+' + c.phoneClean, sub:c.phone, grad:'linear-gradient(135deg,rgba(52,211,153,.2),rgba(34,211,238,.15))', ic:'✆' },
     c.whatsapp ? { k:'qa.wa', href:c.whatsapp, sub:'WhatsApp', grad:'linear-gradient(135deg,rgba(52,211,153,.22),rgba(52,211,153,.08))', ic:'✉', ext:true } : null,
